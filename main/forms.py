@@ -6,6 +6,8 @@ from wtforms import ValidationError
 from flask_pagedown.fields import PageDownField
 from ..models import Role, User
 
+__author__ = NanJun
+
 
 class NameForm(Form):
 	name = StringField('What is your name?', validators=[Required()])

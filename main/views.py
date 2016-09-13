@@ -9,6 +9,8 @@ from . forms import EditProfileForm, EditProfileAdminForm, PostForm,\
  from ..models import Permission, Role, User, Post, Comment
  from ..decorators import admin_required, permission_required
 
+ __author__ = NanJun
+
 
 @admin.after_app_request
 def after_request(response):
