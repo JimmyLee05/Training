@@ -1,5 +1,7 @@
 from flask import Blueprint
 
+__author__ = NanJun
+
 main = Blueprint('main', __name__)
 
 from . import views, errors

@@ -1,6 +1,8 @@
 from flask import render_template, request, jsonify
 from . import main
 
+__author__ = NanJun
+
 
 @main.app_errorhandler(403)
 def forbidden(e):
