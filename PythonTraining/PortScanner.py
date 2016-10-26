@@ -1,6 +1,8 @@
 import optparse
-import socket
 from socket import *
+from threading import *
+
+screenLock = Semaphore(value=1)
 
 def connScan(tgtHost, tgtPort):
 
@@ -9,12 +11,17 @@ def connScan(tgtHost, tgtPort):
 		connSkt = connect((tgtHost, tgtPort))
 		connSkt.send('ViolentPython\r\n')
 		results = connSkt.recv(100)
+		screenLock.acquire()
 		print '[+]%d/tcp open'% tgtPort
 		print '[+] ' +str(results)
-		connSkt.close()
 
 	except:
+		screenLock.acquire()
 		print '[-]%d/tcp closed'% tgtPort
+
+	finally:
+		screenLock.release()
+		connSkt.close()
 
 def portScan(tgtHost, tgtPort):
 
@@ -35,13 +42,14 @@ def portScan(tgtHost, tgtPort):
 	setdefaulttimeout(1)
 
 	for tgtPort in tgtPorts:
-		print 'Scanning port ' +tgtPort
-		connScan(tgtHost, int(tgtPort))
+
+		t = Thread(target=connScan, args=(tgtHost, int(tgtPort)))
+		t.start()
 
 def main():
 
-	parser = optparse.OptionParser("usage%pprog "+\
-		"-H <target host> -p <target port>")
+	parser = optparse.OptionParser('usage%pprog '+\
+		'-H <target host> -p <target port>')
 
 	parser.add_option('-H', dest='tgtHost', type='string', \
 		help='specify target host')
@@ -60,20 +68,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
