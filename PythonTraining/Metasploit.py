@@ -92,21 +92,8 @@ def main():
 	configFile.close()
 	os.system('msfconsole -r meta.rc')
 
+
 if __name__ == '__main__':
 	main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
