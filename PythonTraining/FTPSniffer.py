@@ -28,5 +28,11 @@ def main ():
 		exit(0)
 	else:
 		conf.iface = options.interface
-		
+	try:
+		sniff(filter='tcp port 21', prn=ftpSniff)
+	except KeyboardInterrupt:
+		exit()
+
+if __name__ == '__main__':
+	main()
 
