@@ -1,0 +1,5 @@
+c:\users\pactera\documents\visual studio 2010\Projects\TestProject\TestProject\bin\Debug\TestProject.exe
+c:\users\pactera\documents\visual studio 2010\Projects\TestProject\TestProject\bin\Debug\TestProject.pdb
+c:\users\pactera\documents\visual studio 2010\Projects\TestProject\TestProject\obj\x86\Debug\TestProject.exe
+c:\users\pactera\documents\visual studio 2010\Projects\TestProject\TestProject\obj\x86\Debug\TestProject.pdb
+C:\Users\Pactera\Documents\Visual Studio 2010\Projects\TestProject\TestProject\obj\x86\Debug\TestProject.csprojResolveAssemblyReference.cache
