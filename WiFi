@@ -1,0 +1,24 @@
+https://my.oschina.net/eechen/blog/227230
+
+https://github.com/facebook/augmented-traffic-control
+
+http://www.alonemonkey.com/2016/07/01/augmented-traffic-control/
+
+http://askubuntu.com/questions/741559/wireless-adapter-realtek-0bda818b-problems-used-to-sometimes-connect-now-n
+
+http://blog.sciencenet.cn/blog-1429837-1000769.html
+
+http://blog.csdn.net/wdjhzw/article/details/39118651
+
+https://testerhome.com/topics/2889
+
+http://www.cnblogs.com/coderzh/p/AugmentedTrafficControl.html
+
+http://www.linuxdiyf.com/linux/20546.html
+
+sudo nano /etc/NetworkManager/NetworkManager.conf 
+
+
+[keyfile]
+unmanaged-devices=mac:48:8A:D2:3C:3C:3C
+

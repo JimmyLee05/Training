@@ -1,0 +1,38 @@
+222.239.10.136
+98.126.11.186
+
+sudo hexo clean
+sudo hexo generate
+sudo hexo deploy
+
+heroku config:set MAIL_USERNAME=pandamens@sina.com
+heroku config:set MAIL_PASSWORD=lnj_0526
+heroku config:set FLASK_ADMIN=NanJun05@163.com
+
+npm install hexo-deployer-git --save
+
+python manage.py db upgrade
+python manage.py shell
+python manage.py runserver 
+
+export MAIL_USERNAME=nanjun1226@gmail.com
+export MAIL_PASSWORD=lnj_0526
+
+export FLASKY_ADMIN=nanjun05@163.com
+
+Role.insert_roles()
+Role.query.all()
+
+sudo lsof -i:8087
+
+sudo kill
+
+User.generate_fake(50)
+Post.generate_fake(100)
+
+sudo xcode-select --switch /Applications/Xcode.app
+
+
+£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯£¯
+
+git clone git@github.com:michaelliao/gitskills.git
