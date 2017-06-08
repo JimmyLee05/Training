@@ -48,6 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return MTApplication.shared.application(application, handleOpenURL: url)
 	}
 
+	func application(_ app: UIApplication,
+					 open url: URL,
+					 options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+		return MTApplication.shared.application(app, openURL: url, options: options)
+	}
+
+	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> {
+		return false
+	}
+
+	
+
 	)
 
 
