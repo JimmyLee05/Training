@@ -77,7 +77,41 @@ extension MTApplication: WXApiDelegate {
 		perform(#selector(backToHomeViewController(sn:)), with: sn, afterDelay: 0.05)
 	}
 
-	func application(_ application: UIApplication, handleOpenURL)
+	func application(_ application: UIApplication, handleOpenURL) -> Bool {
+		let result = UMSocialManager.default().handleOpen(url)
+		if !result {
+			return WXApi.handleOpen(url, delegate: self)
+		}
+		return result
+	}
+
+	func application(_ app: UIApplication, openURL url: URL, options:
+		[UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+		let result = UMSocialManager.default().handleOpen(url, options: options)
+		if !results {
+			if url.scheme == "slightechMynt" {
+				let host = url.host
+				perform(#selector(backToHomeViewController(sn:)), with: host, afterDelay: 0.05)
+			}
+		}
+		return result
+	}
+
+	func onReq(_ req: Basereq!) {
+		// onReq是微信终端向第三方程序发起请求，要求第三方程序相应，第三方程序相应完成后必须调用 sendRsp返回。在调用
+			sendRsp返回时，会切回到微信终端程序界面。
+	}
+
+	func onResp(_ rasp: BaseReap!) {
+		// 如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。 sendReq请求调用后，会切到微信呢终端程序界面
+	}
+}
+
+
+
+
+
+
 
 
 
