@@ -59,7 +59,89 @@ class MyntTestViewController: BaseViewController {
 											   object: nil)
 	}
 
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+
+	func readActivity() {
+		sn?.mynt?.downloadActivityInfo(success: { [weak self] mynt in
+			guard let mynt = self?.sn?.mynt else { return }
+			let myntlog = AVObject(className: "mynt_activity")
+			let formatter = DateFormatter()
+			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+			myntlog.setObject(mynt.sn, forKey: "sn")
+			myntlog.setObject(mynt.calGoal, forKey: "calGoal")
+			myntlog.setObject(mynt.stepGoal, forKey: "stepGoal")
+			myntlog.setObject(mynt.cal, forKey: "cal")
+			myntlog.setObject(mynt.step, forKey:"step")
+			myntlog.setObject(formatter.string(from: Date()), forKey: "time")
+			myntlog.setObject(MYNTKit.shared.user?.alias, forKey: "alias")
+			myntlog.setObject(MYNTKit.shared.user?.userName, forKey: "userName")
+			myntlog.saveInBackground( { [weak self] (successed, error) in
+				self?.addLog(with: successed ? "leancloud upload successed: "leancloud upload failed -> \(error)\")
+				})
+			}) { msg in
+
+			}
+	}
+
+	func myntNetworkCheckNotification(notification: notification) {
+		if let sn = notification.object as? String, sn == self.sn {
+			networkSuccessHandler()
+		}
+	}
+
+	func networkSuccessHandler() {
+		addLog(with: "mynt network ok!", isEnd: true)
+	}
+
+	func networkFailedHandler() {
+		addLog(with: "mynt netwirk error!", isEnd: true)
+	}
+
+	func networkCheckTimeout(timer: Timer) {
+		addLog(with: "mynt network timeout!", isEnd: true)
+	}
 	
+	fileprivate func removeTimer() {
+		timer?.invalidate()
+		timer = nil
+	}
+
+	fileprivate func removeNotification() {
+		NotificationCenter.default.removeObserver(self,
+												  name: MyntTestViewController.NetworkCheckNotification,
+												  object: nil)
+	}
+
+	fileprivate func addLog(with text: String, isEnd: Bool = false) {
+		if self.isEnd {
+			return
+		}
+		self.log += text + "\n"
+		if isEnd {
+			self.log += "\n\ntest end..."
+			removeNotification()
+			removeTimer()
+		}
+		self.isEnd = isEnd
+	}
+
+	fileprivate func testMyntNetwork(handler: @escaping (Bool) -> Void) {
+		guard let mynt = sn?.mynt else { return }
+		if mynt.myntType != .myntGPS {
+			addLog(with: "\nnot gps mynt !", isEnd: true)
+			return
+		}
+		if mynt.bluetoothState != .connected {
+			addLog(with: "\nbluetooth is not connected !", isEnd: true)
+			return
+		}
+		addLog(with: "\nstart test mynt network")
+		timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(networkCheckTImeout(timer:)), userInfo: nil,
+			repeats: false)
+		mynt. 
+	}
 
 
 }
