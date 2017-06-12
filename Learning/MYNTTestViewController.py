@@ -140,7 +140,29 @@ class MyntTestViewController: BaseViewController {
 		addLog(with: "\nstart test mynt network")
 		timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(networkCheckTImeout(timer:)), userInfo: nil,
 			repeats: false)
-		mynt. 
+		mynt.stMynt?.checkNetwork { [weak self] error in
+			if let error = error {
+				self?.addLog(with: "\(error.localizedDescription)", isEnd: true)
+				return
+			}
+			self?.addLog(with: "check network ok! please wait...")
+		}
+	}
+
+	fileprivate func testLeanCloud(handle: @escaping (Bool) -> Void) {
+		addLog(with: "\nstart test LeanCloud")
+		let myntLog = AVObject(className: "mynt_log")
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		myntLog.setObject("test", forKey: "log")
+		myntLog.setObject("test", forKey: "sn")
+		myntLog.setObject(formatter.string(from: Date()), forKey: "time")
+		myntLog.setObject(MYNTKit.shared.user?.alias, forKey: "alias")
+		myntLog.setObject(MYNTKit.shared.user?.userName, forKey: "userName")
+		myntLog.saveInBackground({ [weak self] (successed, error) in
+			self?.addLog(with: successed? "leancloud upload successed": "leancloud upload failed -> \(error)")
+			handler(successed)
+		})
 	}
 
 
