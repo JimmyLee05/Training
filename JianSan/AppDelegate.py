@@ -99,16 +99,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	/**
+	配置全局样式
+	*/
+	fileprivate func setupGlobalStyle() {
 
+		UIApplication.shared.isStatusBarHidden = false
+		UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+	}
 
+	/**
+	加载默认根控制器
+	*／
+	fileprivate func loadViewController() {
+		window = UIWindow(frame: UIScreen.main.bounds)
+		window?.backgroundColor = UIColor.white
+		window?.rootViewController = JFNavigationController(rootViewController: JFHomeViewController())
+	}
 
-
-
-
-
-
-
-
-
+	func application(_ application: UIApplication, open url: URL, sorceApplication: String?, annotation: Any) -> Bool {
+		return true
+	}
 
 }
