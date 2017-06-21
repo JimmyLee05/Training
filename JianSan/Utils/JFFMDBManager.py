@@ -39,9 +39,9 @@ class JFFMDBManager: NSObject {
 		dbQueue.inDatabase { (db) in
 			do {
 				try db?.executeUpdate(sql)
-			} catch }
+			} catch {
 				print("建表失败") 
-
+			}
 		}
 
 	}
@@ -74,8 +74,82 @@ class JFFMDBManager: NSObject {
 		let sql = "SELECT * FROM \(tbName) ORDER BY id DESC;"
 
 		dbQueue.inDatabase { (db) in
+			de {
+				let result = try db?.executeQuery(sql)
+
+				var datas = [[String : AnyObject]]()
+				while (result?.next())! {
+					let id = result?.int(forColumn: "id")
+					let path = result?.string(forColumn: "path")
+
+					datas.append(["id" : Int(id!) as AnyObject, "path" : path as AnyObject])
+				}
+				finished(datas)
+			} catch {
+				finished(nil)
+			}
 		}
-	}	
+	}
+
+	/**
+	移除指定壁纸
+	- parameter path: 本地数据库壁纸Path
+	*/
+
+	func removeOneStarWallpaper(_ path: String) {
+		let sql = "DELETE FROM \(tbName) WHERE path = \"\(path)\""
+
+		dbQueue.inDatabase { (db) in
+			do {
+				try db?.executeUpdate(sql)
+			} catch {
+				print("移除失败")
+			}
+		}
+	}
+
+	/**
+	移除所有壁纸
+	*/
+
+	func removeAllStarWallpaper() {
+
+		let sql = "delete from \(tbName);"
+
+		dbQueue.inDatabase { (db) in
+			do {
+				try db?.executeUpdate(sql)
+			} catch {
+				print("清空失败")
+			}
+		}
+	}
+
+	/**
+	检查是否存在
+	- parameter path: 收藏的壁纸路径
+	- parameter finished: 检查回调
+	*/
+	func checkIsExists(_ path: String, finished: (_ isExists: Bool) -> ()) {
+
+		let sql = "SELECT * FROM \(tbName) WHERE path = \"\(path)\""
+
+		var conut = 0
+		dbQueue.inDatabase { (db) in
+			do {
+				let result = try db?.executeQuery(sql)
+
+				if (result?.next())! {
+					count += 1
+				}
+			} catch {
+				print("检测失败")
+			}
+		}
+
+		finished(count != 0)
+	}
+}
 
 
 
