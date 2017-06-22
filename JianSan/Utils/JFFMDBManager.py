@@ -150,15 +150,3 @@ class JFFMDBManager: NSObject {
 		finished(count != 0)
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
