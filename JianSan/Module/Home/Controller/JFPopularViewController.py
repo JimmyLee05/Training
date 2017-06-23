@@ -126,17 +126,126 @@ class JFPopularViewController: UIViewController {
 
 	//顶部导航栏 topView
 	lazy var topView: JFCategoryTopView = {
-		let topView = Bundle.main.loadNibNamed
-	}
-
-
-
-
-
+		let topView = Bundle.main.loadNibNamed("JFCategoryTopView", owner: nil, options: nil)?.
+			last as! JFCategoryTopView
+		topView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 64)
+		topView.delegate = self
+		topView.titleLabel.text = self.category_title
+		return topView
+	}()
 }
 
+// Mark: - UICollectionViewDataSource, UICollectionViewDelegate
+extension JFPopularViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemInSection section: Int)
+		-> Int {
+		return wallpaperArray.count
+	}
 
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) 
+		-> UICollectionViewCell {
+		let item = collectionView.dequeueReusableCell(withReuseIdentifier: wallpaperIdentifier, 
+			for: indexPath) as! JFWallpaperCell
+		item.model = wallpaperArray[indexPath.item]
+		return item
+	}
 
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+		{
 
+		//弹出插页式广告
+		if let interstitial = JFAdManager.shared.getReadyIntersitial() {
+			interstitial.present(fromRootViewController: self)
+			return
+		}
 
+		//转换坐标系
+		let item = collectionView.dequeueReusableCell(withReuseIdentifier: wallpaperIdentifier,
+			for: indexPath) as! JFWallpaperCell
+		let rect = item.convert(item.frame, to: view)
+
+		//计算item相对于窗口的frame
+		let x = rect.origin.x / 2
+		let y = 64 + CGFloat(indexPath.item / 3) * rect.size.height - collectionView.contentOffset.y
+		let width = rect.size.width
+		let height = rect.size.height
+
+		//临时放大动画的图片
+		let tempView = UIImageView()
+		UIApplication.shared.keyWindow?.insertSubview(tempView, aboveSubview: view)
+
+		//分类页面需要下移20
+		if (category_id == 0) {
+			tempView.frame = CGRect(x: x, y: y, width: width, height: height)
+		} else {
+			tempView.frame = CGRect(x: x, y: y - 20, width: width, height: height)
+		}
+
+		tempView.setImage(urlString: "\(BASE_URL)/\(wallpaperArray[indexPath.item].smallpath)",
+			placeholderImage: UIImage(named: "placeholder"))
+
+		//放大动画并移除
+		UIView.animate(withDuration: 0.3, animations: {
+			tempView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+		}, completion: { [weak self] (_) in
+			//自定义专场动画
+			let detailVc = JFDetailViewController()
+			detailVc.model = self?.wallpaperArray[indexPath.item]
+			detailVc.tempView = tempView
+			detailVc.transitioningDelegate = self
+			detailVc.modelPresentationStyle = .custom
+			self?.present(detailVc, animated: true) {
+				DispatchQueue.global().async {
+					JFWallPaperModel.showWallpaper(self?.wallpaperArray[indexPath.item].id ?? 0,
+						finished: { (wallpaper, error) in
+						print("动画已移除成功")
+					})
+				}
+			}
+		})
+	}
+}
+
+// MARK - JFCategoryTopViewDelegate
+extension JFCategoryTopViewDelegate: JFCategoryTopViewDelegate {
+	
+
+	/**
+	点击了导航栏左侧按钮
+	*/
+	func didTappedLeftBarButton() {
+		_ = navigationController?.popViewController(animated: true)
+	}
+}
+
+// MARK - 栏目管理自定义转场动画事件
+extension JFPopularViewController: UIViewControllerTransitioningDelegate {
+	
+	/**
+	返回一个控制model视图大小的对象
+	*/
+	func presentationController(forPresented presented: UIViewController, presenting:
+		UIViewController?, source: UIViewController) -> UIPresentationController? {
+		return JFWallpaperPresentationController(presentedViewController: presented, presenting:
+			presenting)
+	}
+
+	/**
+	返回一个控制器model动画效果的对象
+	*/
+	func animationController(forPresented presented: UIViewController, presenting:
+		UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		return JFWallPaperModelAnimation()
+	}
+
+	/**
+	返回一个控制dismiss动画效果的对象
+	*/
+	func animationController(forDismissed dismissed: UIViewController) -> 
+		UIViewControllerAnimatedTransitioning? {
+		return JFWallpaperDismissAnimation()
+	}
+
+}
 
