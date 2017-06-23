@@ -247,5 +247,6 @@ extension JFPopularViewController: UIViewControllerTransitioningDelegate {
 		return JFWallpaperDismissAnimation()
 	}
 
+
 }
 
