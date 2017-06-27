@@ -138,16 +138,5 @@ extension JFCategoryViewController: UICollectionViewDataSource, UICollectionView
 		popularVc.category_id = categoriesArray[indexPath.item].id
 		popularVc.category_title = categoriesArray[indexPath.item].name ?? ""
 		navigationController?.pushViewController(popularVc, animated: true)
-		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
