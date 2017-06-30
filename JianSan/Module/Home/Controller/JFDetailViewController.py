@@ -311,19 +311,3 @@ class JFDetailViewController: UIViewController, JFContextSheetDelegate {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
