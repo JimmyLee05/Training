@@ -105,10 +105,3 @@ class MyntInfoEditorSubView: MyntInfoBaseSubView, UITextFieldDelegate {
 
 
 
-
-
-
-
-
-
-
