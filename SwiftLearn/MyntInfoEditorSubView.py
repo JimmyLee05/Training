@@ -90,18 +90,60 @@ class MyntInfoEditorSubView: MyntInfoBaseSubView, UITextFieldDelegate {
 	}()
 
 	override func initUI() {
+		self.backgroundColor = .white
+
+		let count: CGFloat = 3
+		let width: CGFloat = 100
+		let height: CGFloat = 55
+		let minY: CGFloat   = avatarLabel.frame.maxY + 15
+		let space: CGFloat  = (self.bounds.width - width * count) / (count + 1)
+
+		let buttons: [ButtonView] = [pictureButton, cameraButton, defaultButton]
+		for i in 0..<buttons.count {
+			buttons[i].frame = CGRect(x: space * CGFloat(i + 1) + width * CGFloat(i), y: minY, width: width, height: height)
+			buttons[i].addTarget[self, actionL: #selector(didClickEditThumb(button:)) for: .touchUpInside]
+		}
+		self.frame.size.height = 210
+	}
+
+	override func initUIData(mynt: Mynt) {
 
 	}
+
+	override func updateUIData(mynt: Mynt) {
+		renameTextField.text = mynt.name
+	}
+
+	override func releaseMyntData() {
+
+	}
+
+	@objc fileprivate func didClickEditThumb(button: ButtonView) {
+		switch button {
+		case pictureButton:
+			guard let viewController = viewController else { return }
+			SelectImageUtils.shared.selectImageFromPhotos(viewController: viewController, edit: true) { [weak self] image in
+				self?.viewController?.didSelectAvatar(avatar: image)
+			}
+		case cameraButton:
+			guard let viewController = viewController else { return }
+			SelectImageUtils.shared.selectImageFromCamera(viewController: viewController, edit: true) { [weak self] image in
+				self?.viewController?.didSelectAvatar(avatar.image)
+			}
+		case defaultButton:
+			viewController?.didSelectAvatar()
+		default:
+			break
+		}
+	}
+
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		if textField == renameTextField {
+			guard let name = textField.text?.trim(), name != "" else { return true }
+			viewController?.didSelectName(name: name)
+			return true
+		}
+		return true
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
