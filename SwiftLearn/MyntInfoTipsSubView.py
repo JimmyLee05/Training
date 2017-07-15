@@ -103,16 +103,3 @@ class MyntInfoTipsSubView: MyntInfoBaseSubView {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
