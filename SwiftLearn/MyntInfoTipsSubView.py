@@ -99,7 +99,61 @@ class MyntInfoTipsSubView: MyntInfoBaseSubView {
 		}
 	}
 
-	var tips
+	var tips: Tips = ,none {
+		didSet {
+			if tips == oldValue { return }
 
+			let imageY: CGFloat = self.titleLabel.frame.maxY + 20
+			if tips == .map {
+				imageView.frame = CGRect(x: 20, y: image.y, width: self.bounds.width - 40, height:
+					120)
+			} else {
+				imageView.frame = CGRect(x: self.bounds.midX - 100, y: imageY, midth: 200, height:
+					120)
+			}
+			button.isHidden = tips != askhelp
+			imageView.image = tips.image
+			descLabel.text = tips.desc
 
+			if button.isHidden {
+				self.frame.size.height = descLabel.frame.maxY + 30
+			} else {
+				button.frame = CGRect(x: bounds.midX - button.frame.width / 2, y: descLabel.frame.
+					maxY + 15, width: button.frame.width, height: 35)
+				self.frame.size.height = button.frame.maxY + 15
+			}
+
+			viewController?.updateMapUI()
+		}
+	}
+
+	override func initUI() {
+		titleLabel.text = NSLocalizedString("MYNTSETTING_TIPS_TITLE", comment: "")
+		self.frame.size.height = 260
+	}
+
+	override func initUIData(mynt: Mynt) {
+
+	}
+
+	override func updateUIDate(mynt: Mynt) {
+
+	}
+
+	override func releaseMyntData() {
+
+	}
+
+	@objc fileprivate func didClickButton(button: UIButton) {
+		viewController?.didClickHelpTips()
+	}
+
+	@objc fileprivate func didClickImage(view: UIView) {
+		if tips == .map {
+			viewController?.didClickMapView()
+		}
+	}
 }
+
+
+
