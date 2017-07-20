@@ -50,17 +50,42 @@ class MyntInfoRemoveSubView: MyntInfoBaseSubView {
 		self.infoLabel.text = "(mynt.sn) (v\(mynt.software))"
 	}
 
-	
+	override func releaseMyntData() {
+
+	}
+
+	@objc fileprivate func didClickLabel() {
+		guard let mynt = sn?.mynt else { return }
+		let pasteboard 			= UIPasteboard.general
+		pasteboard.string 		= "sn:\(mynt.sn)\nsoftware:\(mynt.software)\nhardware:\(mynt.hardware)\nfirmware:\(mynt.firmware)"
+		MTToast.show("复制成功")
+	}
+
+	@objc fileprivate func didClickButton(button: UIButton) {
+		viewController?.didClickRemoveButton()
+	}
 }
 
+// MARK: - 线下环境加载
+extension MyntInfoRemoveSubView {
+		
+		fileprivate func loadDebugFirmewareLabel() {
+			if sn?.mynt?.hardware.contains("Beta") == false { return }
 
-
-
-
-
-
-
-
-
-
-
+			let label 			= UILabel()
+			label.text 			= "DEBUG FIRMWARE"
+			label.textColor 	= .gray
+			label.font 			= UIFont.boldSystemFont(ofSize: 12)
+			label.textAlignment = .right
+			label.translatesAutoresizingMaskIntoConstraints = false
+			self.addSubview(label)
+			self.addConstraints(NSLayoutConstraint.constraints(withCisualFormat: "H:[label]-5-",
+															   options: .directionLeadingToTrailing,
+															   metrics: nil,
+															   views: ["label": label]))
+			self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[label]-5-",
+															   options: .directionLeadingToTrailing,
+															   metrics: nil,
+															   views: ["label": label]))
+		}
+}
