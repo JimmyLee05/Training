@@ -154,14 +154,3 @@ extension MTCoverFlowView: UICollectionViewDelegate, UICollectionViewDataSource 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
