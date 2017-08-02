@@ -142,7 +142,9 @@ extension PayReviewViewController {
 
 	fileprivate func wechatReviewPay() {
 		guard let wechatParams = payParams as? SCPay.SCWechatPayParams else { return }
-		
+		//唤醒微信支付
+		let req 		= PayReq
+
 	}
 }
 
