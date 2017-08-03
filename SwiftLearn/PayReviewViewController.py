@@ -144,20 +144,66 @@ extension PayReviewViewController {
 		guard let wechatParams = payParams as? SCPay.SCWechatPayParams else { return }
 		//唤醒微信支付
 		let req 		= PayReq
+		req.partnerId 	= wechatParams.partnerID
+		req.prepayId 	= wechatParams.prepayID
+		req.nonceStr 	= wechatParams.noncestr
+		req.timeStamp 	= UInt32(wechatParams.timestamp)
+		req.package 	= wechatParams.package
+		req.sign 		= wechatParams.package
+		WXApi.send(req)
 
+		//进入后台的监听
+		NotificationCenter.default.addObserver(self,
+											   selector: #selector(addAlipayNotification(notification:)),
+											   nema: NSNotification.Name.UIApplicationWillEnterForeground,
+											   object: nil)
+	}
+
+	fileprivate func aliReviewPay() {
+
+		guard let aliParam = payParams as? SCPay.SCAlipayParams else { return }
+		//唤醒支付宝支付
+		AlipaySDK.defaultService().payOrder(aliParam.sdkParam, fromScheme: "slightechMynt") { (resultDic) in
+			//未安装支付宝的情况下，走H5界面支付完成，会成功回调，页面入口
+			let viewController 			= PayResultViewController()
+			viewController.payParams 	= self.payParams
+			self.present(BaseNavigationController(rootViewController: viewController),
+										animated: false,
+										completion: nil)
+			STLog("result = \(String(describing: resultDic))")
+		}
+		if UIApplication.shared.canOpenURL(URL(string: "alipay:")!) {
+			//进入后台的监听
+			NotificationCenter.default.addObserver(self,
+												   selector: #selector(addAlipayNotification(notification)),
+												   name: NSNotification.Name.UIApplicationWillEnterForeground,
+												   object: nil)
+		}
+	}
+
+	func addAlipayNotification(notification: Notification) {
+		//页面入口
+		PayResultViewController.show(parentViewController: self, payPatams: payParams)
 	}
 }
 
+extension PayReviewViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return items.count
+	}
 
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 52
+	}
 
-
-
-
-
-
-
-
-
-
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(cell: PayReviewTableViewCell.self, for: indexPath)
+		cell?.selectionStyle 	= .none
+		cell?.titleLabel.text 	= items[indexPath.row].title
+		cell?.valueLabel.text 	= items[indexPath.row].value
+		return cell!
+	}
+}
 
 
