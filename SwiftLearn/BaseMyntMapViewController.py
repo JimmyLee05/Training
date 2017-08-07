@@ -73,8 +73,26 @@ class BaseMyntMapViewController: BaseViewController {
 			self.coordinate 	= userCoordinate
 		}
 
-		
+		init(time: TimeInterval,
+			coordinate: CLLocationCoordinate2D,
+			type: SCDevice.SCLocation. `Type` = .none) {
+			self.time 			= time
+			self.coordinate 	= coordinate.offsetLocation
+			self.locationType 	= type
+		}
 	}
+
+	override var isNeedAddMyntNotification: Bool {
+		return true
+	}
+
+	//scrollView当前高度
+	let scrollViewHeight: CGFloat = 60
+
+	// MARK: - 组件
+	var mapView: MKMapView?
+
+	@IBOutlet 
 }
 
 
