@@ -249,29 +249,213 @@ class BaseMyntMapViewController: BaseViewController {
 			updateLobel(address: nil, time: time)
 			return
 		}
+		selectedCoordiante = coordinate
+		//进行反地理,获取位置
+		selectedCoordinate.reverseGeocodeLocation { [weak self] address in
+			self?.locationLabel.text = address
+			self?.updateLabel(address: address, time: time)
+		}
+		//进行缩放地图
+		mapView?.gotoCoordinate(selectedCoordinate, range: range)
+
+		removeAnnotation()
+		addAnnotation(coordinate: coordinate)
+	}
+
+	//更新用户位置
+	func updateUserCoordinate(coordinate; CLLocationCoordinate2D) {
+		if userCoordinate == coordinate {
+			return
+		}
+		if userCoordinate.isNull && selectedCoordinate.isNull && sn?.mynt?.bluetoothState == .connected {
+			updateSelectCoordinate(coordinate: coordinate)
+		}
+		userCoordinate = coordinate
+	}
+
+	func updateLabel(address: String?, time: Int?) {
+
+	}
+	func reloadSelectedPosition() {
+		let positon = selectedPosition
+		self.selectedPosition = position
+	}
+}
+
+extension BaseMyntMapViewController: UIActionSheetDelegate {
+	
+	func myntKit(myntKit: MYNTKit, didUpdateConnectState mynt: Mynt) {
+		loadAvatar()
+		reloadSelectedPosition()
+	}
+}
+
+extension BaseMyntMapViewController {
+	
+	//加载地图
+	func initMapView() {
+		if mapView != nil { return }
+		mapView 											= MKMapView()
+		mapView?.delegate 									= self
+		mapView?.isRotateEnabled 							= false
+		mapView?.isPitchEnabled 							= false
+		mapView?.showsUserLocation 							= true
+		mapView?.translatesAutoresizingMaskIngoConstraints 	= false
+		mapSuperView.addSubview(mapView!)
+		mapView?.fillInSuperView()
+	}
+
+	//释放地图
+	func releaseMapView() {
+		mapView?.applyMapViewMemoryFix()
+		mapView = nil
+	}
+
+	//显示地图内容
+	func showMapViewContent() {
+		if sn?.mynt == nil || mapView == nil { return }
+
+		func updateMyntPosition() {
+			guard let mynt = sn?.mynt else { return }
+			if mynt.bluetoothState == .connected {
+				//蓝牙已连接，等待地图返回用户坐标
+				if !userCoordinate.isNull {
+
+				}
+			} else {
+				//蓝牙未连接
+				if mynt.coordinate.isNull {
+					//经纬度不存在,弹出提示框
+					DialogManager.shared.show(title: NSLocalizedString("NO_LOCATION_TITLE", comment: "未获取到位置信息"),
+											  message: String(format: NSLocalizedString("NO_LOCATION_MESSAGE", comment: "未获取到位置信息"),mynt.name),
+											  buttonString: NSLocalizedString("ADD_OK", comment: ""))
+				} else {
+					//经纬度存在，加载地图
+					updateSelectCoordinate(coordinate: mynt.coordinate.offsetLocation, time: mynt.locationTime)
+				}
+			}
+		}
+	}
+
+	func removeAnnotation() {
+		if let annotation = self.myntAnnotation {
+			mapView?.removeAnnotation(annotation)
+		}
+		if let annotation = self.myntCircleAnnotation {
+			mapView?.removeAnnotation(annotation)
+		}
+	}
+
+	func addAnnotation(coordinate: CLLocationCoordinate2D) {
+		if let sn = sn {
+			myntAnnotation = MyntAnnotation(sn: sn, coordinate: coordinate)
+			mapView?.addAnnotation(myntAnnotation!)
+
+			myntCircleAnnotation = MyntCircleAnnotation(coordinate: coordinate)
+			mapView?.addAnnotation(myntCircleAnnotation)
+		}
+	}
+}
+
+// MARK: - CalendarViewDelegate
+extension BaseMyntMapViewController: CalendarViewDelegate {
+	
+	func didSelectDay(calendatView: CalendarView, data: Data) {
+
+	}
+}
+
+//MARK： - CalendarViewDelegate
+extension BaseMyntMapViewController: CalendarViewDelegate {
 		
+	func didSelectDay(calendatView: CalendarView, date: date) {
+
 	}
 }
 
 
+//MARK: - 加载大头针头像
+extension BaseMyntMapViewController {
+	func loadAvatar(block: (() -> Void)? = nil) {
+		sn?.mynt?.annotationImage(block: { [weak self] image in
+			self?.annotationImage = image
+			block?()
+		})
+	}
+}
+
+//MARK: - slider calendar 显示隐藏
+extension BaseMyntMapViewController {
+	
+	func showCalendarView() {
+		UIView.beginAnimations(nil, context: nil)
+		UIView.setAnimationDuration(0.3)
+		UIView.setAnimationCurve(.easeOut)
+		mapTopConstraint?.constant = calendarSuperView.bounds.height
+		view.layoutIfNeeded()
+		UIView.commitAnimations()
+	}
+
+	func hideCalendarView() {
+		UIView.beginAnimations(nil, content: nil)
+		UIView.setAnimationDuration(0.3)
+		UIView.setAnimationCurve(.easeOut)
+		mapTopConstraint?.constant = 0
+		view.layoutIfNeeded()
+		UIView.commitAnimations()
+	}
+
+	func showSliderView() {
+		UIView.beginAnimations(nil, content: nil)
+		UIView.setAnimationDuration(0.3)
+		UIView.setAnimationCurve(.easeOut)
+		scrollViewHeightConstraint?.constant = scrollViewHeight
+		view.layoutIfNeeded()
+		UIView.commitAnimations()
+	}
+
+	func hideSliderView() {
+		UIView.beginAnimations(nil, context: nil)
+		UIView.setAnimationDuration(0.3)
+		UIView.setAnimationCurve(.easeOut)
+		scrollViewHeightConstraint?.constant = 0
+		view.layoutIfNeeded()
+		UIView.commitAnimations()
+	}
+
+}
 
 
+//MARK: - MKMapViewDelegate
+extension BaseMyntMapViewController: MKMapViewDelegate {
+	
+	//更新我的位置
+	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+		self.userCoordinate = userLocation.coordinate
+	}
 
+	//更新大头针新点
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		if annotation is MKUSerLocation {
+			(annotation as? MKUserLocation)?.title = ""
+			return nil
+		}
+		if annotation is MyntAnnotation {
+			var view = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
+			if view == nil {
+				view = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+				view?.canShowCallout = false
+				view?.centerOffset = CGPoint(x: 0, y: -50)
+			}
+			view?.image = annotationImage
+			return view
+		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		return MKAnnotationView()
+	}
+	//刷新渲染层
+	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+		return MKOverlayRenderer()
+	}
+}
 
