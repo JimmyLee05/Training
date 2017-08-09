@@ -415,30 +415,149 @@ extension MyntGPSMapViewController {
 				view?.centerOffset 	 = CGPoint(x: 0, y: 0)
 			}
 			view?.image = UIImage(named: "map_start")
-			
+			//旋转函数CGAffineTransforMakeRotation(旋转的为角度)
+			view?.transform = CGAffineTransform(rotationAngle: CGFloat(angle))
+			return view
+		}
+
+		return super.mapView(mapView, viewFor: annotation)
+	}
+
+	override func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+		if buttonIndex == 1 {
+			inShowRoute = !isShowRoute
+			if isShowRoute {
+				showPath()
+			} else {
+				hidePath()
+			}
 		}
 	}
 }
 
+extension MyntGPSMapViewController {
+	
+	//显示路径
+	func showPath() {
+		is !isShowRoute || sortedLocations.isEmpty { return }
+		// 显示指向点
+		showStartArrowAnnotation(coordinate: sortedLocations.first!.coordinate)
+		let polyLineCoors = sortedLocatons.map { CLLocationCoordinate2DMake($0.coordinate.latitude, $0.coordinate.longitude) }
+		let polyLine = MKPolyline(coordinates: polyLineCoors, count: polyLineCoors.count)
+		if let overlays = mapView?.overlays {
+			mapView?.removeOverlays(overlays)
+		}
+		//添加路径
+		mapView?.add(polyLine)
+		//将路径放大到全屏
+		mapView.zoomMapViewToFitAnnotations(polyLineCoors.rect, animated: true)
+		// pathAnnotations = sortedLocations.map { PathAnnotation(coordinate: $0.coordinate) }
+		// 显示规划路径大头针
+		// showPathAnnotations(pathAnnotations: pathAnnotations)
+		//计算经纬度两点角度
+		calculateTransformPoint(sortedLocations: sortedLocations)
+		// drawRoad(coordinate: polyLineCoors)
+	}
 
+	//路径吸附
+	func drawRoad(coordinate: [CLLocationCoordinate2D]) {
 
+		let directionsRequest = MKDirectionsRequest()
+		let placemarks = coordinates.map { MKMapItem(placemark: MKPlacemark(coordinate: $0, addressDictionary: nil)) }
+		directionsRequest.transportType = .automobile
+		for (k, item) in placemarks.enumerated() where k < (placemarks.count -1) {
+			directionsRequest.source 			= item
+			directionsRequest.destination 		= placemarks[k + 1]
+			let directions = MKDirections(request: directionsRequest)
 
+			directions.calculate(completionHandler: { [response, error] in
+				if error == nil {
+					if let polyline = response?.routes[0].polyline {
+						self.mapView?.add(polyline)
+					}
+				}
+			})
+		}
+	}
 
+	//计算两个经纬度的角度（calculate）
+	fileprivate func calculateTransformPoint(sortedLocations: [BaseMyntMapViewController.PositionItem]) {
+		if sortedLocations.count > 2 {
+			let firstPoint 		= sortedLocations.first
+			let secondPoint 	= sortedLocations[1]
+			self.angle = getBearing(lat1: Double(firstPoint!.coordinate.latitude),
+									long1: Dounble(firstPoint!.coordinate.longtitude),
+									lat2: Double(secondPoint.coordinate.latitude),
+									long2: Double(secondPoint.coordinate.longitude))
+			NSLog("角度---->\(self.angle)")
+		}
+	}
 
+	//添加start箭头大头针
+	fileprivate func showStartArrowAnnotation(coordinate: CLLocationCoordinate2D) {
+		startArrowAnnotation = StartArrowAnnotation(coordinate： coordinate)
+		mapView?.removeAnnotation(startArrowAnnotation!)
+		mapView?.addAnnotation(startArrowAnnotation!)
+	}
 
+	// fileprivate func showPathAnnotations(pathAnnotations: [PathAnnotation]) {
+		mapView?.removeAnnotations(pathAnnotations)
+		mapView?.addAnnotations(pathAnnotations)
+	}
 
+	fileprivate func addAnnotationJamp(coordinate: CLLocationCoordinate2D) {
+		removeAnnotation()
+		addAnnotation(coordinate: coordinate)
+		mapView?.gotoCoordinate(coordinate, range: 3000)
+	}
 
+	//隐藏路径
+	func hidePath() {
+		isShowRoute = false
+		if let overlays = mapView?.overlays.filter({ !($0 is MKCircle) }) {
+			mapView?.removeOverlays(overlays)
+		} 
+		mapView?.removeAnnotations(pathAnnotations)
+		if let startArrowAnnotation = startArrowAnnotation {
+			mapView?.removeAnnotation(startArrowAnnotation)
+		}
+	}
 
+	//隐藏圆圈
+	func hideCircle() {
+		if let overlays = mapView?.overlays.filter({ !($0 is MKPolyline) }) {
+			mapView?.removeOverlays(overlays)
+		} 
+		mapView?.removeAnnotations(pathAnnotations)
+	}
+}
 
+extension MyntGPSMapViewController {
+	
+	//弧度转角度
+	func angleMap(r: Double) -> Double {
+		return r * 180 / Double.pi
+	}
 
+	//角度转弧度(360° = 2πr)
+	func radianMap(r: Double) -> Double {
+		return r * 180 / Double.pi
+	}
 
-
-
-
-
-
-
-
-
+	func getBearing(lat1: Double,
+					long1: Double,
+					lat2: Double,
+					long2: Double) -> Double {
+		let lat1 		= radianMap(d: lat1)
+		let long1 		= radianMap(d: long1)
+		let lat2 		= radianMap(d: lat2)
+		let long2 		= radianMap(d: long2)
+		let x: Double 	= sin(long2 - long1) * cos(lat2)
+		let y: Double 	= cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(long2 - long1)
+		NSLog("弧度 ----> \(atan2(long2 - long1), (lat2 - lat1)))")
+		NSLog("角度 ----> \(angleMap(r: atan2((long2 - long1), (lat2 - lat1))))")
+		return angleMap(r: atan2((long2 - long1), (lat2 - lat1)))
+	}
+}
 
 
