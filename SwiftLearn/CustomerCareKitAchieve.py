@@ -138,24 +138,91 @@ typedef enum : NSUInteger {
 	});
 }
 
+- (void)logout {
+	
+	[self.ywIMKit.removeAllCache];
+	[[self.ywIMKit.IMCore getLoginService] asyncLogoutWithCompletionBlock:^(NSError *aError, NSDictionary *aResult)
+		{
+		NSLog(@"退出登录 %@", aError);
+	}];
+}
 
+- (void)start:(UIViewController *)viewController params:(NSDictionary *)params {
+	if (![[self.ywIMKit.,IMCore getLoginService] isCurrentLogined]) {
+		return;
+	}
+	BOOL isZh = [[[[NSLocale currentLocale] objectForkey:NSLocaleLanguageCode] lowercaseString]
+		isEqualToString:@"zh"];
+	NSString *groupId = isZh ? ChinaGroupId : OtherGroupId;
+	YWPersion *person = [[YWPerson alloc] initWithPersonId: CustomerName EServiceGrounpId:groupId baseContext:self.
+		ywIMKit.IMCore];
+	YWConversation *conversation = [YWP2Conversation fetchConversationByPerson:person creatIfNoExist:Yes
+		baseContext:self.ywIMKit,IMCore];
+	YWConversationViewController *conversationController = [YWConversationViewController makeControllerWithIMKit:
+		self.ywIMKit conversation:conversation];
+	//没有数据时的view
+	conversationController.viewForNoData = [[NSBundle mainBundle] loadNibNamed:@"IMNoDataView" owner:nil options:nil].firstObject
+	conversationController.title = NSLocalizedString("Q_A", @"客服");
+	conversationController.disableTitleAutoConfig = YEs;
 
+	//客服定制
+	NSData *data  = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPerttryPrinted error:nil];
+	NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8stringEncoding];
 
+	NSLog(@"updateExtraInfoWithExtraUI %@", str);
+	[YWExtensionServiceFromProtocol(IYWExtensionForCustomerService) setYWCSPerson: [self.ywIMKit.IMCore
+		getLoginService].currentLoginedUser];
+	[YWExtensionServiceFromProtocol(IYWExtensionForCustomerService) updateExtraInfoWithExtraUI: str andExtraParam:NSLocalizedString
+		withCompletionBlock:^(NSError *error, NSDictionary *resultDict) {
+		NSLog(@"error %@ resultDict %@", error, resultDict);
+	}];
 
+	//输入框定制
+	YWMessageInputView *messageInputView = (YWMessageInputView *)conversationController.messageInputView;
+	[messageInputView removeAllPlugins];
 
+	//图片插件
+	InputViewPluginImagePicker *imagePlugin = [[InputViewPluginImagePicker alloc] init];
+	imagePlugin.inputViewRef = messageInputView;
+	[messageInputView addPlugin:imagePlugin];
 
+	//表情插件
+	__weak YWConversationViewController *weakController = conversationController;
+	YWInputViewPluginEmotionPickBlock entblk = ^(id<YWInputViewPluginProtocol> plugin, YWEmotion *emoticon,
+		YWEmotionType type) {
+	};
+	YWInputViewPluginEmotionSendBlock emtsendlk = ^(id<YWMessageBodyText alloc> initWithMessageText: sendText) {
+		//静态表情或文字
+		if (sendText.length > 0) {
+			YWMessageBodyText *textMessageBody = [[YWMessageBodyText alloc] initWithMessageText:sendText];
+			[weakController.conversation asyncSendMessageBody:textMessageBody progress:nil completion:NULL];
+		}
+	};
+	YWInputViewPluginEmoticonPicker *emoticonPicker = [[YWInputViewPluginEmoticonPicker alloc] initWithPickerOverBlock:emtblk sendBlock:emtsendblk];
+    emoticonPicker.pluginPosition = YWInputViewPluginPositionRight;
+    emoticonPicker.inputViewRef = messageInputView;
+    emoticonPicker.rightMinorButtonForDefaultGroup = [[UIButton alloc] init];
+    [emoticonPicker.rightMinorButtonForDefaultGroup setImage:[UIImage imageNamed:@"qa_send"] forState:UIControlStateNormal];
+    emoticonPicker.rightMinorButtonForDefaultGroup.backgroundColor = [UIColor colorWithRed:0.31 green:0.53 blue:0.85 alpha:1.00];
+    [messageInputView addPlugin:emoticonPicker];
 
+      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:conversationController];
+    // 设置背景色样式
+    [navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    navigationController.navigationBar.shadowImage = [UIImage new];
+    navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.20 green:0.21 blue:0.25 alpha:1.00];
+    navigationController.navigationBar.translucent = NO;
+    // 设置关闭键
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width = -5;
+    conversationController.navigationItem.leftBarButtonItems = @[spaceItem,
+                                                                 [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_add_safezone_close"]
+                                                                                                  style:UIBarButtonItemStyleDone
+                                                                                                 target:navigationController
+                                                                                                 action:@selector(dismissViewController)]];
+    [viewController presentViewController:navigationController animated:YES completion:nil];
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+@end
 
