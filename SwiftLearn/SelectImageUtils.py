@@ -77,25 +77,48 @@ class SelectImageUtils: NSObject, UIActionSheetDelegate, UINavigationControllerD
 		let sourceType = UIImagePickerControllerSourceType.camera
 		let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
 		if status == .denied || status == .restricted {
-			DislogManage.shared.show()
+			DislogManage.shared.show(title: NSLocalizedString("SERVICE_CLOSED_TITLE", comment: "服务已关闭"),
+									 message: String(format: NSLocalizedString("SERVICE_CLOSED_MeSSAGE", comment:
+									 		"服务已关闭"),
+									 buttonString: NSLocalizedString("APP_SETTINGS", comment: "设置"),
+									 clickOkHandler: { (dialog) in
+									 	UIApplication.openSystemSetting()
+			})
+			return
+		)
+		if UIImagePickerController.isSourceTypeAvailcabel(sourceType) {
+			let picker = UIImagePickerController()
+			picker.delegate = self
+			picker.sourceType = sourceType
+			picker.allowEditing = _edit
+			_viewController?.present(picker, animated: true, completion: nil)
+		} else {
+			print("不支持相册！")
 		}
 	}
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String :
+		Any]) {
+		let type = info[UIImagePickerControllerMediaType] as? String
+		if type == "public.image" {
+			if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+				_imageHandler?(image)
+			}
+		}
+		_viewController = nil
+		_imageHandler = nil
+		picker.dismiss(animated: true, completion: nil)
+	}
 
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		_viewController = nil
+		_imageHandler = nil
+		picker.dismiss(animated: true, completion: nil)
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		_viewController = nil
+		_imageHandler = nil
+		picker.dismiss(animated: true, completion: nil)
+	}
+}
 
