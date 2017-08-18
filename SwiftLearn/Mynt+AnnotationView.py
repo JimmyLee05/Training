@@ -66,39 +66,44 @@ extension Mynt {
 				image?.draw(in: CGRect(x: 2, y: 2, width: width - 4, height: width - 4))
 
 				if showOfflineLayer {
-					//绘制蒙版
-					path = UIBezierPath(arcCenter: CGPoint(x: width / 2, y: width / 2), radius: width / 2 - 2,
-						startAngle: 0, endAngle: 180, clockwise: true)
-					context?.addPath(path.cgPath)
-					context?.set
+				//绘制蒙版
+				path = UIBezierPath(arcCenter: CGPoint(x: width / 2, y: width / 2), radius: width / 2 - 2,
+					startAngle: 0, endAngle: 180, clockwise: true)
+				context?.addPath(path.cgPath)
+				context?.setFillColor(UIColor.white.cgColor)
+				context.drawPath(using: .fill)
+
+				if showOwnerLayer {
+					//绘制非持有者标识符
+				 	let radius: CGFloat = 19
+				 	let image = UIImage(named: "gps_share")
+				 	image?.draw(in: CGRect(x: 0, y: width - radius, width: radius, height: radius))
 				}
-			}}
+				if count > 1 {
+					//绘制角标
+					let radius: CGFloat = 10
+					var cneter = CGPoint(x: width - radius, y: radius)
+					path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: 180, clockwise:
+						true)
+					context?.addPath(path.cgPath)
+					context?.setFillColor(UIColor(red: 0.40, green: 0.60, blue: 0.99, alpha: 1.00).cgColor)
+					context?.drawPath(using: .fill)
+
+					let font = UIFont.systemFont(ofSize: 12)
+					let text = String(format: "%d", count)
+					let size = text.calcTextSize(size: .zero, font: font)
+					center = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
+					text.draw(at: center, withAttributes: [NSForegroundColorAttributeName: UIColor.white,
+														   NSFontAttributeName: font])
+				}
+
+				let newImage = UIGraphicsGetImageFromCurrentImageContext()
+				UIGraphicsEngImageContext()
+				DispatchQueue.main.async {
+					block(newImage)
+				}
+			}
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
