@@ -150,27 +150,32 @@ class ConnectingLayer: CALayer, MyntStateAnimationProtocol {
 
 		//旋转
 		let rotationAnimation 					= CABasicAnimation(keyPath: "transform.rotation.z")
-		
+		rotationAnimation.beginTime 			= CACurrentMediaTime()
+		rotationAnimation.toValue 				= Float.pi * 2.0
+		rotationAnimation.duration 				= 0.8
+		ratationAnimation.isCumulative 			= true
+		rotationAnimation.isRemovedOnCompletion = false
+		rotationAnimation.fillMode 				= kCAFillModeForwards
+		rotationAnimation.repeatCount 			= Float.infinity
+		add(rotationAnimation, forKey: "rotationAnimation")
+	}
+
+	func stopAnimation() {
+		let opacityAnimation 					= CABasicAnimation(keyPath: "opacity")
+		opacityAnimation.fromValue 				= NSNumber(value: 1 as Float)
+		opacityAnimation.toValue 				= NSNumber(value: 0 as Float)
+		opacityAnimation.beginTime 				= CACurrentMediaTime()
+		opacityAnimation.duration 				= 0.2
+		opacityAnimation.isRemovedOnCompletion  = false
+		opacityAnimation.fillMode 				= kCAFillModeForwards
+		opacityAnimation.timingFunction 		= CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+		add(opacityAnimation, forKey: "opacityAnimation")
+
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) { [weak self] in
+			self?.removeAllAnimations()
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
