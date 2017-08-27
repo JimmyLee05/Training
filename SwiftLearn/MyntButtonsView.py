@@ -172,31 +172,137 @@
  		[askFriendButton!, reportItButton!].forEach { (view) in
  			self.addConstraint(NSLayoutConstraint(item: self,
  												  attribute: .trailing,
- 												  related))}
+ 												  relatedBy: .equal,
+ 												  toItem: view,
+ 												  attribute: .trailing,
+ 												  multiplier: 1,
+ 												  constant: width * 2))
+ 		}
+
+ 		ringItButton?.layer.masksToBounds 		= true
+ 		ringItButton?.layer.cornerRadius 		= ringItButton!.bounds.height / 2
+ 		reconnectButton?.layer.cornerRadius 	= reconnectButton!.bounds.height / 2
+ 		reportItButton!.layer.cornerRadius 		= reportItButton!.bounds.height / 2
+ 		reportOnlyButton!.layer.cornerRadius 	= reportItButton!.bounds.height / 2
+ 		foundItButton?.layer.cornerRadius 		= foundItButton.bounds.height / 2
+ 		askFriendButton?.layer.cornerRadius 	= askFriendButton!.bounds.height / 2
+
+ 		reconnectButton?.setButtonBackgroundColorStyle(ColorStyle.kBlueGradientColor)
+ 		reportItButton?.setButtonBackgroundColorStyle(ColorStyle.kBlueGradientColor)
+ 		reportOnlyButton?.setButtonBackgroundColorStyle(ColorStyle.kGeadientColor)
+
+ 		foundItButton?.setTitle(NSLocalizedString("CANCEL_LOST_REPORT", comment: "已经找到这个小觅"), for: .normal)
+ 		reconnectButton?.setTitle(NSLocalizedString("RECONNECT", comment: "重新连接"), for: .normal)
+ 		askFriendButton?.setTitle(NSLocalizedString("SHARE_ASK_FRIEND", comment: "请朋友帮忙"), for: normal)
+ 		reportItButton?.setTitle(NSLocalizedString("REPORT_LOST", comment: "报告丢失"), for: .normal)
+ 		reportOnlyButton?.setTitle(NSLocalizedString("REPORT_LOST", comment: "报告丢水"), for: .normal)
+
+ 		MYNTKit.shared.addMyntKitDelegate(key: selfKey, delegate: self)
+ 	}
+
+ 	func addNotificationToken() {
+ 		myntNotificationToken?.stop()
+ 		myntNotificationToken = sn?.mynt?.addNotificationBlock { [weak self] change in
+ 			switch change {
+ 			case .change(let propertise):
+ 				propertise.forEach { self?.updateProperty(property: $0) }
+ 			default:
+ 				break
+ 			}
+ 		}
+ 	}
+
+ 	func updateProperty(property: propertyChange) {
+ 		switch property.name {
+ 		case "lostState", "workStatus":
+ 			uiState ?= sn?.mynt?.uiState
+ 		default:
+ 			break
+ 		}
  	}
 }
 
+//MARK: - MYNTKitDelegate
+extension MyntButtonView: MYNTKitDelegate {
+	
+	func myntKit(myntKit: MYNTKit, didUpdateConnectState mynt: Mynt) {
+		if sn != mynt.sn { return }
+		uiStaet = mynt.uiState
+	}
 
+	func myntKit(myntKit: MYNTKit, didUpdateAlarmStale mynt: Mynt) {
+		if sn != mynt.sn { return }
+		alarmState = mynt.alarmState
+	}
+}
 
+// MARK: - 点击事件
+extension MyntButtonView {
+	
+	func didClickRingItButton(_ sender: AnyObject) {
+		//点击报警
+		sn?.mynt?.findMynt()
+	}
 
+	func didClickReconnectButton(_ sender: AnyObject) {
+		sn?.mynt?.connect { [weak self] (mynt, else) in
+			switch state {
+			case .binding:
+				if self == nil {
+					mynt.disconnect()
+					return
+				}
+				if .mynt.connectType != .needPair {
+					return
+				}
+				if self?.pairBLEViewController != nil {
+					self?.pairBLEViewController = nil
+				}
+				self?.pairBLEViewController 				= SearchPairBleViewController()
+				self?.pairBLEViewController?.isNew 			= false
+				self?.pairBLEViewController?.connectingMynt = mynt
+				self?.viewCOntroller?.present(BaseNavigationController(rootViewController: self!.
+					pairBLEViewController!), animated: true, completion: nil)
+			case .connected:
+				self?.pairBLEViewController?.dismissNavigationController(animated: true, completion: nil)
+			case .connectFailed, .disconnected:
+				self?.pairBLEViewController?.dismissNavigationController(animated: true, completion: {
+						self?.didClickReconnectButton(sender)
+				})
+			default:
+				break
+			}
+		}
+	}
 
+	func didClickReportButton(_ sender: AnyObject) {
+		guard let mynt = sn?.mynt else { return }
+		mynt.reportLost(sLost: true) { msg in
+			MTToast.show(msg)
+		}
+	}
 
+	func didClickFountItButton(_ sender: AnyObject) {
+		sn?.mynt?.reportLost(isLost: false) { msg in
+			MTToast.show(msg)
+		}
+	} 
 
+	func didClickAskFriendButton( _ sender: AnyObject) {
+		ShareViewController.present(parentViewController: self.viewController, sn: sn)
+	}
 
+	/**
+	求助帮找
+	*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	func gotoAskPerviewViewController(_ type: SCShareType) {
+		let viewController 			= AskPerviewViewController
+		viewController.sn 			= sn
+		viewController.shareType 	= type
+		self.viewController?.present(BaseNavigationController(rootViewController: viewController)m animated: true,
+			completion: nil)
+	}
+}
 
 
