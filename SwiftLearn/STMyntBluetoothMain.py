@@ -83,31 +83,102 @@
 	[STConfig sharedInstance].customParams = params;
 }
 
++ (void)setPostBaseParams:(NSDictionary * _Nullbale)params {
+	[STConfig sharedInstance].postParams = params;
+}
 
++ (void)setNetMode:(BOOL)isOffline {
+	[STConfig sharedInstance].isOffline = isOffline; 
+}
 
+- (void)setIsReportUnknownMynt:(BOOL)isReportUnknowMynt {
+	[STConfig sharedInstance].isReportUnknowMynt = isReportUnknowMynt;
+}
 
+- (BOOL)isReportUnknowMynt {
+	return [STConfig sharedInstance].isReportUnknowMynt;
+}
 
+- (BOOL)isScanning {
+	return _centralManager.isScanning;
+}
 
+- (CBCentralManagerState)centralState {
+	return _centralManager.state;
+}
 
+// MARK: - Private Function
 
+- (STMynt *)getMyntWithSTPeripheral:(STPeriperal *)peripheral {
+	if (!peripheral.uuid) { return nil; }
+	STMynt *mynt = _mynts[peripheral.uuid];
+	if (!mynt) {
+		mynt = [[STMynt alloc] initWithPeripheral:peripheral];
+		_mynts[peripheral.uuid] = mynt;
+	} else {
+		if ([mynt getSTPeripheral] != peripheral) {
+			[mynt setSTPeripheral:peripheral];
+		}
+	}
+	return mynt;
+}
 
+//MARK: Public Function
 
+- (void)startScan {
+	[_centralManager startScan];
+}
 
+- (void)stopScan {
+	[_centralManager stopScan];
+}
 
+- (STMynt *)findMyntWithSn:(NSString *)sn {
+	if (!sn) { return nil; }
+	return self.mynts[sn];
+}
 
+//MARK: - Public Function
 
+- (void)startScan {
+	[_centralManager startScan];
+}
 
+- (void)stopScan {
+	[_centralManager stopScan];
+}
 
+- (STMynt *)findMyntWithSn:(NSString *)sn {
+	if (!sn) { return nil; }
+	return self.mynt[sn];
+}
 
+//MARK: delegate
+- (void)centralManager:(STCentralManager * _Nonnull)centralManager didUpdateState:(SCCentralManagerState)state {
+	if (_delegate && [_delegate respondsToSelector:@selector(myntBluetooth:didUpdateState:)]) {
+		[_delegate myntBluetooth:self didUpdateState:state];
+	}
+}
 
+- (void)centralManager:(STCentralManager *)centralManager didResetPeripheral:(STPeripheral *)periphreal {
+	[self getMyntWithSTPeripheral:periphreal];
+}
 
+- (void)centralManager:(STCentralManager * Nonnull)centralManager didDiscoverPeripheral:(STPeripheral * _Nonnull)periphreal {
+	STMynt *mynt = [self getMyntWithSTPeripheral:periphreal];
+	[mynt setDiscovering:YES];
+	if (_delegate && [_delegate respondsToSelector:@selector(myntBluetooth:didDiscoverMynt:)]) {
+		[_delegate myntBluetooth:self didDiscoverMynt:mynt];
+	}
+}
 
+- (void)centralManager:(STCentralManager * _Nonnull)centralManager didDiscoverTimeoutPeripheral:(STPeripheral * _Nonnull)peripheral {
+	STMynt *mynt = [self getMyntWithSTPeripheral:peripheral];
+	[mynt setDiscovering:No];
+	if (_delegate && [_delegate respondsToSelector:@selector(myntBluetooth:didDiscoverTimeoutMynt:)]) {
+		[_delegate myntBluetooth:self didDiscoverTimeoutMynt:mynt];
+	}
+}
 
-
-
-
-
-
-
-
+@end
 
