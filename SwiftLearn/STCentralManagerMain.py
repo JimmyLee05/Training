@@ -152,18 +152,13 @@
 }
 
 //发现设备
--
+- (void)foundSTPeriphreal:(STPeripheral *)peripheral {
+	if (_centalDelegate && [_centalDelegate respondsToSelector:@selector])
+		[_centalDelegate centralManager:self didDiscoverPeripheral];
+	}
 
-
-
-
-
-
-
-
-
-
-
+	BOOL isAutoConnect = NO;
+	
 
 
 
