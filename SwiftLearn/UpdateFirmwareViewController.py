@@ -145,30 +145,77 @@ class UpdateFirmwareViewController: MYNTKitBaseViewController {
 		loadDebugLabel()
 	}
 
-	
+	func loadDebugLabel() {
+		if AppConfig.isDebugMode {
+			debugInfoLabel.isHidden = false
+			if let mynt = mynt {
+				debugInfoLabel.text = "升级文件:\(mynt.latestFirmwareFileName)\n升级版本:\(mynt.latestFirmwareVersion)"
+			}
+		} else {
+			debugInfoLabel.isHidden = true
+		}
+	}
+
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+
+	override func didDismissViewController() {
+		super.didDismissViewController()
+		MYNTKit.shared.removeMyntKitDelegate(key: selfKey)
+		UIApplication.keepLightOn(isOn: false)
+		// TODO: 检测所有设备，是否含有新固件
+	}
+
+	override func leftBarButtonClickedHandler() {
+		dismissNavigationController(animated: true, completion: nil)
+	}
+
+	@IBAction func didClickReplyButton(_ sender: AnyObject) {
+		if updateType == .waitReply {
+			startUpdate()
+		}
+	}
+
+	func startUpdate() {
+		mynt?.updateFirmware(start: { [weak self] () -> Data? in
+			self?.updateType = .ready
+			return self?.mynt?.latestFirewareFile
+			}, progress: { [weak self] (percent) in
+				self?.updateType = .update
+				self?.percentLabel.text = "\(Int(percent * 100))%"
+				self?.signalLayer.strokeEnd = percent
+			}, success: { [weak self] in
+				self?.updateType = .waitCheck
+				self?.percentLabel.text = ""
+		}) { [weak self] _ in
+			self?.updateType = .failed
+			self?.percentLabel.text = ""
+		}
+	}
 }
 
+extension UpdateFirmwareViewController {
+	
+	func didConnected(mynt: Mynt) {
+		if updateType == .waitCheck || updateType == .reopenBluetooth {
+			if mynt.hasNewFirmware {
+				updateType = .waitReply
+			} else {
+				updateType = .success
+				perform(#selector(leftBarButtonClickedHandler), with: nil, afterDelay: 5)
+			}
+		}
+	}
 
+	func mynt(mynt: Mynt, didDisconnected error: Error?) {
 
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	func didBluetoothError(mynt: Mynt) {
+		if mynt != self.mynt { return }
+		updateType = .reopenBluetooth
+	}
+}
 
 
