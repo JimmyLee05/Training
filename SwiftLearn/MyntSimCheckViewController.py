@@ -240,26 +240,131 @@ class MyntSimCheckViewController: BaseViewController {
 			if url.path.hasSuffix("set_apn") {
 				//跳转设置
 				let alert = UIAlertView(title: MTLocalizedString("SIM_CHECK_APNSET_TITLE", comment: ""),
-										)
-			}}
+										message: MTLocalizedString("SIM_CHECK_APNSET_MESSAGE", comment: ""),
+										delegate: self,
+										cancelButtonTitle: MTLocalizedString("CANCEL", comment: "取消"),
+										otherButtonTitles: MTLocalizedString("APP_SETTINGS", comment: "设置"))
+				alert.alertViewStyle = .plainTextInput
+				alert.tag = 10000
+				alert.show()
+				return true
+			}
+			return false
+		}
+
+		checkButton.setButtonBackgroundColorStyle(ColorStyle.kBlueGradientColor)
+		checkButton.setTitle(MTLocalizedString("SIM_CHECK_BUTTON_START", comment: "开始检测"), for: .normal)
+		// 遮罩
+		maskView.loadTableViewMaskStyle()
+
+		self.state = .ready
+		UIApplication.keepLightOn(isOn: true)
+	}
+
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationController?.isNavigationBarHidden = true
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+	}
+
+	@IBAction func didClickCloseButton(_ sender: Any) {
+		closeViewController()
+	}
+
+	fileprivate func closeViewController() {
+		if navigationController == nil {
+			dismiss(animated: true)
+		} else {
+			_ = navigationController?.popToRootViewController(animated: true)
+		}
+		NSObject.cancelPreviousPerformRequests(withTarget: self1)
+		UIApplication.keepLightOn(isOn: true)
+	}
+
+	@IBAction func didClickCheckButton(_ sender: Any) {
+		switch state {
+		case .ready:
+			self.state = .progress
+		case .progress:
+			break
+		case .failed:
+			self.state = .progress
+		case .success:
+			closeViewController()
+		}
+	}
+
+	func checkNetwork() {
+		mynt?.simNetResult(success: { [weak self] time in
+			if let startTime = self?.startTime, self?.state == .progress {
+				if time >= startTime {
+					self?.progress = .end
+					self?.state = .success
+				} else {
+					self?.perform(#selector(MyntSimCheckViewController.checkNetwork.checkNetwork), with: nil, afterDelay: 5)
+				}
+			}
+			}, failure: { [weak self] _, _ in
+				self?.error = .mobileNetError
+		})
+	}
+
+	func startCheck() {
+		progress = .none
+		mynt?.checkSIM(progress: { [weak self] progress in
+			self?.progress = progress
+			}, failure: { [weak self] error, code in
+				self?.errorCode = code
+				self?.error = error
+		})
+
+		startTime = Int(Date().timeIntervalSince1970)
+		checkNetwork()
+		tableView.reloadData()
 	}
 }
 
+extension MyntSimCheckViewController: UIAlertViewDelegate {
+	
+	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
+		if alertView.tag == 10000 && buttonIndex == 1 {
+			//设置apn
+			if let textField = alertView.textField(at: 0),
+				let value = textField.text {
+				//写入apns
+				mynt?.setAPN(apn: value) { _ in
 
+				}
+			}
+		}
+	}
+}
 
+extension MyntSimCheckViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return Mynt.CheckSimProgress.all.count
+	}
 
+	func tabelView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 60
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(cell: MyntSimCheckTableViewCell.self, for: indexPath)
+		let progress = Mynt.CheckSimProgress.all[indexPath.row]
+		cell?.progress = progress
+		cell?.stateView.isHidden = self.progress == .none
+		cell?.setState(isSuccess: progress.rawValue <= self.progress.rawValue - 1)
+		return cell！
+	}
+}
 
 
