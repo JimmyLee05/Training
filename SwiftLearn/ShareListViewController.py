@@ -167,29 +167,92 @@ class ShareListViewController: BaseViewController {
 	}
 }
 
+extension ShareListViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return cellTypes.count
+	}
 
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> UITableViewCell {
+		return cellTypes[(indexPath.row)].height
+	}
 
+	func tabelView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cellType = cellTypes[indexPath.row]
+		switch cellType {
+		case .coverflow:
+			let cell = tableView.dequeueReusableCell(cell: MyntCoverFlowTableViewCell.self, for: indexPath)
 
+			cell?.coverflowView.delegate 		= self
+			cell?.coverflowView.dataSource 		= self
+			cell?.nameLabel.text 				= selectedFriend?.friendName
+			cell?.hintLabel.text 				= MTLocalizedString("GPS_SHARE_NAME", comment: "GPS设备分享给")
+			cell?.hintLabel.isHidden 			= firends.isEmpty
 
+			coverFlowTableViewCell 				= cell
 
+			return cell!
+		case .empty:
+			var cell = tableView.dequeueReusableCell(withIdentifier: "empty")
+			if cell == nil {
+				cell = UITableViewCell(style: .default, reuseIdentifier: "empty")
+				cell?.backgroundColor = UIColor.white
+				cell?.selectionStyle  = .none 
+			}
+			return cell!
+		case .line:
+			var cell = tableView.dequeueReusableCell(withIdentifier: "line")
+			if cell == nil {
+				cell 					= UITableViewCell(style: .default, reuseIdentifier: "line")
+				cell?.selectionStyle 	= .none
+				cell?.backgroundColor 	= UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.00)
+			}
+			return cell!
+		case .permissions:
+			let cell 					= tableView.duqueueReusableCell(cell: MTSwitchTableViewCell.self, for: indexPath)
+			cell?.nameLabel.text 		= MTLocalizedString("GPS_SHARE_NO_PRI", comment: "允许编辑")
+			cell?.switchView.isOn 		= selectedFriend?.privilege == true
+			cell?.switchViewSwitchedHandler = { [weak self] cell in
+				self?.didClickSwitchButton(switchView: cell.switchView)
+			}
 
+			switchTableViewCell 		= cell
+			return cell!
+		}
+	}
+}
 
+extension ShareListViewController: CoverFlowViewDelegate, CoverFlowViewDataSource {
+	
+	func numberOfPagesInFlowView(view: CoverFlowView) -> Int {
+		return friends.count
+	}
 
+	func coverFlowView(view: CoverFlowView, cellForPageAtIndex index: Int) -> UIView? {
+		let contentView 						= UIView()
+		MKImageCache.share.downUserAvatar(url: friends[index].avatar) { image in
+			contentView.layer.contents = image?.round()?.cgImage
+		}
+		contentView.layer.cornerRadius 		= 50
+		contentView.layer.masksToBounds 	= true
+		contentView.frame 					= CGRect(origin: CGPoint.zero,
+													 size: CGSize(width: 100, height: 100))
+		return contentView
+	}
 
+	func coverFlowView(view: CoverFlowView, didScrollToPageAtIndex index: Int) {
+		coverFlowTableViewCell?.nameLabel.text = friends[index].friendName
+	}
 
+	func coverFlowView(view: CoverFlowView, didScrollEndAtIndex index: Int) {
+		self.coverFlowView(view: view, didTapPageAtIndex: index)
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	func coverFlowView(view: CoverFlowView, didTapPageAtIndex index: Int) {
+		if friends.isEmpty {
+			return
+		}
+		selectedFriend = friends[index]
+	}
+}
 
