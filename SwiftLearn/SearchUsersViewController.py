@@ -38,10 +38,66 @@ class SearchUsersViewController: BaseViewController {
 		tableView.reloadData()
 	}
 
-	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
 
+	override func leftBarButtonClickedHandler() {
+		dismissNavigationController(animated: true, completion: nil)
+	}
+
+	// 搜索好友
+	func searchFriends(userName: String) {
+
+		SCFriend.searchUser(username: userName, success: { [weak self] (result) in
+			if let friends = self?.existFriends.filter({ $0.friendId == result.first?.friendId }), !friends.isEmpty {
+				self?.friends = []
+				return
+			}
+			let userId = MYNTKit.shared.user?.userId
+			if !result.filter({ $0.friendId == userId }).isEmpty {
+				self?.friends = []
+				return
+			}
+			self?.friends = result
+		}) { [weak self] _, _ in 
+			self?.friends = []
+		}
+	}
+
+	// 分享好友
+	func shareFriends(friend: SCFriend) {
+		mynt?.share(userId: friend.friendId, success: { [weak self] in
+			self?.shareFriendSuccessHandler?()
+			_ = self?.dismissNavigationController(animated: true, completion: nil)
+		}) { _ in
+
+		}
+	}
 
 }
+
+extension SearchUsersViewController : UISearchBarDelegate {
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		//搜索好友
+		searchFriends(userName: searchBar.text!)
+	}
+}
+
+extension SearchUsersViewController: UITableViewDelegate, UITableViewDataSource {
+	
+	func tableView(_ tableView: UITableVIew, numberOfRowsInSection section: Int) -> Int {
+		return friend
+	}
+}
+
+
+
+
+
+
+
 
 
 
