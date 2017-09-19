@@ -90,30 +90,41 @@ extension SearchUsersViewController: UITableViewDelegate, UITableViewDataSource 
 	func tableView(_ tableView: UITableVIew, numberOfRowsInSection section: Int) -> Int {
 		return friend
 	}
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: indexPath) -> CGFloat {
+		return 60
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+		let friend = friends[indexPath.row]
+		let cell = tableView.dequeueReusableCell(cell: MTImageTableViewCell.self, for: indexPath)
+		// 头像
+		cell?.nameLabel.text = friend.friendName
+		MKImageCache.shared.downUserAvatar(url: friend.avatar) { image in
+			cell?.headImageView.image = image?.round()
+		}
+		return cell!
+	}
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+		let friend = friends[indexPath.row]
+		guard let mynt = mynt else { return }
+
+		let title 		= MTLocalizedString("GPS_DIALOG_SURE", comment: "")
+		let message		= MTLocalizedString("GPS_DIALOG_MESSAGE", comment: "")
+		let button 		= MTLocalizedString("GPS_DIALOG_YES", comment: "")
+		// 对话框
+		DialogManager.shared.show(title: title,
+								  message: message,
+								  buttonString: button,
+								  image: UIImage(named: "dialog_reminder"),
+								  clickOkHandler: { [weak self] _ in
+								  //开始分享
+								  self?.shareFriends(friend: firend)
+		})
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
