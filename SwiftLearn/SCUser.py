@@ -101,10 +101,309 @@ open class SCUser: SCAPI {
 			userDefault.removeObject(forKey: "user_name")
 			userDefault.removeObject(forKey: "user_email")
 			userDefault.removeObject(forKey: "avatar")
-			
+			userDefault.removeObject(forKey: "token")
+			userDefault.removeObject(forKey: "user_id")
+			userDefault.synchronize()
+			return
+		}
+
+		userID = userDefault.string(forKey: userIDKey)
+		if userID != nil && userID != "" {
+			let userName  	= userDefault.string(forKey: userNameKey)
+			let userEmail 	= userDefault.string(forKey: userEmailKey)
+			let avatar    	= userDefault.string(forKey: avatarKey)
+			let token 	  	= userDefault.string(forKey: tokenKey)
+
+			let user = SCUser()
+
+			user.userID   	= userID == nil ? "" : userID!
+			user.userName 	= userName == nil ? "" : userName!
+			user.userEmail 	= userEmail == nil ? "" : userEmail!
+			user.avatar 	= avatar == nil ? "" : avatar!
+			user.token 		= token!
+			user.save()
+
+			userDefault.removeObject(forKey: userNameKey)
+			userDefault.removeObject(forKey: userEmailKey)
+			userDefault.removeObject(forKey: avatarKey)
+			userDefault.removeObject(forKey: tokenKey)
+			userDefault.removeObject(forKey: userIDKey)
+			userDefault.synchronize()
+			return
 		}
 	}
 }
+
+
+public extension SCUser {
+	
+	/**
+	更新设备UUID
+
+	- parameter success:
+	- parameter failed:
+	*/
+	public class func updateUUID(success: @escaping () -> Void,
+								 failure: SCFailedHandler) {
+		var param: [String: Any] = [:]
+		if let user = tempUser {
+			param["token"]   = user.token
+			param["user_id"] = user.userID
+		}
+		post(url: "user/uuid/update", auth: false, param: param, success: { _ in
+			tempUser?.save()
+			success()
+		}, failure: failure)
+	}
+
+	/**
+	更新设备UUID
+
+	- parameter success:
+	- parameter failed:
+	*/
+	public class func checkUUID(success: @escaping (Bool) -> Void,
+								failure: SCFailedHandler) {
+		post(url: "user/uuid/check", param: [:], success: { (json) in
+			success(json["delete"].int == i)
+		}, failure: failure)
+	}
+
+	/**
+	登录
+
+	- parameter email: 邮箱
+	- parameter password: 密码
+	- parameter success:
+	- parameter failed:
+	*/
+	public class func login(email: String,
+							password: String,
+							success: @escaping (SCUser, Bool) -> Void,
+							failure: SCFailedHandler) {
+		let param: [String: Any] = ["email": email,
+									"pass": password.md5]
+		post(url: "user/login", auth: false, param: param, success: { (json) in
+			let user = Json2User(email: email, json: json)
+			let check = json["login_device_check"].int
+
+			if !SCLoud.shared.isMYNTAPP {
+				user.save()
+				success(user, false)
+				return
+			}
+			if check != nil && check == 1 {
+				tempUser = user
+				success(user, false)
+			} else {
+				user.save()
+				success(user, false)
+			}
+		}, failure: failure)
+	}
+
+	/**
+	登出
+
+	- parameter isPostCloud: 	是否提交到服务器(默认为true)
+	*/
+	public class func logout(isPostCloud: Bool = true) {
+		if isPostCloud {
+			post(url: "user/logout", auth: true, param: [:], success: { _ in
+
+			}) { _, _ in
+
+			}
+		}
+		let user = SCUser()
+		user.save()
+	}
+
+	class func updateToken(token: String) {
+		let user = currentUser()
+		user?.token = token
+		user?.save()
+	}
+
+	class func updateAvatar(avatar: String) {
+		let user = currentUser()
+		user?.avatar = avatar
+		user?.save()
+	}
+
+	/**
+	 注册
+
+	 - parameter email: 	邮箱
+	 - parameter userName: 	用户名
+	 - parameter password:  密码
+	 - parameter success:
+	 - parameter falied:
+	 */
+
+	 public class func register(email: String,
+	 							userName: String,
+	 							password: String,
+	 							success: @escaping (SCUser) -> Void,
+	 							failure: SCFailedHandler) {
+	 	let param: [String: Any] = ["email": email,
+	 								"user_name": userName,
+	 								"pass": password.md5]
+	 	post(url: "user/register", auth: false, param: param, success: { (json) in
+	 		let user = Json2User(email: email, json: json)
+	 		user.userName = userName
+	 		if user.save() {
+	 			success(user)
+	 		} else {
+	 			failure?(SCErrorCode.analyseError.rawValue, "analyse error")
+	 		}
+	 	}, failure: failure)
+	 }
+
+	 /**
+	 忘记密码
+
+	 - parameter email: 邮箱
+	 - parameter success:
+	 - parameter failed:
+	 */
+
+	 public class func forgetPassword(email: String,
+	 								  success: @escaping () -> Void,
+	 								  failure: SCFailedHandler) {
+	 	let param: [String: Any] = ["email": email]
+	 	post(url: "user/forget", auth: false, param: param, success: { _ in
+	 		success()
+	 	}, failure: failure)
+	 }
+
+	 /**
+	 修改用户名
+
+	 - parameter userName: 用户名
+	 - parameter success:
+	 - parameter failed:
+	 */
+	public class func changeUserName(userName: String,
+									 success: @escaping () -> Void,
+									 failure: SCFailedHandler) {
+		let param: [String: Any] = ["user_name": userName]
+		post(url: "user/update", param: param, success: { _ in
+			success()
+		}, failure: failure)
+	}
+
+	/**
+	修改密码
+
+	- parameter oldPassword: 旧密码
+	- parameter newPassword: 新密码
+	- parameter success:
+	- parameter failed:
+	*/
+	public class func changePassword(oldPassword: String,
+									 newPassword: String,
+									 success: @escaping () -> Void,
+									 failure: SCFailedHandler) {
+		let param: [String: Any] = ["old_pass": oldPassword.md5]
+		post(url: "user/update", param: param, success: { _ in
+			success()
+		}, failure: failure)
+	}
+
+	/**
+	修改密码
+
+	- parameter oldPassword: 旧密码
+	- parameter newPassword: 新密码
+	- parameter success:
+	- parameter failed:
+	*/
+
+	public class func changePassword(oldPassword: String,
+									 newPassword: String,
+									 success: @escaping () -> Void,
+									 failure: SCFailedHandler) {
+		let param: [String: Any] = ["old_pass": oldPassword.md5,
+									"new_pass": newPassword.md5]
+		post(url: "user/password", param: param, success: { _ in
+			success()
+		}, failure: failure)
+	}
+
+	/**
+	客服系统注册
+
+	- parameter success:
+	- parameter failed:
+	*/
+	public class func customerService(success: @escaping (String) -> Void,
+									  failure: SCFailedHandler) {
+		post(url: "user/reqcustomerservice", param: [:], success: { json in
+			success(json["userid"].stringValue)
+		}, failure: failure)
+	}
+
+	/**
+	修改头像
+
+	- parameter avatar: 头像
+	- parameter success:
+	- parameter falied:
+	*/
+	public class func changeAvatar(avatar: SCImage,
+								   success: @escaping (String) -> Void,
+								   failure: SCFailedHandler) {
+		post(url: "user/avatar", param: [:], image: avatar, success: { json in
+			success(json["avatar"].stringValue)
+			updateAvatar(avatar: json["avatar"].stringValue)
+		}, failure: failure)
+	}
+
+	/**
+	删除头像
+
+	- parameter success:
+	- parameter falied:
+	*/
+	public class func deleteAvatar(success: @escaping () -> Void,
+								   failure: SCFailedHandler) {
+		post(url: "user/avatar/delete", param: [:], success: { _ in
+			success()
+			updateAvatar(avatar: "")
+		}, failure: failure)
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
