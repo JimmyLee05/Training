@@ -18,5 +18,14 @@ class SecurityTableViewCell: UITableViewCell {
 		}
 	}
 
-	
+	var deleteButtonClickedHandler: ((SecurityTableViewCell) -> Void)?
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		selectionStyle = .none
+	}
+
+	@IBAction func didClickDeleteButton(_ sender: UIButton) {
+		deleteButtonClickedHandler?(self)
+	}
 }
