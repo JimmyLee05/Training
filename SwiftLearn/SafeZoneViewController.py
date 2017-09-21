@@ -66,7 +66,40 @@ class SafeZoneViewController: BaseViewController {
 		}
 	}
 
+	private func _saveSafeZone(ssid: String) {
+		if nemwTextField.text?.trim() == "" {
+			nameTextField.shake(times: 10, delta: 5, interval: 0.04, shakeDirection: UIView.ShakeDirection.horizontal)
+			MTToast.show(MTLocalizedString("SECURE_AREA_PLEASE_INPUT_NAME", comment: ""))
+			return
+		}
+		let name: String = nameTextField.text!.trim()
+
+		if safeZone == nil {
+			//新增
+			let safezone = SafeZone.create(name: name, wifiSSID: ssid)
+			safezone.insert()
+		} else {
+			//更新
+			safeZone?.name 			= name
+			safeZone?.wifiSSID 		= ssid
+			safeZone?.update()
+		}
+		dismissNavigationController(animated: true, completion: nil)
+	}
+}
+
+extension SafeZoneViewController: UITextFieldDelegate {
 	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if textField == nameTextField {
+			nameTextField.resignFirstRespinder()
+		}
+		return true
+	}
+
+	override func touchesEnded(_touches: Set<UITouch>, with event: UIEvent?) {
+		nameTextField.resignFirstRespinder()
+	}
 }
 
 
