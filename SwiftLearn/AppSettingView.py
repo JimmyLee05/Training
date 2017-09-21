@@ -128,32 +128,96 @@ extension AppSettingView: UITableViewDelegate, UITableViewDataSource {
 		return view
 	}
 
-	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: indexPath: IndexPath) -> UITableViewCell {
+		let item = cellItems[indexPath.section]
+		switch item {
+		case .debug:
+			let cell  						= tableView.dequeueReusableCell(cell: MTNormalSingleTableViewCell.self, for: indexPath)
+			cell?.nameLabel.text 			= "调试界面"
+			cell?.valueLabel.text 			= ""
+			cell?.arrowImageView.isHidden 	= false
+
+		case .laboratory:
+			let cell 						= tableView.dequeueReusableCell(cell: MTNormalSingleTableViewCell.self, for: indexPath)
+			cell?.nameLabel.text 			= "实验室"
+			cell?.valueLabel.text 			= ""
+			cell?.arrowImageView.isHidden 	= false
+			return cell!
+		case .buy:
+			let cell 						= tableView.dequeueReusableCell(cell: MTNormalSingleTableViewCell.self, for: indexPath)
+			cell?.nameLabel.text 			= MTLocalizedString("BUY_MYNT_BATTERY", comment: "")
+			cell?.valueLabel.text 			= ""
+			cell?.arrowImageView.isHidden 	= false
+			return cell!
+		case .safezone:
+			switch indexPath.row {
+			case 0:
+				// 安全区域报警开关
+				let cell = tableView.dequeueReusableCell(cell: MTSwitchTableViewCell.self, for: indexPath)
+
+				cell?.nameLabel.text 				= MTLocalizedString("SECURE_DISABLE_MYNT_ALARM", comment: "")
+				cell?.switchView.isOn 				= MYNTKit.share.isCloseAlarmInSafeZone
+				cell?.switchViewSwitchedHandler 	= { [weak self] cell in
+					self?.viewController?.didSelectCloseMyntAlarmInSafeZone(isCloseAlarm: cell.switchView.isOn)
+				}
+				return cell!
+			case safezoneCellCount - 1:
+				//新增安全区域
+				let cell = tableView.dequeueReusableCell(cell: MTNormalSingleTableViewCell.self, for: indexPath)
+
+				cell?.nameLabel.text 				= MTLocalizedString("SECURE_AREA_ADD", comment: "新增安全区域")
+				cell?.valueLabel.text 				= ""
+				cell?.arrowImageView.isHidden 		= false
+				return cell!
+			default:
+				// 安全区域值
+				let cell = tableView.dequeueReusableCell(cell: SecurityTableViewCell.self, for: indexPath)
+
+				cell?.index
+				if indexPath.row - 1 < safeZones.count {
+					cell?.safeZone = safeZones[indexPath.row - 1]
+				}
+				cell?.deleteButtonClickedHandler 	= { [weak self] cell in
+					self?.viewController?.didClickDeleteSafeZone(atIndex: cell.index)}
+				}
+				return cell!
+			}
+		case .faq:
+			let cell = tableVeiw.dequeueReusableCell(cell: MTNormalSingleTableViewCell.self, for: indexPath)
+
+			cell?.nameLabel.text 					= MTLocalizedString("HOW_TO\(indexPath.row + 1)", comment: "")
+			cell?.valueLabel.text 					= ""
+			cell?.arrowImageView.isHidden 			= true
+			return cell!
+		}
+	}
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+		let item = cellItems[indexPath.section]
+		switch item {
+		case .debug:
+			let viewController = DebugViewController()
+			self.viewController?.removeBackBarButtonTitle()
+			self.viewController?.push(viewController: viewController)
+		case .buy:
+			viewController?.didClickBuyMynt()
+		case .safezone:
+			switch indexPath.row {
+			case 0:
+				break
+			case safezoneCellCount - 1:
+				viewController?.didClickAddSafeZone()
+			default:
+				viewController?.didSelectSafeZone(atIndex: indexPath.row - 1)
+			}
+		case .faq:
+			viewController?.didSelectFAQ(atIndex: indexPath.row)
+		case .laboratory:
+			let viewController = LaboratoryViewController()
+			self.viewController?.removeBackBarButtonTitle()
+			self.viewController?.push(viewController: viewController)
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
