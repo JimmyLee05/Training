@@ -100,6 +100,34 @@ extension AppSettingView: UITableViewDelegate, UITableViewDataSource {
 		return cellItems.count
 	}
 
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if cellItems[section] == .safezone {
+			return safezoneCellCount
+		}
+		return cellItems[section].count
+	}
+
+	func tableView(_ tabelView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return headerTitles[section] == "" ? 35 : 60
+	}
+
+	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return 0.01
+	}
+
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let height: CGFloat 		= headerTitles[section] == "" ? 35 : 60
+		let view 					= UIView(frame: CGRect(x: 0, y: 0, width: winSize.width, height: height))
+		view.backgroundColor 		= UIColor.white
+		let label 					= UILable(frame: CGRect(x: 15, y: height - 20, width: winSize.width - 15, height: 20))
+		label.font 					= UIFont.systemFont(ofSize: 11)
+		label.text 					= headerTitles[section]
+		label.textColor 			= UIColor(red:0.77, green:0.77, blue:0.77, alpha:1.00)
+		view.addSubview(label)
+
+		return view
+	}
+
 	
 }
 
