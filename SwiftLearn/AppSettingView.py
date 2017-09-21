@@ -52,8 +52,55 @@ class AppSettingView: UIView {
 		// headerTitles.insert("laboratory", at: 0)
 		// cellItems.insert(.laboratory, at: 0)
 
-		
+		if let section = cellItems.index(of: .safezone) {
+			safezoneSection = section
+		}
+
+		tableView.register(with: MTNormalSingleTableViewCell.self)
+		tableView.register(with: SecurityTableViewCell.self)
+		tableView.register(with: MTSwitchTableViewCell.self)
+		tableView.estimatedRowHeight = 60
+		tableView.rowHeight 		 = UITableViewAutomaticDimension
+		tableView.delegate 			 = self
+		tableView.dataSource 		 = self
+		tableView.tableHeaderView 	 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
+		tableView.tableFooterView 	 = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 100))
+
+		//版本信息
+		versionLabel 				 = UILabel(frame: CGRect(x: 0, y: -80, width: winSize.width, height: 20))
+		versionLabel.text 			 = "\(UIApplication.appName) \(UIApplication.appVersion) + (v\(UIApplication.appBuildVersion))"
+		versionLabel.textAligment 	 = .center
+		versionLabel.textColor 		 = UIColor.black
+		versionLabel.font 			 = UIFont.boldSystemFont(ofSize: 12)
+		tableView.addSubview(versionLabel)
 	}
+
+	override func removeFromSuperview() {
+		super.removeFromSuperview()
+	}
+}
+
+extension AppSettingView: UITableViewDelegate, UITableViewDataSource {
+	
+	var safezoneCellCount: Int {
+		return safeZones.count + 2
+	}
+
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if scrollView.contentOffset.y < -150 {
+			versionLabel.alpha = 1
+		} else if scrollView.contentOffSet.y < 50 && scrollView.contentOffset.y > .150 {
+			versionLabel.alpha = (abs(scrollView.contentOffset.y) - 50) / 100
+		} else {
+			versionLabel.alpha = 0
+		}
+	}
+
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return cellItems.count
+	}
+
+	
 }
 
 
