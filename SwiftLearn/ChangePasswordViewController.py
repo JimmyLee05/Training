@@ -81,35 +81,45 @@ class ChangePasswordViewController: BaseViewController {
 			MTToast.show(MTLocalizedString("PASSWORD_EMPTY", comment: "密码为空"))
 			return
 		}
-		
+		if newPassword == "" {
+			newPasswordTextField.shake()
+			MTToast.show(MTLocalizedString("PASSWORD_EMPTY", comment: "密码为空"))
+			return
+		}
+		if conformPassword == "" {
+			conformPasswordTextField.shake()
+			MTToast.show(MTLocalizedString("PASSWORD_EMPTY", comment: "密码为空"))
+			return
+		}
+		if conformPassword != newPassword {
+			conformPasswordTextField.shake()
+			MTToast.show(MTLocalizedString("PASSWORD_NOTSAME", comment: "密码不同"))
+			return
+		}
+		_isPositing = true
+		MYNTKit.shared.user?.changePassword(oldPassword: oldPassword!, newPassword: newPassword!, success: { [weak self] in
+			MTToast.show(MTLocalizedString("CHANGE_PASSWORD_SUCCESS", comment: "密码修改成功"))
+			self?.dismissNavigationController(animated: true, completion: nil)
+			self?._isPositing = false
+		}) { [weak self] _, msg in
+			MTToast.show(msg)
+			self?._isPositing = false
+		}
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension ChangePasswordViewController: ImageTextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: ImageTextField) -> Bool {
+		if textField == oldPasswordTextField {
+			newPasswordTextField.becomeFirstResponder()
+		} else if textField == newPasswordTextField {
+			conformPasswordTextField.becomeFirstResponder()
+		} else if textField == conformPasswordTextField {
+			conformPasswordTextField.resignFristResponder()
+			didClickSubmitButton(submitButton)
+		}
+		return true
+	}
+}
 
