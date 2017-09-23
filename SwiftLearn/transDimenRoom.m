@@ -33,6 +33,7 @@ CGFloat yFix 				= WALL_WIDTH;
 	[walls addChildNode: leftWall];
 
 	SCNNode 
+	
 }
 
 
