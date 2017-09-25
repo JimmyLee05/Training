@@ -83,9 +83,6 @@ CGFloat yFix 				= WALL_WIDTH;
 	[walls addChildNode:innerStructs];
 
 	walls.position 				= SCNVector3Make(0, 0, -halfSideLength);
-	[wra]
-
-
 	
 }
 
