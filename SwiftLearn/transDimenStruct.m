@@ -168,23 +168,52 @@ typedef NS_ENUM(NSInteger, structureType) {
 	return material;
 }
 
++(SCNMaterial *)defaultMaterialFor:(structureType)type {
+	NSString *imageName 			= nil;
+	switch (type) {
+		case Walls:
+			imageName = @"art.scnasets/wall_diffuse.png";
+			break;
+		case Floor:
+			imageName = @"art.scnasets/floor_diffuse.png";
+			break;
+		case Roof:
+			imageName = @"art.scnassets/roof_diffuse.png";
+			break;
+		default:
+			break;
+	}
+	if (!imageName) {
+		return [self transparentMaterial];
+	}
+	SCNMaterial *material = [SCNMaterial new];
+#if testMaterial
+	//TODO: for test
+	material.diffuse.contents = testFloorColor;
+#else
+	material.diffuse.contents = [UIImage imageNamed: imageName];
+#endif
+	//TODO: test for usage
+	material.writesToDepthBuffer 	= YES;
+	material.readsFromDepthBuffer 	= YES;
+	material.lightingModelName 		= SCNLightingModelConstant;
+	return material;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
++ (SCNMaterial *)defaultMaterialUpper: (BOOL) isUpper {
+	SCNMaterial *material 	= [SCNMaterial new];
+	//TODO: for test
+	if (isUpper) {
+		material.diffuse.contents 	= testFloorColor;
+	} else {
+		material.diffuse.contents 	= testFloorColor;
+	}
+	// TODO: test for usage
+	material.writesToDepthBuffer 	= YES;
+	material.readsFromDepthBuffer 	= YES;
+	//Is physically mode is necessary
+	material.lightingModelName 		= SCNLightingModelConstant;
+	return material;
+}
+@end
 
