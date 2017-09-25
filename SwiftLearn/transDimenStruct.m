@@ -128,9 +128,47 @@ typedef NS_ENUM(NSInteger, structureType) {
 	rightFrameGeo.firstMaterial 			= frameMaterial;
 	SCNNode *rightNode 						= [SCNNode nodeWithGeometry: rightFrameGeo];
 	rightNode.castsShadow 					= NO;
-	rightNode.position 						= 
+	rightNode.position 						= SCNVector3Make(-DOOR_WIDTH/2, sideFrameHeight/2, 0);
+	SCNParticleSystem *rightPartical 		= [particle copy];
+	rightPartical.emitterShape 				= rightFrameGeo;
+	[rightNode addParticalSystem: rightPartical];
+	[doorFrame addChildNode: rightNode];
+
+	return doorFrame;
 
 }
+
++ (SCNNode *)innnerStructs{
+	SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/flower.scn"];
+	if (!scene) {
+		assert(0);
+	}
+	SCNNode *node = [SCNNode new];
+
+	[scene.rootNode enumerateHierarchyUsingBlock:^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
+			child.renderingOrder = 200;
+	}];
+
+	SCNNode *flower = [scene.rootNode childNodeWithName:@"flower" recursively:YES];
+	if (!flower) {
+		assert(0);
+	}
+	[node addChildNode: flower];
+	return node;
+}
+
++ (SCNMaterial *)transparentMaterial {
+
+	SCNMaterial *material 			= [SCNMaterial new];
+	material.diffuse.contents 		= [UIColor redColor];
+	material.transparency 			= 0.000001;
+	material.writesToDepthBuffer 	= YES;
+	//TOOD:transparent material mode must be constant
+	material.lightingModelName = SCNLightingModelConstant;
+	return material;
+}
+
+
 
 
 
