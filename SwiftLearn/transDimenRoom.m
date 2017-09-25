@@ -83,24 +83,51 @@ CGFloat yFix 				= WALL_WIDTH;
 	[walls addChildNode:innerStructs];
 
 	walls.position 				= SCNVector3Make(0, 0, -halfSideLength);
-	
+	[wrapperNode addChildNode: walls];
+	wrapperNode.walls 			= walls;
+	wrapperNode.position 		= position;
+	[self node:wrapperNode enableCastShadows: NO];
+
+	[wrapperNode setupAmbilentLight];
+	return wrapperNode;
 }
 
+- (BOOL)checkIfInRoom: (SCNVector3)position {
+	return NO;
+}
 
+- (void)hideWalls: (BOOL)hidden {
+	SCNNode *floor 		= [self.walls childNodeWithName: @"floor" recursively: YES];
+	SCNNode *doorFrame 	= [self.walls childNodeWithName: @"doorFrame" recursively: YES];
 
+	[self.walls enumerateChildNodesUsingBlock: ^(SCNNode *Nonull child, BOOL * _Nonnull stop) {
+		if ((child != floor && ![floor.childNodes containsObject: child]) &&
+		   (child  != doorFrame && ![foorFrame.childNodes containsObject: child])) {
+			child.hidden = hidden;
+		}
+	}];
+}
 
+-(void)setupAmbientLight {
 
+	SCNLight *ambientLight  	= [SCNLight light];
+	ambientLight.type 			= SCNLightTypeAmbient;
+	ambientLight.intensity 		= 100;
+	SCNNode *node 				= [SCNNode new];
+	node.name 					= @"ambientLight";
+	node.light 					= ambientLight;
+	node.position 				= SCNVector3Make(halfSideLength, WALL_HEIGHT * 0.5, halfSideLength);
+	[_walls addChildNode: node];
+}
 
++ (void)node: (SCNNode*)node enableCastShadows:(BOOL)enable {
 
+	node.castsShadow = enable;
+	[node enumerateChildNodesUsingBlock: ^(SCNNode * _Nonnull child, BOOL * _Nonnull stop) {
+		[self node:child enableCastShadows: enable];
+	}];
+}
 
-
-
-
-
-
-
-
-
-
+@end
 
 
