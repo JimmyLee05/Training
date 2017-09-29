@@ -97,9 +97,9 @@
                                                 <constraint firstAttribute="height" constant="70" id="5oZ-N2-MlG"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="支付方式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUL-zE-s74">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="支付方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUL-zE-s74">
                                             <rect key="frame" x="21" y="126" width="66" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -109,13 +109,54 @@
                                         </view>
                                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zF-ND-LYI" userLabel="Alipay View">
                                             <rect key="frame" x="0.0" y="157" width="414" height="65"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSV-36-YDg" userLabel="line">
+                                                    <rect key="frame" x="0.0" y="64" width="414" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="sbl-DM-q14"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="alipay" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-9w-U7N" userLabel="alipay">
+                                                    <rect key="frame" x="21" y="20" width="26" height="26"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="支付宝支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7O-d8-Gzp" userLabel="支付宝支付">
+                                                    <rect key="frame" x="64" y="23" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="dEB-co-PWC" userLabel="trik">
+                                                    <rect key="frame" x="373" y="21" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="dEB-co-PWC" secondAttribute="height" multiplier="1:1" id="WGE-pL-sx9"/>
+                                                        <constraint firstAttribute="width" constant="24" id="dL8-lz-tZ0"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="sgr-9w-U7N" firstAttribute="leading" secondItem="0zF-ND-LYI" secondAttribute="leading" constant="21" id="7S3-Rw-W2J"/>
+                                                <constraint firstItem="f7O-d8-Gzp" firstAttribute="centerY" secondItem="0zF-ND-LYI" secondAttribute="centerY" id="IRh-Pt-N4p"/>
+                                                <constraint firstAttribute="trailing" secondItem="CSV-36-YDg" secondAttribute="trailing" id="UI8-Jy-fDC"/>
+                                                <constraint firstItem="sgr-9w-U7N" firstAttribute="centerY" secondItem="0zF-ND-LYI" secondAttribute="centerY" id="Ub5-7c-nOZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="CSV-36-YDg" secondAttribute="bottom" id="gKu-eE-NLh"/>
+                                                <constraint firstItem="CSV-36-YDg" firstAttribute="leading" secondItem="0zF-ND-LYI" secondAttribute="leading" id="iHe-T5-FSA"/>
+                                                <constraint firstItem="dEB-co-PWC" firstAttribute="centerY" secondItem="0zF-ND-LYI" secondAttribute="centerY" id="jNR-fG-CA8"/>
                                                 <constraint firstAttribute="height" constant="65" id="kCt-HF-Ono"/>
+                                                <constraint firstItem="f7O-d8-Gzp" firstAttribute="leading" secondItem="sgr-9w-U7N" secondAttribute="trailing" constant="17" id="suf-4O-6Ui"/>
+                                                <constraint firstAttribute="trailing" secondItem="dEB-co-PWC" secondAttribute="trailing" constant="17" id="vco-yU-RLU"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gya-LU-Wza" userLabel="Wechat View">
                                             <rect key="frame" x="0.0" y="222" width="414" height="65"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jeD-bd-Iej" userLabel="line">
+                                                    <rect key="frame" x="0.0" y="64" width="414" height="1"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -130,8 +171,11 @@
                                         <constraint firstItem="0zF-ND-LYI" firstAttribute="top" secondItem="IYc-7M-rMS" secondAttribute="bottom" id="Tnq-3r-4nL"/>
                                         <constraint firstItem="gya-LU-Wza" firstAttribute="height" secondItem="0zF-ND-LYI" secondAttribute="height" id="XXg-pe-VA5"/>
                                         <constraint firstAttribute="trailing" secondItem="Etp-Cb-I29" secondAttribute="trailing" constant="21" id="gK2-gY-1g9"/>
+                                        <constraint firstAttribute="bottom" secondItem="gya-LU-Wza" secondAttribute="bottom" id="hKI-ub-nyx"/>
+                                        <constraint firstAttribute="trailing" secondItem="gya-LU-Wza" secondAttribute="trailing" id="jSd-mT-PuZ"/>
                                         <constraint firstItem="XUL-zE-s74" firstAttribute="top" secondItem="Etp-Cb-I29" secondAttribute="bottom" constant="31" id="mr1-5Q-rc8"/>
                                         <constraint firstItem="IYc-7M-rMS" firstAttribute="top" secondItem="XUL-zE-s74" secondAttribute="bottom" constant="10" id="s73-Lm-Ig0"/>
+                                        <constraint firstItem="gya-LU-Wza" firstAttribute="leading" secondItem="VN3-oB-KLK" secondAttribute="leading" id="z0B-t6-cUh"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43a-VS-8yq">
@@ -180,4 +224,8 @@
             <point key="canvasLocation" x="154" y="159"/>
         </view>
     </objects>
+    <resources>
+        <image name="alipay" width="26" height="26"/>
+        <image name="tick" width="23" height="23"/>
+    </resources>
 </document>
