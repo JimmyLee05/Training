@@ -39,6 +39,9 @@ class NewShareListViewController: BaseViewController {
         addShareButton?.layer.cornerRadius      = addShareButton!.bounds.height / 2
         addShareButton.setTitle(MTLocalizedString("添加", comment: "添加"), for: .normal)
         
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didClickView(gestureRecognizer:)))
+//        addGestureRecognizer(gestureRecognizer)
+        
         tableview.register(with: MTShareImageTableViewCell.self)
         tableview.tableHeaderView   = UIView(frame: CGRect(x: 0, y: 0, width: winSize.width, height: 0))
         tableview.delegate          = self
@@ -99,7 +102,7 @@ extension NewShareListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let friend  = friends[indexPath.row]
-        let cell = tableView.dequeueReusableCell(cell: MTShareImageTableViewCell.self, for: indexPath)
+        let cell = tableView.dequeueReusableCell(cell: MTImageTableViewCell.self, for: indexPath)
         // 头像
         cell?.nameLabel.text = friend.friendName
         MKImageCache.shared.downUserAvatar(url: friend.avatar) { image in
@@ -107,7 +110,16 @@ extension NewShareListViewController: UITableViewDelegate, UITableViewDataSource
         }
         return cell!
     }
-    
+
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        let cell = tableView.dequeueReusableCell(cell: MTShareImageTableViewCell.self, for: indexPath)
+//        cell?.friend = friends[indexPath.row]
+//        cell?.didClickStopHandel = { [weak self] friend in
+//            // 弹kuang
+//        }
+//        return cell!
+//    }
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        // Are you sure you want to share the MYNT GPS %name to %userName?\n\nThis user may watch the location and get the notification for this device.
 //        let friend = friends[indexPath.row]
