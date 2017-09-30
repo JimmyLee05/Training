@@ -138,6 +138,79 @@ class NewMyntChargeViewController: MYNTKitBaseViewController,UIScrollViewDelegat
         
         title = MTLocalizedString("GPS_CHARGE_TITLE", comment: "支付")
         setLeftBarButtonItem(image: Resource.Image.Nacigation.close)
+        setRightBarButtonItem(title: MTLocalizedString("充值记录", comment: ""))
+        
+        scrollView.delegate = self
+        chargeButton.setButtonBackgroundColorStyle(ColorStyle.kBlueGradientColor)
+        infoBackgroundLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: infoView.frame.maxY)
+        packagesView.forEach { view in
+            view.isHidden = true
+            view.layer.cornerRadius = 4
+            view.layer.borderWidth  = 1
+            view.layer.borderColor  = UIColor(red:0.82, green:0.82, blue:0.82, alpha:1.00).cgColor
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                             action:
+                #selector(MyntChargeViewController.didClickPackgaeView(gestureRecognizer:))))
+        }
+        
+        (alipayView.viewWithTag(101) as? UILabel)?.text = PayType.aliPay.payName
+        (wechatView.viewWithTag(101) as? UILabel)?.text = PayType.wechatPay.payName
+        alipayView.tag = PayType.aliPay.rawValue
+        wechatView.tag = PayType.wechatPay.rawValue
+        paysView.forEach { view in
+            view.viewWithTag(102)?.layer.cornerRadius = 12
+            view.viewWithTag(102)?.layer.borderWidth  = 1
+            view.viewWithTag(102)?.layer.borderColor  = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.00).cgColor
+            view.isUserInteractionEnabled = true
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                             action:
+                                                             #selector(MyntChargeViewController.didClickPayView(gestureRecognizer:))))
+        }
+        
+        payType = .aliPay
+        
+        guard let mynt        = mynt else { return }
+        avatarImageView.image = mynt.avatar
+        nameLabel.text        = mynt.name
+        
+        updateExpiryTime()
+        
+        loadPriceList()
+    }
+    
+    override func leftBarButtonClickedHandler() {
+        dismissNavigationController(animated: true)
+        // TODO: 临时解决方案，无法释放问题
+        MYNTKit.shared.removeMyntKitDelegate(key: selfKey)
+    }
+    
+    //订单详情界面
+    override func rightBarButtonClickedHandler() {
+        OrderListViewController.show(parentViewController: self, mynt: mynt)
+    }
+    
+    func mynt(mynt: Mynt, didUpdateProperty name: String, oldValue: Any?, newValye: Any?) {
+        switch name {
+        case "expiryTime", "usageValues", "name", "usage":
+            updateExpiryTime()
+        default:
+            break
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        CATransaction.setDisableActions(true)
+        infoBackgroundLayer.frame = CGRect(x: 0,
+                                           y: scrollView.contentOffset.y,
+                                           width: self.view.frame.width,
+                                           height: infoView.frame.height + scrollView.contentOffset.y * -1)
+        CATransaction.setDisableActions(false)
+    }
+    
+    func updateExpiryTime() {
+        guard let mynt = mynt else { return }
+        remainderNumLabel.text = "\(mynt.expiryDay)"
         
     }
 }
