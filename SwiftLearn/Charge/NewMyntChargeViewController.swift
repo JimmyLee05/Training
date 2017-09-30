@@ -7,29 +7,52 @@
 //
 
 import UIKit
+import MYNTKit
+import SlightechKit
+import RealmSwift
 
-class NewMyntChargeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+public enum PayType: Int {
+    
+    case wechatPay
+    case aliPay
+    case none
+    
+    var image: UIImage? {
+        switch self {
+        case .wechatPay:
+            return UIImage(named: "app_settings_payment_wechat")
+        case .aliPay:
+            return UIImage(named: "app_setting_payment_alipay")
+        case .none:
+            return UIImage(named: "")
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    var payName: String {
+        switch self {
+        case .wechatPay:
+            return MTLocalizedString("GPS_CHARGE_WECHAT", comment: "微信支付")
+        case .aliPay:
+            return MTLocalizedString("GPS_CHARGE_ALI", comment: "阿里支付")
+        case .none:
+            return ""
+        }
     }
-    */
-
 }
+
+class MyntChargeViewController: MYNTKitBaseViewController,UIScrollViewDelegate {
+    
+    public class func show(parentViewController: UIViewController?, mynt: Mynt?) {
+        let viewController      = MyntChargeViewController()
+        viewCobtroller.mynt     = mynt
+        parentViewController?.present(BaseNavigationController(rootViewController: viewController),
+                                      animated: true,
+                                      completion: nil)
+    }
+}
+
+
+
+
+
+
