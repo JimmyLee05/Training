@@ -12,7 +12,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewMyntChargeViewController" customModule="MYNT" customModuleProvider="target">
             <connections>
+                <outlet property="alipayView" destination="0zF-ND-LYI" id="AaC-aG-tYc"/>
+                <outlet property="avatarImageView" destination="i46-pW-GdT" id="luo-LB-Vs6"/>
+                <outlet property="chargeButton" destination="43a-VS-8yq" id="y8L-bL-b8h"/>
+                <outlet property="infoView" destination="YEe-K0-IPU" id="4pZ-6s-AgQ"/>
+                <outlet property="nameLabel" destination="3Zt-dH-OEA" id="Cd8-xR-Jj3"/>
+                <outlet property="package1View" destination="S13-AM-Ex8" id="Hnl-mx-BOL"/>
+                <outlet property="package2View" destination="gG6-mW-KDc" id="C6j-Y9-5Jl"/>
+                <outlet property="package3View" destination="ayy-nl-544" id="bZN-j6-b8n"/>
+                <outlet property="remainderHintLabel" destination="Roc-9u-orr" id="fUl-uo-H71"/>
+                <outlet property="remainderNumLabel" destination="M15-8i-nNO" id="s0Q-zg-rta"/>
+                <outlet property="remainderTimeLabel" destination="OHI-bt-hST" id="4B4-iW-Ekp"/>
+                <outlet property="remainderUnitLabel" destination="cNj-9T-cKX" id="pEW-I9-pSX"/>
+                <outlet property="scrollView" destination="17j-48-ofA" id="eWW-QR-mjV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="wechatView" destination="gya-LU-Wza" id="okp-7d-YhP"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
