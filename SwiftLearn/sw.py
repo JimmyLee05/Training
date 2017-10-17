@@ -18,6 +18,7 @@ def login():
 
 # 获取股价并发送提醒
 def stock():
+    
 	# 获取当前时间
     time = datetime.datetime.now()
     now = time.strftime('%H:%M:%S')
