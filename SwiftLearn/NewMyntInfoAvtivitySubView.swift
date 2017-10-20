@@ -67,23 +67,3 @@ class MyntInfoActivitySubView: MyntInfoBaseSubView {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
