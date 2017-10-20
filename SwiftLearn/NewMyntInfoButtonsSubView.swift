@@ -46,5 +46,25 @@ class MyntInfoButtonsSubview: MyntInfoBaseSubView {
         }
     }
     
+    override func initUI() {
+        
+    }
     
+    override func initUIData(mynt: Mynt) {
+        
+    }
+    
+    override func updateUIData(mynt: Mynt) {
+        buttonsView.mynt            = mynt
+        buttonsView.viewController  = viewController
+        buttonsView.uiState         = mynt.uiState
+        
+        self.frame.size.height      = mynt.isOwner ? 90 : 0
+    }
+    
+    override func releaseMyntData() {
+        
+    }
 }
+
+
