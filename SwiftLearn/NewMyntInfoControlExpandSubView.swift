@@ -159,30 +159,93 @@ class MyntInfoControlExpandSubView: MyntInfoBaseSubView {
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         button.sizeToFit()
         let width = max(120, button.frame.size.width)
+        button.frame = CGRect(x: self.bounds.midX - width / 2, y: self.clickView.frame.maxY + 30, width: width, height: 40)
+        button.layer.cornerRadius = button.bounds.height / 2
+        self.addSubview(button)
+        return button
+    }()
+    
+    public var items = [SCControlMode]() {
+        didSet {
+            coverflowView.reloadData()
+        }
+    }
+    
+    override func initUI() {
         
+    }
+    
+    override func initUIData(mynt: Mynt) {
+        items = [.default, .camera, .music, .ppt, .custom]
+        if let index = items.index(where: { $0 == mynt.control }) {
+            self.coverflowView.selectedIndex = index
+        }
+        
+        //开始布局
+        let views: [ClickEventView] = [clickView, doubleClickView, tripleClickView, holdView, clickHoldView]
+        let width: CGFloat  = 50
+        let height: CGFloat = 90
+        let space: CGFloat = (self.bounds.width - CGFloat(views.count) * width) / CGFloat(views.count + 1)
+        let y: CGFloat      = self.nameLabel.frame.maxY + 30
+        for i in 0..<views.count {
+            let view = views[i]
+            view.frame = CGRect(x: width * CGFloat(i) + space * CGFloat(i + 1), y: y, width: width, height: height)
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didClickValueView(gestureRecognizer))))
+        }
+    }
+    
+    override func updateUIData(mynt: Mynt) {
+        coverflowView.isUserInteractionEnabled = mynt.isOwner == true
+        
+        clickView.valueLabel.text = mynt.currentControl.click.name
+        doubleClickView.valueLabel.text = mynt.currentControl.doubelClick.name
+        tripleClickView.valueLabel.text = mynt.currentControl.tripleClick.name
+        holdView.valueLabel.text = mynt.currentControl.hold.name
+        clickHoldView.valueLabel.text = mynt.currentControl.clickHold.name
+        
+        if let index = items.index(where: { $0 == mynt.control }) {
+            self.coverflowView.selectedIndex = index
+        }
+        if mynt.isDefaultControlValue {
+            self.frame.size.height = clickView.frame.maxY + 30
+        } else {
+            self.frame.size.height = resetButton.frame.mexY + 30
+        }
+        resetButton.isHidden = mynt.isDefaultControlValue
+    }
+    
+    override func releaseMyntData() {
+        
+    }
+    
+    @objc fileprivate func didClickButton(button: UIButton) {
+        viewController?.didClickResetControl()
+    }
+    
+    @objc fileprivate func didClickValueView(gestureRecognizer: UIGestureRecognizer) {
+        if let view = gestureRecognizer.view as? ClickEventView {
+            viewController?.didSelectControlValue(control: items[coverflowView.selectedIndex], event: view.clickEvent)
+        }
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension MyntInfoControlExpandSubView: MTCoverFlowViewDelegate {
+    
+    func numberOfItemsInCoverFlowViewn(_ collectionView: MTCoverFlowView) -> Int {
+        return items.count
+    }
+    
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, cellForItemAt index: Int, cell: MTCoverFlowView.CoverFlowViewCell) {
+        cell.imageView.image            = items[index].image?.withRenderingMode(.alwaysTemplate)
+        cell.imageView.tintColor        = .black
+        cell.layer.cornerRadius         = cell.bounds.height / 2
+        cell.layer.borderColor          = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.00).cgColor
+        cell.layer.borderWidth          = 1.5
+    }
+    
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, didSelectItemAt index: Int) {
+        nameLabel.text = items[index].name
+        viewController?.didSelectControl(control: items[index])
+    }
+}
 
