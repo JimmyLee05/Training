@@ -144,27 +144,30 @@ class MyntInfoEditorSubView: MyntInfoBaseSubView, UITextFieldDelegate {
         switch button {
         case pictureButton:
             guard let viewController = ViewController else { return }
-            
+            SelectImageUtils.shared.selectImageFromPhotos(viewController: viewController, edit: true) { [weak self] image in
+                self?.viewController?.didSelectAvatar(avatar: image)
+            }
+        case cameraButton:
+            guard let viewController = viewController else { return }
+            SelectImageUtils.shared.selectImageFromCamera(viewController: viewController, edit: true) { [weak self] image in
+                self?.viewController?.didSelectAvatar(avatar: image)
+            }
+        case defaultButton:
+            viewController?.didSelectAvatar()
+        default:
+            break
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == renameTextField {
+            guard let name = textField.text?.trim(), name != "" else { return true }
+            viewController?.didSelectName(name: name)
+            return true
+        }
+        return true
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
