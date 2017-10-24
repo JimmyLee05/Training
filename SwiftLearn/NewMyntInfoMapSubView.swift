@@ -56,13 +56,3 @@ class MyntInfoMapSubView: MyntInfoBaseSubView {
     
 }
 
-
-
-
-
-
-
-
-
-
-
