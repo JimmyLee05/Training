@@ -164,47 +164,29 @@ class MyntGPSMapViewController: BaseMyntMapViewController {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension MyntGPSMapViewController: UIActionSheetDelegate {
+    
+    // 显示菜单
+    func showMenu() {
+        let text = isShowPath ? MTLocalizedString("HIDE_STRACK", comment: "隐藏轨迹") :
+            MTLocalizedString("SHOW_STRACK", comment: "显示轨迹")
+        let actionSheet = UIActionSheet(title: nil,
+                                        delegate: self,
+                                        cancelButtonTitle:
+                                            MTLocalizedString("SECURE_AREA_DELETE_CANCEL", comment: "取消"),
+                                        destructiveButtonTitle: nil,
+                                        otherButtonTitles: text)
+        actionSheet.show(in: view)
+    }
+    
+    public func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+        if buttonIndex == 1 {
+            if isShowPath {
+                hidePath()
+            } else {
+                showPath
+            }
+        }
+    }
+}
 
