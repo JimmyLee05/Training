@@ -276,6 +276,20 @@ class NewMyntRealMapViewController: MYNTKitBaseViewController, UIGestureRecogniz
     
     // 加载地图
     func initMapView() {
+        if mapView != nil { return }
+        mapView                                             = MKMapView()
+        mapView?.delegate                                   = self
+        mapView?.isRotateEnabled                            = false
+        mapView?.isPitchEnabled                             = false
+        mapView?.showsUserLocation                          = true
+        mapView?.isZoomEnabled                              = true
+        mapView?.translatesAutoresizingMaskIntoConstraints  = false
+        // 进行mapView手势添加，用于在拖动之后，不进行缩放
+        let gestures: [UIGestureRecognizer] = [UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UISwipeGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UIPinchGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UIRotationGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:)))]
         
     }
 }
