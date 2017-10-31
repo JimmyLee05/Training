@@ -419,33 +419,89 @@ class NewMyntRealMapViewController: MYNTKitBaseViewController, UIGestureRecogniz
     @objc func requestLocation() {
         let currentTime = Date().timeIntervalSince1970
         if self.state == .none || self.state == .stop { return }
-        
+        if state == .waiting {
+            if currentTime > waitTimeoutTime && waitTimeoutTime != 0 {
+                stopRealMode(isTimeout: true)
+                return
+            }
+        } else if state == .location {
+            if currentTime > locationTimeoutTime && locationTimeoutTime != 0 {
+                stopRealMode(isTimeout: true)
+                return
+            }
+        }
+        mynt?.startRealTimeLocation(beginTime: Int(beginTime),
+                                    reqSessionId: reqSessionId,
+                                    success: { [weak self] location, reqSessionId, _, _ in
+                                        self?.reqSessionId = reqSessionId
+                                        self?.locationTime = location.updateTime
+                                        if location.updateTime == 0 {
+                                            self?.perform(#selector(MyntRealMapViewController.requestLocation), with: nil, afterDelay: 5)
+                                            return
+                                        }
+                                        // 开始获取到位置
+                                        if self?.state == .waiting {
+                                            self?.startRealMode(time: TimeInterval(location.updateTIme))
+                                        }
+                                        
+                                        // 实时定位点
+                                        if location.type == .station {
+                                            self.stationCoordinate = CLLocationCoordinate2D(latitude: location.latitude,
+                                                                                            longitude: location.longitude).offsetLocation
+                                            self?.myntCoordinate ?= self?.myntCoordinate
+                                        } else {
+                                            self?.stationCoordinate = CLLocationCoordinate2DZero
+                                            self?.myntCoordinate = CLLocationCoordinate2D(latitude: location.latitude,
+                                                                                          longitude: location.longitude).offsetLocation
+                                        }
+                                        // 延迟
+                                        self?.perform(#selector(MyntRealMapViewController.requestLocation), with: nil, afterDelay: 5)
+                                        
+            }, failure: { [weak self] code, _ in
+                if code == 2000001 {
+                    self?.stopRealMode()
+                    self?.showNoTimeDialog()
+                }
+        })
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 地图
+extension NewMyntRealMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        userCoordinate = userLocation.coordinate
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let circle = overlay as? MKCircle {
+            let circleView              = MKCircleRenderer(circle: circle)
+            circleView.loadStyle()
+            return circleView
+        }
+        return MKOverlayRenderer()
+    }
+    
+    // 更新大头针新点
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            (annotation as? MKUserLocation)?.title = ""
+            return nil
+        }
+        if annotation is MTMyntAnnotation && myntAnnotationImage != nil {
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: "mynt")
+            if view == nil {
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: "mynt")
+                view?.canShowCallout = false
+                view?.centerOffset = CGPoint(x: 0, y: -myntAnnotationImage!.size.height / 2)
+            }
+            view?.image = myntAnnotationImage
+            return view
+        }
+        return MKAnnotationView()
+    }
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        isRenderMapDone = true
+    }
+}
 

@@ -302,43 +302,103 @@ extension MyntMapViewController {
     }
 }
 
+extension MyntMapViewController {
+    
+    func mynt(mynt: Mynt, didDisconnected error: Error?) {
+        if mynt != self.mynt { return }
+        addRadiusCircle()
+        loadReportLossData()
+    }
+    
+    func didConnected(mynt: Mynt) {
+        if mynt != self.mynt { return }
+        addRadiusCircle()
+        hideSliderView()
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension MyntMapViewController: MKMapViewDelegate, UIGestureRecognizerDelegate {
+    
+    func  moveToMyntCoordinate(coordinate: CLLocationCoordinate2D, radius: Double = 1000) {
+        if coordinate.isNull { return }
+        mapView?.gotoCoordinate(coordinate, range: radius)
+    }
+    
+    // 加载地图
+    func initMapView() {
+        if mapView != nil { return }
+        mapView                                             = MKMapView()
+        mapView?.delegate                                   = self
+        mapView?.isRotateEnabled                            = false
+        mapView?.isPitchEnabled                             = false
+        mapView?.showsUserLocation                          = true
+        mapView?.translatesAutoresizingMaskIntoConstraints  = false
+        // 进行mapVie手势添加，用于在拖动之后，不进行缩放
+        let gestures: [UIGestureRecognizer] = [UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UISwipeGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UIPinchGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
+                                               UIRotationGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:)))]
+        gestures.forEach({ $0.delegate = self })
+        gestures.forEach({ mapView?.addGestureRecognizer($0) })
+        mapSuperView.addSubview(mapView!)
+        mapView?.fillInSuperView()
+    }
+    
+    // 释放地图
+    func releaseMapView() {
+        mapView?.applyMapViewMemoryFix()
+        mapView = nil
+        isRenderMapDone = false
+        isTouchedMap = false
+        myntAnnotation = nil
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @objc func gestureRecognizerHandler(gestureRecognizer: UIGestureRecognizer) {
+        isTouchedMap = true
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        userCoordinateTime = Date().timeIntervalSince1970
+        userCoordinate = userLocation.coordinate
+        if mynt?.state == .connected {
+            addAnnotation(coordiante: userCoordinate, time: userCoordinateTime)
+        }
+    }
+    
+    func mapView(_ ,mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let circle = overlay as? MKCircle {
+            let circleView = MKCircleRenderer(circle: circle)
+            circleView.loadStyle()
+            return circleView
+        }
+        return MKOverlayRenderer()
+    }
+    
+    // 更新大头针点
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            (annotation as? MKUserLocation)?.title = ""
+            return nil
+        }
+        if annotation is MTMyntAnnotation && myntAnnotationImage != nil {
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: "mynt")
+            if view == nil {
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: "mynt")
+                view?.canShowCellout = false
+                view?.centerOffset = CGPoint(x: 0, y: -myntAnnotationImage!.size.height / 2 + 10)
+            }
+            view?.image = myntAnnotationImage
+            return view
+        }
+        return MKAnnotationView()
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        isRenderMapDone = true
+    }
+}
