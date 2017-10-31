@@ -290,28 +290,138 @@ class NewMyntRealMapViewController: MYNTKitBaseViewController, UIGestureRecogniz
                                                UIPinchGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
                                                UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:))),
                                                UIRotationGestureRecognizer(target: self, action: #selector(gestureRecognizerHandler(gestureRecognizer:)))]
+        gestures.forEach({ $0.delegate = self })
+        gestures.forEach({ mapView?.addGestureRecognizer($0) })
+        mapSuperView.addSubview(mapView!)
+        mapView?.fillInSuperView()
+        
+        // 开始等待加载数据
+        DispatchQueue.global().async { [weak self] in
+            while self?.isRenderMapDone == false && self?.isFinishController == false {
+                Thread.sleep(forTimeInterval: 0.1)
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.initAnnotation()
+            }
+        }
+    }
+    
+    //释放地图
+    func releaseMapView() {
+        mapView?.applyMapViewMemoryFix()
+        mapView = nil
+        radiusCircle = nil
+        myntAnnotation = nil
+        isRenderMapDone = false
+        isTouchedMap = false
+    }
+    
+    func initAnnotation() {
+        mynt?.annotationImage(showOffline: false) { [weak self] image in
+            self?.myntAnnotationImage = image
+            self?.myntCoordinateImage = self?.mynt?.coordinate.offsetLocation
+            self?.locationTime ?= self?.mynt?.locationTime
+        }
+    }
+    
+    @IBAction func didClickUserLocationButton(_ sender: Any) {
+        isTouchedMap = false
+        moveToMyntCoordinate(radius: lastRadius)
+    }
+    
+    func moveToMyntCoordinate(radius: Double) {
+        mapView?.gotoCoordinate(myntCoordinate, range: radius > 10000 ? 1000 : radius)
+        lastRaidus = radius
+    }
+    
+    // 查询时间
+    fileprivate func queryTime() {
+        if mynt?.simType != .unicom {
+            // 私有卡，直接开启
+            startWaitRealMode()
+            return
+        }
+        
+        mynt?.queryRealTime(success: { [weak self] limit, used in
+            if self == nil { return }
+            let date = limit - usd
+            self?.validLocationTime = TimeInterval(date)
+            if date <= 0 {
+                self?.showNoTimeDialog()
+                return
+            }
+            let alert = UIAlertView(titlee: MTLocalizedString("REALTIME_DIALOG_TIMELEFT_TITLE", comment: ""),
+                                    message: String(format: MTLocalizedString("REALTIME_DIALOG_TIMELEFT_MESSAGE", comment: ""), "\(date / 60)"),
+                                    delegate: self,
+                                    cancelButtonTitle: MTLocalizedString("CANCEL", comment: ""),
+                                    otherButtonTitles:
+                                        MTLocalizedString("REALTIME_DIALOG_TIMELEFT_START", comment: ""))
+            alert.tag = 1000
+            alert.show()
+            }, failure: { [weak self] code, _ in
+                if code == 2000001 { self?.showNoTimeDialog() }
+        })
+    }
+    
+    // 显示没有剩余时间
+    fileprivate func showNoTimeDialog() {
+        let alert = UIAlertView(title: MTLocalizedString("REALTIME_DIALOG_NOTIME_TITLE", comment: ""),
+                                message: MTLocalizedString("REALTIME_DIALOG_NOTIME_MESSAGE", comment: ""),
+                                delegate: self,
+                                cancelButtonTitle:
+                                    MTLocalizedString("REALTIME_DIALOG_EXIT_TITLE", comment: ""))
+        alert.tag = 1001
+        alert.show()
+    }
+    
+    // 开始等待定位
+    fileprivate func startWaitRealMode() {
+        guard let mynt = mynt else { return }
+        reqSessionId = ""
+        beginTime = Date().timeIntervalSince1970
+        waitTimeoutTime = beginTime + TimeInterval(mynt.currentUsage.locationFrequency.time * 60  + 60)
+        state = .waiting
+        locationTimeoutTime = 0
+        requestLocation()
+    }
+    
+    // 进入定位
+    fileprivate func startRealMode(time: TimeInterval) {
+        // 计算结束时间
+        beginLocationTime = time
+        locationTimeoutTime = beginLocationTime + (validLocationTime > 300 ? 300 : validLocationTime)
+        state = .location
+    }
+    
+    // 停止定位
+    fileprivate func stopRealMode(isTimeout: Bool = false) {
+        self.state = .stop
+        mynt?.stopRealTimeLocation(reqSessionId: reqSessionId, success: {
+            
+            }, failure: { _, _ in
+            
+        })
+        
+        if isTimeout {
+            let alert = UIAlertView(title: MTLocalizedString("REALTIME_DIALOG_FINISHED_TITLE", comment: ""),
+                                    message:
+                                        MTLocalizedString("REALTIME_DIALOG_FINISHED_MESSAGE", comment: ""),
+                                    delegate: self,
+                                    cancelButtonTitle: MTLocalizedString("CANCEL", comment: ""),
+                                    otherButtonTitles:
+                                        MTLocalizedString("REALTIME_DIALOG_FINISHED_AGAIN", comment: ""))
+            alert.tag = 1003
+            alert.show()
+        }
+    }
+    
+    // 获取经纬度
+    @objc func requestLocation() {
+        let currentTime = Date().timeIntervalSince1970
+        if self.state == .none || self.state == .stop { return }
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
