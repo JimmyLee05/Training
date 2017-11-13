@@ -378,3 +378,5 @@ extension FriendListViewController {
         filterContentForSearchBarText((theSearchBar?.text)! as NSString)
     }
 }
+
+
