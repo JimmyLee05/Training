@@ -67,8 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     fileprivate func configureTabBarColor() {
-        UITabBar.appearance().tintColor = UIColor(
-            red: 240/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1)
+        UITabBar.appearance().tintColor = UIColor(red: 240/255.0, green: 65/255.0, blue: 90/255.0, alpha: 1)
     }
 
 }

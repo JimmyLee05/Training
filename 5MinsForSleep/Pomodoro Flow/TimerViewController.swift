@@ -15,18 +15,9 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var bgImageView: UIImageView!
     
-    @IBOutlet weak var timerLabel: UILabel! {
-        didSet {
-            // 在iOS 8和之前的系统中，数字默认等宽
-            if #available(iOS 9.0, *) {
-                timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 124.0,
-                                                                   weight: UIFont.Weight.ultraLight)
-            }
-        }
-    }
-
+    @IBOutlet weak var timerLabel: UILabel!
+    
     // 在这里引用三个类的单例
     fileprivate let scheduler: Scheduler
     fileprivate let pomodoro  = Pomodoro.sharedInstance

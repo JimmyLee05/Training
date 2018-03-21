@@ -25,13 +25,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-ug-exh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="pQ0-r5-ZH3">
-                                <rect key="frame" x="36" y="149.5" width="303" height="148"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="pQ0-r5-ZH3">
+                                <rect key="frame" x="36" y="168.5" width="303" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="316" id="WYQ-9f-yGo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="124"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="25:00">
+                                        <attributes>
+                                            <color key="NSColor" red="0.94117647058823528" green="0.25490196078431371" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="112" name="Courier"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -39,53 +46,20 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-UK-blI">
-                                <rect key="frame" x="36" y="401.5" width="303" height="114"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-ph-lBJ" customClass="RoundedButton" customModule="Pomodoro_Flow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="535" width="303" height="44"/>
+                                <color key="backgroundColor" red="0.91487574577331543" green="0.25728178024291992" blue="0.28367936611175537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="jdP-km-ep9"/>
+                                    <constraint firstAttribute="height" constant="44" id="PNE-xU-et2"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="14" minimumInteritemSpacing="14" id="w6S-eU-ZPU">
-                                    <size key="itemSize" width="30" height="30"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmptyCell" id="SH8-ck-m6d" customClass="EmptyCell" customModule="Pomodoro_Flow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Empty" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-OX-emy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </view>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilledCell" id="Doh-Qu-bIO">
-                                        <rect key="frame" x="45.5" y="0.0" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Filled" translatesAutoresizingMaskIntoConstraints="NO" id="DYO-Z3-wNR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="qem-Wb-Pf5"/>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="9Fg-y5-spS"/>
+                                    <action selector="start:" destination="9pv-A4-QxB" eventType="touchUpInside" id="BD9-om-4jg"/>
                                 </connections>
-                            </collectionView>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rf-X6-5pN">
                                 <rect key="frame" x="36" y="544" width="303" height="44"/>
                                 <subviews>
@@ -155,41 +129,73 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-ph-lBJ" customClass="RoundedButton" customModule="Pomodoro_Flow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="535" width="303" height="44"/>
-                                <color key="backgroundColor" red="0.91487574577331543" green="0.25728178024291992" blue="0.28367936611175537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="PNE-xU-et2"/>
-                                </constraints>
-                                <state key="normal" title="Start">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-UK-blI">
+                                <rect key="frame" x="36" y="468" width="303" height="59"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="14" minimumInteritemSpacing="14" id="w6S-eU-ZPU">
+                                    <size key="itemSize" width="30" height="30"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmptyCell" id="SH8-ck-m6d" customClass="EmptyCell" customModule="Pomodoro_Flow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Empty" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-OX-emy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilledCell" id="Doh-Qu-bIO">
+                                        <rect key="frame" x="45.5" y="0.0" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Filled" translatesAutoresizingMaskIntoConstraints="NO" id="DYO-Z3-wNR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <action selector="start:" destination="9pv-A4-QxB" eventType="touchUpInside" id="BD9-om-4jg"/>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="qem-Wb-Pf5"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="9Fg-y5-spS"/>
                                 </connections>
-                            </button>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="leading" constant="1" id="1qe-dp-KMQ"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="187.5" id="2dq-7g-Doe"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="3Qn-cn-ubx"/>
                             <constraint firstAttribute="centerX" secondItem="pQ0-r5-ZH3" secondAttribute="centerX" id="7YH-9C-SNO"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-110" id="Aar-vy-4GN"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="bottom" constant="39" id="Cl4-1q-vqO"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="30" id="DJb-dm-bwN"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="oPp-UK-blI" secondAttribute="bottom" constant="8" id="E8m-On-uCT"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="EXA-hw-Ypg"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="9rf-X6-5pN" secondAttribute="leading" id="GBx-5o-uSP"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="Gho-kv-jnM"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="HiX-je-fy3"/>
-                            <constraint firstItem="oPp-UK-blI" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="IRW-Dh-R3x"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" id="QJd-XR-cWx"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="QcB-HL-u7g"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" constant="20" id="Qgo-nW-hvc"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="Suw-NK-dGR"/>
-                            <constraint firstAttribute="centerX" secondItem="oPp-UK-blI" secondAttribute="centerX" id="Syi-bx-8Zd"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="XgJ-Td-SgG"/>
                             <constraint firstAttribute="centerY" secondItem="9rf-X6-5pN" secondAttribute="centerY" id="Xuh-gR-ZUV"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="Y7T-G2-BOJ"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="ao8-Q3-p9d"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="9rf-X6-5pN" secondAttribute="trailing" id="bWT-DG-I97"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" constant="20" id="bpN-eu-1bu"/>
@@ -197,18 +203,17 @@
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cRd-wG-ZyG"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="cSH-VM-VRr"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="oPp-UK-blI" secondAttribute="leading" id="cpr-xj-1MA"/>
-                            <constraint firstItem="oPp-UK-blI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="dV1-iL-Pec"/>
-                            <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="fiq-6N-P4K"/>
-                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="oPp-UK-blI" secondAttribute="bottom" constant="19.5" id="h36-wK-JfP"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="kWs-aC-Akz"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="leading" secondItem="Kxv-ph-lBJ" secondAttribute="leading" id="kYj-ji-0tG"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9rf-X6-5pN" secondAttribute="trailing" constant="20" id="kyy-qJ-jsi"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="leading" id="mJu-MH-RU4"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oPp-UK-blI" secondAttribute="trailing" constant="20" id="nEs-jb-FOJ"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="bottom" id="oNW-hv-QGu"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="oZv-mc-iU7"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="ohL-A0-pEc"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="pr0-Bu-Kco"/>
                             <constraint firstAttribute="trailing" secondItem="uFB-ug-exh" secondAttribute="trailing" id="qhQ-ep-hur"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="8" id="tu8-U6-8o3"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oPp-UK-blI" secondAttribute="trailing" constant="20" id="vVq-VD-mFX"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="88" id="wEa-ap-gaW"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" constant="20" id="wkp-Uh-X15"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="mK0-Fu-s2u" secondAttribute="trailing" id="wti-A2-zIV"/>
