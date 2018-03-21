@@ -39,22 +39,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-ph-lBJ" customClass="RoundedButton" customModule="Pomodoro_Flow" customModuleProvider="target">
-                                <rect key="frame" x="36" y="317.5" width="303" height="44"/>
-                                <color key="backgroundColor" red="0.91487574577331543" green="0.25728178024291992" blue="0.28367936611175537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0z6-ba-sEe"/>
-                                </constraints>
-                                <state key="normal" title="Start">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="start:" destination="9pv-A4-QxB" eventType="touchUpInside" id="BD9-om-4jg"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-UK-blI">
-                                <rect key="frame" x="36" y="411.5" width="303" height="114"/>
+                                <rect key="frame" x="36" y="401.5" width="303" height="114"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="114" id="jdP-km-ep9"/>
@@ -101,7 +87,7 @@
                                 </connections>
                             </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rf-X6-5pN">
-                                <rect key="frame" x="36" y="317.5" width="303" height="44"/>
+                                <rect key="frame" x="36" y="544" width="303" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A71-Pa-qZN" customClass="RoundedButton" customModule="Pomodoro_Flow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="141.5" height="44"/>
@@ -146,6 +132,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Dha-RT-B4w"/>
                                     <constraint firstItem="mK0-Fu-s2u" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="trailing" constant="20" id="Dss-R9-ZwY"/>
                                     <constraint firstAttribute="trailing" secondItem="mK0-Fu-s2u" secondAttribute="trailing" id="EYY-Vc-fxe"/>
                                     <constraint firstItem="mK0-Fu-s2u" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="top" id="JDC-NW-rh1"/>
@@ -157,7 +144,6 @@
                                     <constraint firstItem="mK0-Fu-s2u" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="trailing" constant="20" id="fO3-TJ-qb9"/>
                                     <constraint firstItem="mK0-Fu-s2u" firstAttribute="width" secondItem="9rf-X6-5pN" secondAttribute="width" id="hDz-1z-yAz"/>
                                     <constraint firstItem="A71-Pa-qZN" firstAttribute="leading" secondItem="9rf-X6-5pN" secondAttribute="leading" id="kGr-ZU-LWZ"/>
-                                    <constraint firstAttribute="height" constant="44" id="qYQ-5l-6FU"/>
                                     <constraint firstAttribute="bottom" secondItem="A71-Pa-qZN" secondAttribute="bottom" id="wrS-Vf-a7q"/>
                                 </constraints>
                                 <variation key="default">
@@ -169,58 +155,71 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-ph-lBJ" customClass="RoundedButton" customModule="Pomodoro_Flow" customModuleProvider="target">
+                                <rect key="frame" x="36" y="535" width="303" height="44"/>
+                                <color key="backgroundColor" red="0.91487574577331543" green="0.25728178024291992" blue="0.28367936611175537" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="PNE-xU-et2"/>
+                                </constraints>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="start:" destination="9pv-A4-QxB" eventType="touchUpInside" id="BD9-om-4jg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="leading" constant="1" id="1qe-dp-KMQ"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" constant="20" id="277-Ls-4gN"/>
-                            <constraint firstAttribute="centerX" secondItem="Kxv-ph-lBJ" secondAttribute="centerX" id="58z-0s-qWT"/>
                             <constraint firstAttribute="centerX" secondItem="pQ0-r5-ZH3" secondAttribute="centerX" id="7YH-9C-SNO"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-110" id="Aar-vy-4GN"/>
-                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="B3L-G8-5q6"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="bottom" constant="39" id="Cl4-1q-vqO"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="30" id="DJb-dm-bwN"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="EXA-hw-Ypg"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="9rf-X6-5pN" secondAttribute="leading" id="GBx-5o-uSP"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="Gho-kv-jnM"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="HiX-je-fy3"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="IRW-Dh-R3x"/>
-                            <constraint firstItem="9rf-X6-5pN" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="top" id="M4r-Fm-HyQ"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" id="QJd-XR-cWx"/>
+                            <constraint firstItem="9rf-X6-5pN" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="QcB-HL-u7g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" constant="20" id="Qgo-nW-hvc"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="Suw-NK-dGR"/>
                             <constraint firstAttribute="centerX" secondItem="oPp-UK-blI" secondAttribute="centerX" id="Syi-bx-8Zd"/>
-                            <constraint firstAttribute="centerX" secondItem="9rf-X6-5pN" secondAttribute="centerX" id="XEG-Kt-u2G"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="XgJ-Td-SgG"/>
                             <constraint firstAttribute="centerY" secondItem="9rf-X6-5pN" secondAttribute="centerY" id="Xuh-gR-ZUV"/>
+                            <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="ao8-Q3-p9d"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="9rf-X6-5pN" secondAttribute="trailing" id="bWT-DG-I97"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" constant="20" id="bpN-eu-1bu"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="oPp-UK-blI" secondAttribute="trailing" id="cEb-R3-hoO"/>
+                            <constraint firstItem="9rf-X6-5pN" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cRd-wG-ZyG"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="cSH-VM-VRr"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="oPp-UK-blI" secondAttribute="leading" id="cpr-xj-1MA"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="dV1-iL-Pec"/>
-                            <constraint firstItem="oPp-UK-blI" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="50" id="fF5-Cd-fCw"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="fiq-6N-P4K"/>
-                            <constraint firstItem="9rf-X6-5pN" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="gcW-tA-ilg"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="oPp-UK-blI" secondAttribute="bottom" constant="19.5" id="h36-wK-JfP"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="leading" secondItem="Kxv-ph-lBJ" secondAttribute="leading" id="kYj-ji-0tG"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9rf-X6-5pN" secondAttribute="trailing" constant="20" id="kyy-qJ-jsi"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="leading" id="mJu-MH-RU4"/>
-                            <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="mR4-TN-vJg"/>
-                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="oBJ-VX-EeZ"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="bottom" id="oNW-hv-QGu"/>
-                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="20" id="pgl-mw-eK0"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="ohL-A0-pEc"/>
+                            <constraint firstItem="pQ0-r5-ZH3" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="pr0-Bu-Kco"/>
                             <constraint firstAttribute="trailing" secondItem="uFB-ug-exh" secondAttribute="trailing" id="qhQ-ep-hur"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="8" id="tu8-U6-8o3"/>
-                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="ucP-bh-iEt"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oPp-UK-blI" secondAttribute="trailing" constant="20" id="vVq-VD-mFX"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="88" id="wEa-ap-gaW"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" constant="20" id="wkp-Uh-X15"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="mK0-Fu-s2u" secondAttribute="trailing" id="wti-A2-zIV"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="8" id="zBP-82-qjy"/>
+                            <constraint firstItem="Kxv-ph-lBJ" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="zxJ-a8-RYv"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="wEa-ap-gaW"/>
-                                <exclude reference="XgJ-Td-SgG"/>
-                                <exclude reference="Xuh-gR-ZUV"/>
-                                <exclude reference="kyy-qJ-jsi"/>
-                                <exclude reference="oNW-hv-QGu"/>
-                                <exclude reference="zBP-82-qjy"/>
+                                <exclude reference="QJd-XR-cWx"/>
+                                <exclude reference="kYj-ji-0tG"/>
                                 <exclude reference="1qe-dp-KMQ"/>
                                 <exclude reference="GBx-5o-uSP"/>
                                 <exclude reference="bWT-DG-I97"/>
@@ -229,12 +228,15 @@
                                 <exclude reference="mJu-MH-RU4"/>
                                 <exclude reference="tu8-U6-8o3"/>
                                 <exclude reference="wti-A2-zIV"/>
-                                <exclude reference="QJd-XR-cWx"/>
-                                <exclude reference="kYj-ji-0tG"/>
+                                <exclude reference="XgJ-Td-SgG"/>
+                                <exclude reference="Xuh-gR-ZUV"/>
+                                <exclude reference="kyy-qJ-jsi"/>
+                                <exclude reference="oNW-hv-QGu"/>
+                                <exclude reference="zBP-82-qjy"/>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timer" image="Timer" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="番茄钟" image="Timer" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="buttonContainer" destination="9rf-X6-5pN" id="yX4-hR-sFR"/>
                         <outlet property="collectionView" destination="oPp-UK-blI" id="Gjh-SA-4K9"/>
@@ -273,8 +275,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="25 minutes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xoL-CF-oVG">
-                                                    <rect key="frame" x="481" y="12" width="81" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="25 分钟" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xoL-CF-oVG">
+                                                    <rect key="frame" x="506" y="12" width="56" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -385,8 +387,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="@dankimio" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VAx-Zn-C6D">
-                                                    <rect key="frame" x="482" y="12" width="80" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="@若风" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VAx-Zn-C6D">
+                                                    <rect key="frame" x="514.5" y="12" width="47.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -525,11 +527,11 @@
             </objects>
             <point key="canvasLocation" x="-36" y="0.0"/>
         </scene>
-        <!--Settings-->
+        <!--设置-->
         <scene sceneID="8vf-UE-Nuw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dr4-Ed-R2Y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="7CE-2J-eUX"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="Settings" id="7CE-2J-eUX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3yf-yo-0cl">
                         <autoresizingMask key="autoresizingMask"/>
@@ -549,7 +551,7 @@
         <image name="Timer" width="30" height="30"/>
         <image name="Tomato Empty" width="44" height="44"/>
         <image name="Tomato Filled" width="44" height="44"/>
-        <image name="background" width="325" height="577"/>
+        <image name="background" width="360" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="A62-yt-Ffs"/>

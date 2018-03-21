@@ -11,65 +11,65 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?
+    var window: UIWindow?
 
-  // Override point for customization after application launch.
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-    registerNotifications()
-    configureTabBarColor()
+        registerNotifications()
+        configureTabBarColor()
 
-    return true
-  }
+        return true
+    }
 
-  func application(_ application: UIApplication,
-                   didReceive notification: UILocalNotification) {
+    func application(_ application: UIApplication,
+                     didReceive notification: UILocalNotification) {
 
-    print("didReceiveLocalNotification")
-    timerViewController.presentAlertFromNotification(notification)
-  }
+        print("didReceiveLocalNotification")
+        timerViewController.presentAlertFromNotification(notification)
+    }
 
-  func applicationWillResignActive(_ application: UIApplication) {
-  }
+    func applicationWillResignActive(_ application: UIApplication) {
+    }
 
-  func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
 
-  }
+    }
 
-  func applicationWillEnterForeground(_ application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
 
-  }
+    }
 
-  func applicationDidBecomeActive(_ application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
 
-    resetBadgeNumber()
-  }
+        resetBadgeNumber()
+    }
 
-  func applicationWillTerminate(_ application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
 
-    print("applicationWillTerminate")
-    timerViewController.timerPause()
-  }
+        print("applicationWillTerminate")
+        timerViewController.timerPause()
+    }
 
-  fileprivate var timerViewController: TimerViewController {
-    let tabBarController = window!.rootViewController as! UITabBarController
-    return tabBarController.viewControllers!.first as! TimerViewController
-  }
+    fileprivate var timerViewController: TimerViewController {
+        let tabBarController = window!.rootViewController as! UITabBarController
+        return tabBarController.viewControllers!.first as! TimerViewController
+    }
 
-  fileprivate func registerNotifications() {
-    let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
-                                                          categories: nil)
-    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-  }
+    fileprivate func registerNotifications() {
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
+                                                              categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+    }
 
-  fileprivate func resetBadgeNumber() {
-    UIApplication.shared.applicationIconBadgeNumber = 0
-  }
+    fileprivate func resetBadgeNumber() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
 
-  fileprivate func configureTabBarColor() {
-    UITabBar.appearance().tintColor = UIColor(
-    red: 240/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1)
-  }
+    fileprivate func configureTabBarColor() {
+        UITabBar.appearance().tintColor = UIColor(
+            red: 240/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1)
+    }
 
 }
+

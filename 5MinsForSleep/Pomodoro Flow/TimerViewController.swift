@@ -15,13 +15,14 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var bgImageView: UIImageView!
+    
     @IBOutlet weak var timerLabel: UILabel! {
         didSet {
             // 在iOS 8和之前的系统中，数字默认等宽
             if #available(iOS 9.0, *) {
                 timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 124.0,
-                                                                   weight: UIFontWeightUltraLight)
+                                                                   weight: UIFont.Weight.ultraLight)
             }
         }
     }
@@ -70,6 +71,8 @@ class TimerViewController: UIViewController {
                          selector: #selector(willEnterForeground),
                          name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 
+        //self.bgImageView.image = UIImage.gif(name: "rain")
+
         bgMusic.playBgMusic()
     }
 
@@ -80,7 +83,7 @@ class TimerViewController: UIViewController {
     }
 
     // 进入后台前的设置
-    func willEnterForeground() {
+    @objc func willEnterForeground() {
         print("willEnterForeground called from controller")
 
         setCurrentTime()
@@ -94,7 +97,7 @@ class TimerViewController: UIViewController {
         reloadData()
     }
 
-    func secondPassed() {
+    @objc func secondPassed() {
         if currentTime > 0 {
             currentTime = currentTime - 1.0
             updateTimerLabel()

@@ -8,24 +8,26 @@
 
 import AVFoundation
 
+// 设置背景音乐
 class BgMusicViewController {
 
+    //单例
     static let sharedBgMusic = BgMusicViewController()
 
     var audioPlayer: AVAudioPlayer?
 
     func playBgMusic() {
-
         let url = Bundle.main.url(forResource: "raining", withExtension: "mp3")
         var err: NSError?
+
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: url!)
             audioPlayer?.numberOfLoops = -1
             audioPlayer?.prepareToPlay()
-
         } catch let err1 as NSError {
             err = err1
         }
+
         if err != nil {
             print(err)
         }

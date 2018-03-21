@@ -9,118 +9,117 @@
 import UIKit
 
 protocol PickerViewControllerDelegate: class {
-  func pickerDidFinishPicking(_ picker: PickerViewController)
+    func pickerDidFinishPicking(_ picker: PickerViewController)
 }
 
 class PickerViewController: UITableViewController {
 
-  var options: [Int]!
-  var specifier = "minutes"
+    var options: [Int]!
+    var specifier = "分钟"
 
-  var type: PickerType!
-  var selectedValue: Int!
-  var selectedIndexPath: IndexPath?
-  var delegate: PickerViewControllerDelegate?
+    var type: PickerType!
+    var selectedValue: Int!
+    var selectedIndexPath: IndexPath?
+    var delegate: PickerViewControllerDelegate?
 
-  fileprivate struct PickerOptions {
-    static let pomodoroLength = [25, 30, 35, 40].map { $0 * 60 }
-    static let shortBreakLength = [5, 10, 15, 20].map { $0 * 60 }
-    static let longBreakLength = [10, 15, 20, 25, 30].map { $0 * 60 }
-    static let targetPomodoros = (2...14).map { $0 }
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    switch type! {
-    case .pomodoroLength: options = PickerOptions.pomodoroLength
-    case .shortBreakLength: options = PickerOptions.shortBreakLength
-    case .longBreakLength: options = PickerOptions.longBreakLength
-    case .targetPomodoros: options = PickerOptions.targetPomodoros
+    fileprivate struct PickerOptions {
+        static let pomodoroLength = [5, 10, 15, 20, 25].map { $0 * 60 }
+        static let shortBreakLength = [1, 2, 3, 5, 6].map { $0 * 60 }
+        static let longBreakLength = [5, 10, 15].map { $0 * 60 }
+        static let targetPomodoros = [1, 3, 5, 7, 9].map { $0 }
     }
 
-    if let index = options.index(of: selectedValue), type != .targetPomodoros {
-      selectedIndexPath = IndexPath(row: index, section: 0)
-    }
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-  // MARK: - Table view data source
+        switch type! {
+        case .pomodoroLength: options = PickerOptions.pomodoroLength
+        case .shortBreakLength: options = PickerOptions.shortBreakLength
+        case .longBreakLength: options = PickerOptions.longBreakLength
+        case .targetPomodoros: options = PickerOptions.targetPomodoros
+        }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return options.count
-  }
-
-  override func tableView(_ tableView: UITableView,
-                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-    let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell",
-                                             for: indexPath)
-
-    // Configure the cell
-    let value = options[indexPath.row]
-    let formattedValue = (type == PickerType.targetPomodoros ? value : value / 60)
-    cell.textLabel?.text = "\(formattedValue) \(specifier)"
-
-    let currentValue = options[indexPath.row]
-
-    if currentValue == selectedValue {
-      cell.accessoryType = .checkmark
-      selectedIndexPath = indexPath
-    } else {
-      cell.accessoryType = .none
+        if let index = options.index(of: selectedValue), type != .targetPomodoros {
+            selectedIndexPath = IndexPath(row: index, section: 0)
+        }
     }
 
-    return cell
-  }
+    // MARK: - Table view data source
 
-  override func tableView(_ tableView: UITableView,
-                          didSelectRowAt indexPath: IndexPath) {
-
-    tableView.deselectRow(at: indexPath, animated: true)
-
-    // Return if new value is equal to selected value
-    if options[indexPath.row] == selectedValue {
-      return
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return options.count
     }
 
-    // Put a checkmark on the new selection
-    if let newCell = tableView.cellForRow(at: indexPath) {
-      newCell.accessoryType = .checkmark
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell",
+                                                 for: indexPath)
+        // 配置cell
+        let value = options[indexPath.row]
+        let formattedValue = (type == PickerType.targetPomodoros ? value : value / 60)
+        cell.textLabel?.text = "\(formattedValue) \(specifier)"
+
+        let currentValue = options[indexPath.row]
+
+        if currentValue == selectedValue {
+            cell.accessoryType = .checkmark
+            selectedIndexPath = indexPath
+        } else {
+            cell.accessoryType = .none
+        }
+        return cell
     }
 
-    // Remove a checkmark from the old cell
-    if let previousIndexPath = selectedIndexPath,
-      let oldCell = tableView.cellForRow(at: previousIndexPath) {
-      oldCell.accessoryType = .none
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        // 如果选择的新值和之前的值一样，则返回
+        if options[indexPath.row] == selectedValue {
+            return
+        }
+
+        // 标记新的选项
+        if let newCell = tableView.cellForRow(at: indexPath) {
+            newCell.accessoryType = .checkmark
+        }
+
+        // 标记新的选项后，将标记从之前的选项移除
+        if let previousIndexPath = selectedIndexPath,
+            let oldCell = tableView.cellForRow(at: previousIndexPath) {
+            oldCell.accessoryType = .none
+        }
+
+        selectedIndexPath = indexPath
+        selectedValue = options[indexPath.row]
+        updateSettings()
     }
 
-    selectedIndexPath = indexPath
-    selectedValue = options[indexPath.row]
-    updateSettings()
-  }
+    // Navigating back
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
-  // Navigating back
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-
-    if isMovingFromParentViewController {
-      delegate?.pickerDidFinishPicking(self)
+        if isMovingFromParentViewController {
+            delegate?.pickerDidFinishPicking(self)
+        }
     }
-  }
+    // 更新设置选项
+    fileprivate func updateSettings() {
+        let settings = SettingsManager.sharedManager
 
-  fileprivate func updateSettings() {
-    let settings = SettingsManager.sharedManager
-
-    switch type! {
-    case .pomodoroLength:
-      settings.pomodoroLength = selectedValue
-    case .shortBreakLength:
-      settings.shortBreakLength = selectedValue
-    case .longBreakLength:
-      settings.longBreakLength = selectedValue
-    case .targetPomodoros:
-      settings.targetPomodoros = selectedValue
+        switch type! {
+        case .pomodoroLength:
+            settings.pomodoroLength = selectedValue
+        case .shortBreakLength:
+            settings.shortBreakLength = selectedValue
+        case .longBreakLength:
+            settings.longBreakLength = selectedValue
+        case .targetPomodoros:
+            settings.targetPomodoros = selectedValue
+        }
     }
-  }
 
 }
+
