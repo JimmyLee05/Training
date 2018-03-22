@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Pomodoro Flow' do
+
+ 	pod 'GuidePageView'
+
+  target 'Pomodoro FlowTests' do
+    inherit! :search_paths
+  end
+
+end

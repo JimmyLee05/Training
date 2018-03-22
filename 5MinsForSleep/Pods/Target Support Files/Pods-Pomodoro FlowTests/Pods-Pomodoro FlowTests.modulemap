@@ -1,0 +1,6 @@
+framework module Pods_Pomodoro_FlowTests {
+  umbrella header "Pods-Pomodoro FlowTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

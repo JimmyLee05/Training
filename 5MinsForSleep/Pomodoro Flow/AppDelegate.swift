@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        //增加标识，用于判断是否是第一次启动应用
+        if ((UserDefaults.standard.bool(forKey: "everLaunched"))) {
+
+            UserDefaults.standard.set(true, forKey:"everLaunched")
+            let guideViewController = GuideViewController()
+            self.window!.rootViewController=guideViewController;
+            print("guideview launched!")
+        }
+
         registerNotifications()
         configureTabBarColor()
 

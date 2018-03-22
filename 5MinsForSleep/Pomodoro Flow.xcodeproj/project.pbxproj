@@ -24,12 +24,21 @@
 		378192051B40682D0016375D /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378192041B40682D0016375D /* EmptyCell.swift */; };
 		37EFAC071C94C40F00D1DC76 /* Pomodoro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFAC061C94C40F00D1DC76 /* Pomodoro.swift */; };
 		37EFAC091C94C83200D1DC76 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFAC081C94C83200D1DC76 /* State.swift */; };
+		500F5CB90521228091E7F7E3 /* Pods_Pomodoro_Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148CAFFC1FB9901978BF0DF2 /* Pods_Pomodoro_Flow.framework */; };
 		882151872060BB4400ACF7F2 /* raining.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 882151852060BB4400ACF7F2 /* raining.mp3 */; };
 		882151882060BB4400ACF7F2 /* thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 882151862060BB4400ACF7F2 /* thunder.mp3 */; };
 		8821518B2060EED800ACF7F2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8821518A2060EED800ACF7F2 /* AVFoundation.framework */; };
+		882F75062063AAF7005F4D6B /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882F75052063AAF7005F4D6B /* GuideViewController.swift */; };
+		88A829B12063840E00705DD8 /* jianjie4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A829A42063840E00705DD8 /* jianjie4.jpg */; };
+		88A829B42063840E00705DD8 /* jianjie3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A829A72063840E00705DD8 /* jianjie3.jpg */; };
+		88A829B52063840E00705DD8 /* shopping.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88A829A82063840E00705DD8 /* shopping.gif */; };
+		88A829B62063840E00705DD8 /* jianjie5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A829A92063840E00705DD8 /* jianjie5.jpg */; };
+		88A829B92063840E00705DD8 /* jianjie1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A829AC2063840E00705DD8 /* jianjie1.jpg */; };
+		88A829BA2063840E00705DD8 /* jianjie2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A829AD2063840E00705DD8 /* jianjie2.jpg */; };
 		88D36D9D20620016005F2B5A /* BgMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D36D9C20620016005F2B5A /* BgMusicViewController.swift */; };
 		88D36DA420624C56005F2B5A /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D36DA320624C56005F2B5A /* UIImage+Gif.swift */; };
 		88D36DBC20626B75005F2B5A /* rain.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88D36DBB20626B75005F2B5A /* rain.gif */; };
+		E36DB7663D675A5C4A842BC2 /* Pods_Pomodoro_FlowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520AA9F347580730A4C18ED1 /* Pods_Pomodoro_FlowTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CCAF6C1D21834056A710E52 /* Pods-Pomodoro FlowTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro FlowTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro FlowTests/Pods-Pomodoro FlowTests.debug.xcconfig"; sourceTree = "<group>"; };
+		148CAFFC1FB9901978BF0DF2 /* Pods_Pomodoro_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro_Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373799481B49DB6E0025260A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3737994A1B4ABA160025260A /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		3737994C1B4B01250025260A /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -64,12 +75,23 @@
 		378192041B40682D0016375D /* EmptyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		37EFAC061C94C40F00D1DC76 /* Pomodoro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pomodoro.swift; sourceTree = "<group>"; };
 		37EFAC081C94C83200D1DC76 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		4C0F6F0D08259DA81A6EDBD7 /* Pods-Pomodoro Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow.release.xcconfig"; sourceTree = "<group>"; };
+		520AA9F347580730A4C18ED1 /* Pods_Pomodoro_FlowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro_FlowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		882151852060BB4400ACF7F2 /* raining.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raining.mp3; sourceTree = "<group>"; };
 		882151862060BB4400ACF7F2 /* thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunder.mp3; sourceTree = "<group>"; };
 		8821518A2060EED800ACF7F2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		882F75052063AAF7005F4D6B /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		88A829A42063840E00705DD8 /* jianjie4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie4.jpg; sourceTree = "<group>"; };
+		88A829A72063840E00705DD8 /* jianjie3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie3.jpg; sourceTree = "<group>"; };
+		88A829A82063840E00705DD8 /* shopping.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = shopping.gif; sourceTree = "<group>"; };
+		88A829A92063840E00705DD8 /* jianjie5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie5.jpg; sourceTree = "<group>"; };
+		88A829AC2063840E00705DD8 /* jianjie1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie1.jpg; sourceTree = "<group>"; };
+		88A829AD2063840E00705DD8 /* jianjie2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie2.jpg; sourceTree = "<group>"; };
 		88D36D9C20620016005F2B5A /* BgMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgMusicViewController.swift; sourceTree = "<group>"; };
 		88D36DA320624C56005F2B5A /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		88D36DBB20626B75005F2B5A /* rain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rain.gif; sourceTree = "<group>"; };
+		CC708A7C9D1FEFA7C57261F9 /* Pods-Pomodoro FlowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro FlowTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro FlowTests/Pods-Pomodoro FlowTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7779BA5A6D7D910715795BF /* Pods-Pomodoro Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8821518B2060EED800ACF7F2 /* AVFoundation.framework in Frameworks */,
+				500F5CB90521228091E7F7E3 /* Pods_Pomodoro_Flow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E36DB7663D675A5C4A842BC2 /* Pods_Pomodoro_FlowTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +122,7 @@
 				375347491B3AFF010089AB7F /* Pomodoro FlowTests */,
 				375347301B3AFF010089AB7F /* Products */,
 				882151892060EED700ACF7F2 /* Frameworks */,
+				EE5A4C955CE0C2DB0E904335 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +150,7 @@
 		375347321B3AFF010089AB7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88A829A3206383EE00705DD8 /* Images */,
 				373BD3DA1C9B095A001C9790 /* UIColor+PomodoroFlow.swift */,
 				88D36DBB20626B75005F2B5A /* rain.gif */,
 				882151852060BB4400ACF7F2 /* raining.mp3 */,
@@ -172,6 +198,7 @@
 				373799481B49DB6E0025260A /* SettingsViewController.swift */,
 				3737994C1B4B01250025260A /* PickerViewController.swift */,
 				88D36D9C20620016005F2B5A /* BgMusicViewController.swift */,
+				882F75052063AAF7005F4D6B /* GuideViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -192,8 +219,23 @@
 			isa = PBXGroup;
 			children = (
 				8821518A2060EED800ACF7F2 /* AVFoundation.framework */,
+				148CAFFC1FB9901978BF0DF2 /* Pods_Pomodoro_Flow.framework */,
+				520AA9F347580730A4C18ED1 /* Pods_Pomodoro_FlowTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88A829A3206383EE00705DD8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				88A829AC2063840E00705DD8 /* jianjie1.jpg */,
+				88A829AD2063840E00705DD8 /* jianjie2.jpg */,
+				88A829A72063840E00705DD8 /* jianjie3.jpg */,
+				88A829A42063840E00705DD8 /* jianjie4.jpg */,
+				88A829A92063840E00705DD8 /* jianjie5.jpg */,
+				88A829A82063840E00705DD8 /* shopping.gif */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		88D36D9E2062484F005F2B5A /* SwiftGif */ = {
@@ -204,6 +246,17 @@
 			name = SwiftGif;
 			sourceTree = "<group>";
 		};
+		EE5A4C955CE0C2DB0E904335 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E7779BA5A6D7D910715795BF /* Pods-Pomodoro Flow.debug.xcconfig */,
+				4C0F6F0D08259DA81A6EDBD7 /* Pods-Pomodoro Flow.release.xcconfig */,
+				0CCAF6C1D21834056A710E52 /* Pods-Pomodoro FlowTests.debug.xcconfig */,
+				CC708A7C9D1FEFA7C57261F9 /* Pods-Pomodoro FlowTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,9 +264,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 375347501B3AFF010089AB7F /* Build configuration list for PBXNativeTarget "Pomodoro Flow" */;
 			buildPhases = (
+				77304456E6D39708591F0B16 /* [CP] Check Pods Manifest.lock */,
 				3753472B1B3AFF010089AB7F /* Sources */,
 				3753472C1B3AFF010089AB7F /* Frameworks */,
 				3753472D1B3AFF010089AB7F /* Resources */,
+				B75D1242693502AB2D9EC9EA /* [CP] Embed Pods Frameworks */,
+				0A9D141EEF58D886DEB54891 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,9 +284,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 375347531B3AFF010089AB7F /* Build configuration list for PBXNativeTarget "Pomodoro FlowTests" */;
 			buildPhases = (
+				93B3B7D82E31BA12316F2045 /* [CP] Check Pods Manifest.lock */,
 				375347421B3AFF010089AB7F /* Sources */,
 				375347431B3AFF010089AB7F /* Frameworks */,
 				375347441B3AFF010089AB7F /* Resources */,
+				25099CF858448EAF9BBC51BC /* [CP] Embed Pods Frameworks */,
+				034B9899917FAF2DE892313B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,8 +354,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A829B62063840E00705DD8 /* jianjie5.jpg in Resources */,
+				88A829BA2063840E00705DD8 /* jianjie2.jpg in Resources */,
 				3753473C1B3AFF010089AB7F /* Main.storyboard in Resources */,
 				882151882060BB4400ACF7F2 /* thunder.mp3 in Resources */,
+				88A829B42063840E00705DD8 /* jianjie3.jpg in Resources */,
+				88A829B92063840E00705DD8 /* jianjie1.jpg in Resources */,
+				88A829B52063840E00705DD8 /* shopping.gif in Resources */,
+				88A829B12063840E00705DD8 /* jianjie4.jpg in Resources */,
 				882151872060BB4400ACF7F2 /* raining.mp3 in Resources */,
 				375347411B3AFF010089AB7F /* LaunchScreen.xib in Resources */,
 				88D36DBC20626B75005F2B5A /* rain.gif in Resources */,
@@ -313,12 +378,115 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		034B9899917FAF2DE892313B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pomodoro FlowTests/Pods-Pomodoro FlowTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0A9D141EEF58D886DEB54891 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		25099CF858448EAF9BBC51BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pomodoro FlowTests/Pods-Pomodoro FlowTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77304456E6D39708591F0B16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pomodoro Flow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93B3B7D82E31BA12316F2045 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pomodoro FlowTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B75D1242693502AB2D9EC9EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GuidePageView/GuidePageView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GuidePageView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3753472B1B3AFF010089AB7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3737994F1B4C153B0025260A /* PickerType.swift in Sources */,
+				882F75062063AAF7005F4D6B /* GuideViewController.swift in Sources */,
 				375850281B3B5B4A005628A0 /* RoundedButton.swift in Sources */,
 				373799491B49DB6E0025260A /* SettingsViewController.swift in Sources */,
 				88D36DA420624C56005F2B5A /* UIImage+Gif.swift in Sources */,
@@ -475,6 +643,7 @@
 		};
 		375347511B3AFF010089AB7F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7779BA5A6D7D910715795BF /* Pods-Pomodoro Flow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -492,6 +661,7 @@
 		};
 		375347521B3AFF010089AB7F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C0F6F0D08259DA81A6EDBD7 /* Pods-Pomodoro Flow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -509,6 +679,7 @@
 		};
 		375347541B3AFF010089AB7F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CCAF6C1D21834056A710E52 /* Pods-Pomodoro FlowTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -529,6 +700,7 @@
 		};
 		375347551B3AFF010089AB7F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC708A7C9D1FEFA7C57261F9 /* Pods-Pomodoro FlowTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = F8D3JEC8BS;

@@ -18,7 +18,7 @@ class TimerViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     
-    // 在这里引用三个类的单例
+    // 在这里引用这三个类的单例
     fileprivate let scheduler: Scheduler
     fileprivate let pomodoro  = Pomodoro.sharedInstance
     fileprivate let bgMusic   = BgMusicViewController.sharedBgMusic
@@ -61,8 +61,6 @@ class TimerViewController: UIViewController {
             .addObserver(self,
                          selector: #selector(willEnterForeground),
                          name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-
-        //self.bgImageView.image = UIImage.gif(name: "rain")
 
         bgMusic.playBgMusic()
     }
