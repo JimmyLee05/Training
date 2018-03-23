@@ -17,11 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         //增加标识，用于判断是否是第一次启动应用
-        if ((UserDefaults.standard.bool(forKey: "everLaunched"))) {
-
+        if (!(UserDefaults.standard.bool(forKey: "everLaunched"))) {
             UserDefaults.standard.set(true, forKey:"everLaunched")
             let guideViewController = GuideViewController()
-            self.window!.rootViewController=guideViewController;
+            self.window?.rootViewController = guideViewController
             print("guideview launched!")
         }
 
@@ -50,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-
         resetBadgeNumber()
     }
 

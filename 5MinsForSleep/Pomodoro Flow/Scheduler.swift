@@ -109,21 +109,21 @@ class Scheduler {
     fileprivate func schedulePomodoro(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
-                             title: "Pomodoro finished", body: "Time to take a break!")
+                             title: "变强了一点！", body: "加油，休息一会继续健身")
         print("Pomodoro scheduled")
     }
 
     fileprivate func scheduleShortBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.shortBreakLength)
         scheduleNotification(interval,
-                             title: "Break finished", body: "Time to get back to work!")
+                             title: "是时候再来一组俯卧撑了！", body: "开始吧!")
         print("Short break scheduled")
     }
 
     fileprivate func scheduleLongBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.longBreakLength)
         scheduleNotification(interval,
-                             title: "Long break is over", body: "Time to get back to work!")
+                             title: "再来一组健身吧！", body: "100天后变成新的自己！")
         print("Long break scheduled")
     }
 

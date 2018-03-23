@@ -82,6 +82,7 @@ class TimerViewController: UIViewController {
 
         setCurrentTime()
         updateTimerLabel()
+        startVideo()
 
         if scheduler.pausedTime != nil {
             //Button从下往上的一个动画
@@ -349,13 +350,9 @@ extension TimerViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
                                                object: player.currentItem,
                                                queue: .main) { _ in
-            self.player?.seek(to: kCMTimeZero)
-            self.player?.play()
+                                                self.player?.seek(to: kCMTimeZero)
+                                                self.player?.play()
         }
-    }
-
-    @objc func playerItemDidReachEnd() {
-        player!.seek(to: kCMTimeZero)
     }
 
     func startVideo() {
