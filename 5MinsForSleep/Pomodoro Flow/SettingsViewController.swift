@@ -21,19 +21,29 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
     @IBOutlet weak var homepageCell: UITableViewCell!
     @IBOutlet weak var appStoreCell: UITableViewCell!
 
+    @IBOutlet weak var weiboImageView: UIImageView!
+    @IBOutlet weak var blogImageView: UIImageView!
+    @IBOutlet weak var storeImageView: UIImageView!
+    @IBOutlet weak var versionImageView: UIImageView!
+
+    let weiboImage      = UIImage(named: "weibo")
+    let blogImage       = UIImage(named: "blog")
+    let storeImage      = UIImage(named: "app store")
+    let versionImage    = UIImage(named: "version")
+
     fileprivate let userDefaults = UserDefaults.standard
     fileprivate let settings = SettingsManager.sharedManager
 
     fileprivate struct About {
-        static let weiboURL = "https://weibo.com/2546922913"
-        static let homepageURL = "https://jimmylee05.github.io"
-        static let appStoreURL =
-        "https://itunes.apple.com/us/app/pomodoro-flow/id1095742214?ls=1&mt=8"
+        static let weiboURL     = "https://weibo.com/2546922913"
+        static let homepageURL  = "https://jimmylee05.github.io"
+        static let appStoreURL  = "https://itunes.apple.com/us/app/pomodoro-flow/id1095742214?ls=1&mt=8"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupImage()
         setupLabels()
     }
 
@@ -43,6 +53,14 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: true)
         }
+    }
+
+    fileprivate func setupImage() {
+        let reSize = CGSize(width: 30, height: 30)
+        weiboImageView.image    = weiboImage?.reSizeImage(reSize: reSize)
+        blogImageView.image     = blogImage?.reSizeImage(reSize: reSize)
+        storeImageView.image    = storeImage?.reSizeImage(reSize: reSize)
+        versionImageView.image  = versionImage?.reSizeImage(reSize: reSize)
     }
 
     // Label显示的内容是随设置的不同而改变的
@@ -105,4 +123,26 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
         }
     }
 
+}
+
+extension UIImage {
+    /**
+     *  重设图片大小
+     */
+    func reSizeImage(reSize:CGSize)->UIImage {
+        //UIGraphicsBeginImageContext(reSize);
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale)
+        self.draw(in: CGRect(x:0, y:0, width: reSize.width, height: reSize.height))
+        let reSizeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return reSizeImage
+    }
+
+    /**
+     *  等比率缩放
+     */
+    func scaleImage(scaleSize:CGFloat)->UIImage {
+        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
+        return reSizeImage(reSize: reSize)
+    }
 }
