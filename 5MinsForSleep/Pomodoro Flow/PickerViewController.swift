@@ -23,10 +23,10 @@ class PickerViewController: UITableViewController {
     var delegate: PickerViewControllerDelegate?
 
     fileprivate struct PickerOptions {
-        static let pomodoroLength = [5, 10, 15, 20, 25].map { $0 * 60 }
-        static let shortBreakLength = [1, 2, 3, 5, 6].map { $0 * 60 }
-        static let longBreakLength = [5, 10, 15].map { $0 * 60 }
-        static let targetPomodoros = [1, 3, 5, 7, 9].map { $0 }
+        static let pomodoroLength = [5, 10, 15, 20, 30].map { $0 * 60 }
+        static let shortBreakLength = [1, 2, 3, 4, 5].map { $0 * 60 }
+        static let longBreakLength = [10, 15, 20, 25, 30].map { $0 * 60 }
+        static let targetPomodoros = [1, 2, 3, 4, 5].map { $0 }
     }
 
     override func viewDidLoad() {
@@ -38,14 +38,12 @@ class PickerViewController: UITableViewController {
         case .longBreakLength: options = PickerOptions.longBreakLength
         case .targetPomodoros: options = PickerOptions.targetPomodoros
         }
-
         if let index = options.index(of: selectedValue), type != .targetPomodoros {
             selectedIndexPath = IndexPath(row: index, section: 0)
         }
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
@@ -120,6 +118,4 @@ class PickerViewController: UITableViewController {
             settings.targetPomodoros = selectedValue
         }
     }
-
 }
-

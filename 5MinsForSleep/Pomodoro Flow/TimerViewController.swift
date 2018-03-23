@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerViewController: UIViewController {
 
@@ -15,9 +16,13 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var videoView: UIView!
+
     @IBOutlet weak var timerLabel: UILabel!
-    
+
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+
     // 在这里引用这三个类的单例
     fileprivate let scheduler: Scheduler
     fileprivate let pomodoro  = Pomodoro.sharedInstance
@@ -61,7 +66,7 @@ class TimerViewController: UIViewController {
             .addObserver(self,
                          selector: #selector(willEnterForeground),
                          name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-
+        playVideo()
         bgMusic.playBgMusic()
     }
 
@@ -128,6 +133,7 @@ extension TimerViewController {
         animateStarted()
         fireTimer()
         bgMusic.startBGMusic()
+        startVideo()
     }
 
     func stopTimer() {
@@ -138,6 +144,7 @@ extension TimerViewController {
         resetCurrentTime()
         updateTimerLabel()
         bgMusic.stopBGMusic()
+        stopVideo()
     }
 
     func timerPause() {
@@ -148,6 +155,7 @@ extension TimerViewController {
         timer?.invalidate()
         animatePaused()
         bgMusic.stopBGMusic()
+        stopVideo()
     }
 
     func timerUnpause() {
@@ -156,6 +164,7 @@ extension TimerViewController {
         fireTimer()
         animateUnpaused()
         bgMusic.startBGMusic()
+        startVideo()
     }
 
     func presentAlertFromNotification(_ notification: UILocalNotification) {
@@ -319,5 +328,41 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
             return 0
         }
         return numberOfSections - 1
+    }
+}
+
+extension TimerViewController {
+
+    func playVideo() {
+
+        let filePath        = Bundle.main.path(forResource: "bodyweight_fitness_diamond_pushup", ofType: ".mp4")
+        let videoURL        = NSURL(fileURLWithPath: filePath!)
+        let player          = AVPlayer(url: videoURL as URL)
+
+        let playerLayer     = AVPlayerLayer(player: player)
+        playerLayer.frame   = videoView.bounds
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        self.videoView.layer.insertSublayer(playerLayer, at: 0)
+
+        self.player = player
+
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               object: player.currentItem,
+                                               queue: .main) { _ in
+            self.player?.seek(to: kCMTimeZero)
+            self.player?.play()
+        }
+    }
+
+    @objc func playerItemDidReachEnd() {
+        player!.seek(to: kCMTimeZero)
+    }
+
+    func startVideo() {
+        self.player!.play()
+    }
+
+    func stopVideo() {
+        self.player!.pause()
     }
 }

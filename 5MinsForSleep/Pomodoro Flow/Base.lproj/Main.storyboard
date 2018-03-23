@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="pQ0-r5-ZH3">
-                                <rect key="frame" x="36" y="167.5" width="303" height="112"/>
+                                <rect key="frame" x="36" y="117" width="303" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="316" id="WYQ-9f-yGo"/>
                                 </constraints>
@@ -129,8 +129,12 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWr-DM-9xT" userLabel="VideoView">
+                                <rect key="frame" x="68" y="290" width="238" height="172"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oPp-UK-blI">
-                                <rect key="frame" x="36" y="467" width="303" height="60"/>
+                                <rect key="frame" x="36" y="487" width="303" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="14" minimumInteritemSpacing="14" id="w6S-eU-ZPU">
                                     <size key="itemSize" width="30" height="30"/>
@@ -146,7 +150,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Empty" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-OX-emy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-OX-emy">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -160,7 +164,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tomato Filled" translatesAutoresizingMaskIntoConstraints="NO" id="DYO-Z3-wNR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="achievement" translatesAutoresizingMaskIntoConstraints="NO" id="DYO-Z3-wNR">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -177,10 +181,13 @@
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="A71-Pa-qZN" secondAttribute="leading" constant="1" id="1qe-dp-KMQ"/>
-                            <constraint firstItem="oPp-UK-blI" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="187.5" id="2dq-7g-Doe"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="top" secondItem="rWr-DM-9xT" secondAttribute="bottom" constant="25" id="2Oe-5A-Keu"/>
+                            <constraint firstItem="oPp-UK-blI" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="258" id="2dq-7g-Doe"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="3Qn-cn-ubx"/>
                             <constraint firstAttribute="centerX" secondItem="pQ0-r5-ZH3" secondAttribute="centerX" id="7YH-9C-SNO"/>
-                            <constraint firstItem="pQ0-r5-ZH3" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-110" id="Aar-vy-4GN"/>
+                            <constraint firstItem="rWr-DM-9xT" firstAttribute="top" secondItem="pQ0-r5-ZH3" secondAttribute="bottom" constant="61" id="A6Q-az-uVr"/>
+                            <constraint firstItem="pQ0-r5-ZH3" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-160.5" id="Aar-vy-4GN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rWr-DM-9xT" secondAttribute="trailing" constant="53" id="AgM-zG-zVC"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="Kxv-ph-lBJ" secondAttribute="bottom" constant="39" id="Cl4-1q-vqO"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="9rf-X6-5pN" secondAttribute="bottom" constant="30" id="DJb-dm-bwN"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="top" secondItem="oPp-UK-blI" secondAttribute="bottom" constant="8" id="E8m-On-uCT"/>
@@ -188,6 +195,7 @@
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="9rf-X6-5pN" secondAttribute="leading" id="GBx-5o-uSP"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="Gho-kv-jnM"/>
                             <constraint firstItem="pQ0-r5-ZH3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="HiX-je-fy3"/>
+                            <constraint firstItem="rWr-DM-9xT" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="52" id="JnH-iK-0iV"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="Kxv-ph-lBJ" secondAttribute="trailing" id="QJd-XR-cWx"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="QcB-HL-u7g"/>
@@ -196,6 +204,7 @@
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="XgJ-Td-SgG"/>
                             <constraint firstAttribute="centerY" secondItem="9rf-X6-5pN" secondAttribute="centerY" id="Xuh-gR-ZUV"/>
                             <constraint firstItem="oPp-UK-blI" firstAttribute="trailing" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" id="Y7T-G2-BOJ"/>
+                            <constraint firstItem="rWr-DM-9xT" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="YhN-dW-LAm"/>
                             <constraint firstItem="9rf-X6-5pN" firstAttribute="leading" secondItem="pQ0-r5-ZH3" secondAttribute="leading" id="ao8-Q3-p9d"/>
                             <constraint firstItem="Kxv-ph-lBJ" firstAttribute="trailing" secondItem="9rf-X6-5pN" secondAttribute="trailing" id="bWT-DG-I97"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pQ0-r5-ZH3" secondAttribute="trailing" constant="20" id="bpN-eu-1bu"/>
@@ -249,6 +258,7 @@
                         <outlet property="startButton" destination="Kxv-ph-lBJ" id="cjz-pf-sBF"/>
                         <outlet property="stopButton" destination="A71-Pa-qZN" id="RR1-xu-5ih"/>
                         <outlet property="timerLabel" destination="pQ0-r5-ZH3" id="pAw-xf-P5I"/>
+                        <outlet property="videoView" destination="rWr-DM-9xT" id="D1h-0J-gNw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -266,7 +276,7 @@
                         <sections>
                             <tableViewSection headerTitle="General" id="PvL-b1-vGX">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gKR-kY-26x" detailTextLabel="aLR-46-p36" style="IBUITableViewCellStyleValue1" id="15h-wK-df7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gKR-kY-26x" detailTextLabel="aLR-46-p36" imageView="dfw-AT-LwH" style="IBUITableViewCellStyleValue1" id="15h-wK-df7">
                                         <rect key="frame" x="0.0" y="55.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15h-wK-df7" id="GHu-QX-4zD">
@@ -274,7 +284,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="一个番茄的时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gKR-kY-26x">
-                                                    <rect key="frame" x="20" y="12" width="121.5" height="20.5"/>
+                                                    <rect key="frame" x="79" y="12" width="121.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -287,13 +297,17 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="time" id="dfw-AT-LwH">
+                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="DOU-es-Ptn" kind="show" identifier="PomodoroLengthPicker" id="JeQ-n4-wRh"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="VpT-zf-yDV" detailTextLabel="BhF-H5-ZXU" style="IBUITableViewCellStyleValue1" id="rhe-rO-3DV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="VpT-zf-yDV" detailTextLabel="BhF-H5-ZXU" imageView="h1X-yD-WGe" style="IBUITableViewCellStyleValue1" id="rhe-rO-3DV">
                                         <rect key="frame" x="0.0" y="99.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rhe-rO-3DV" id="6Oc-bu-lj5">
@@ -301,26 +315,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="小憩一下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VpT-zf-yDV">
-                                                    <rect key="frame" x="20" y="12" width="65.5" height="19.5"/>
+                                                    <rect key="frame" x="80" y="12" width="65.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="5 minutes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BhF-H5-ZXU">
-                                                    <rect key="frame" x="490.5" y="12" width="71.5" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="5 分钟" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BhF-H5-ZXU">
+                                                    <rect key="frame" x="515.5" y="12" width="46.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="shortsleep" id="h1X-yD-WGe">
+                                                    <rect key="frame" x="20" y="0.0" width="45" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="DOU-es-Ptn" kind="show" identifier="ShortBreakLengthPicker" id="PA2-fM-OVZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ebc-2a-G8I" detailTextLabel="KhF-uX-BYJ" style="IBUITableViewCellStyleValue1" id="xq1-LZ-18y">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ebc-2a-G8I" detailTextLabel="KhF-uX-BYJ" imageView="ic0-Tx-f9J" style="IBUITableViewCellStyleValue1" id="xq1-LZ-18y">
                                         <rect key="frame" x="0.0" y="143.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xq1-LZ-18y" id="ci4-rp-zgp">
@@ -328,26 +346,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="多休息会" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ebc-2a-G8I">
-                                                    <rect key="frame" x="20" y="12" width="65.5" height="19.5"/>
+                                                    <rect key="frame" x="79" y="12" width="65.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="20 minutes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KhF-uX-BYJ">
-                                                    <rect key="frame" x="481" y="12" width="81" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="20 分钟" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KhF-uX-BYJ">
+                                                    <rect key="frame" x="506" y="12" width="56" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="longsleep" id="ic0-Tx-f9J">
+                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="DOU-es-Ptn" kind="show" identifier="LongBreakLengthPicker" id="hlz-tg-E3M"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5qP-ua-ihc" detailTextLabel="ZWb-wv-O09" style="IBUITableViewCellStyleValue1" id="tON-Mg-mxq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5qP-ua-ihc" detailTextLabel="ZWb-wv-O09" imageView="60l-23-b3f" style="IBUITableViewCellStyleValue1" id="tON-Mg-mxq">
                                         <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tON-Mg-mxq" id="Yuo-vh-u1n">
@@ -355,19 +377,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="目标番茄数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5qP-ua-ihc">
-                                                    <rect key="frame" x="20" y="12" width="82" height="19.5"/>
+                                                    <rect key="frame" x="79" y="12" width="82" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="5 pomodoros" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZWb-wv-O09">
-                                                    <rect key="frame" x="465" y="12" width="97" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="5 个" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZWb-wv-O09">
+                                                    <rect key="frame" x="531.5" y="12" width="30.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="target" id="60l-23-b3f">
+                                                    <rect key="frame" x="20" y="0.0" width="44" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -506,10 +532,14 @@
                         <outlet property="blogImageView" destination="x2c-b2-zEv" id="XMy-C9-DyN"/>
                         <outlet property="homepageCell" destination="FtD-Y9-f84" id="fhJ-Dw-RpE"/>
                         <outlet property="longBreakLengthLabel" destination="KhF-uX-BYJ" id="Asl-Ir-H1m"/>
+                        <outlet property="longImageView" destination="ic0-Tx-f9J" id="Isp-LK-B7F"/>
                         <outlet property="pomodoroLengthLabel" destination="aLR-46-p36" id="BAu-xS-txf"/>
                         <outlet property="shortBreakLengthLabel" destination="BhF-H5-ZXU" id="iT6-iq-bbi"/>
+                        <outlet property="shortImageView" destination="h1X-yD-WGe" id="oxa-ep-0ld"/>
                         <outlet property="storeImageView" destination="vH3-Fw-EBq" id="6W4-jP-GDV"/>
+                        <outlet property="targetImageView" destination="60l-23-b3f" id="XEa-zI-thR"/>
                         <outlet property="targetPomodorosLabel" destination="ZWb-wv-O09" id="8gN-Wk-svb"/>
+                        <outlet property="timeImageView" destination="dfw-AT-LwH" id="M6S-YP-1Bq"/>
                         <outlet property="twitterCell" destination="LYH-wb-72s" id="cR3-SS-y2y"/>
                         <outlet property="versionImageView" destination="YJw-BC-pbs" id="i6P-Cd-qCP"/>
                         <outlet property="weiboImageView" destination="WJm-cE-ckL" id="xFk-pt-RoN"/>
@@ -590,11 +620,14 @@
     <resources>
         <image name="Settings" width="30" height="30"/>
         <image name="Timer" width="30" height="30"/>
-        <image name="Tomato Empty" width="44" height="44"/>
-        <image name="Tomato Filled" width="44" height="44"/>
+        <image name="achievement" width="100" height="100"/>
         <image name="app store" width="144" height="145"/>
         <image name="background" width="360" height="640"/>
         <image name="blog" width="100" height="100"/>
+        <image name="longsleep" width="100" height="100"/>
+        <image name="shortsleep" width="100" height="96"/>
+        <image name="target" width="100" height="100"/>
+        <image name="time" width="100" height="100"/>
         <image name="version" width="100" height="100"/>
         <image name="weibo" width="100" height="100"/>
     </resources>

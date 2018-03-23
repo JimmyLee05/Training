@@ -21,11 +21,21 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
     @IBOutlet weak var homepageCell: UITableViewCell!
     @IBOutlet weak var appStoreCell: UITableViewCell!
 
+    @IBOutlet weak var timeImageView: UIImageView!
+    @IBOutlet weak var shortImageView: UIImageView!
+    @IBOutlet weak var longImageView: UIImageView!
+    @IBOutlet weak var targetImageView: UIImageView!
+    
+
     @IBOutlet weak var weiboImageView: UIImageView!
     @IBOutlet weak var blogImageView: UIImageView!
     @IBOutlet weak var storeImageView: UIImageView!
     @IBOutlet weak var versionImageView: UIImageView!
 
+    let timeImage       = UIImage(named: "time")
+    let shortImage      = UIImage(named: "shortsleep")
+    let longImage       = UIImage(named: "longsleep")
+    let targetImage     = UIImage(named: "target")
     let weiboImage      = UIImage(named: "weibo")
     let blogImage       = UIImage(named: "blog")
     let storeImage      = UIImage(named: "app store")
@@ -43,7 +53,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupImage()
+        resetImage()
         setupLabels()
     }
 
@@ -55,8 +65,12 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
         }
     }
 
-    fileprivate func setupImage() {
+    fileprivate func resetImage() {
         let reSize = CGSize(width: 30, height: 30)
+        timeImageView.image     = timeImage?.reSizeImage(reSize: reSize)
+        shortImageView.image    = shortImage?.reSizeImage(reSize: reSize)
+        longImageView.image     = longImage?.reSizeImage(reSize: reSize)
+        targetImageView.image   = targetImage?.reSizeImage(reSize: reSize)
         weiboImageView.image    = weiboImage?.reSizeImage(reSize: reSize)
         blogImageView.image     = blogImage?.reSizeImage(reSize: reSize)
         storeImageView.image    = storeImage?.reSizeImage(reSize: reSize)
@@ -84,7 +98,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
                 picker.selectedValue = settings.longBreakLength
                 picker.type = PickerType.longBreakLength
             case "TargetPomodorosPicker":
-                picker.specifier = "pomodoros"
+                picker.specifier = "个番茄"
                 picker.selectedValue = settings.targetPomodoros
                 picker.type = PickerType.targetPomodoros
             default:

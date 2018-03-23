@@ -41,12 +41,12 @@ class BgMusicViewController {
     }
 
     func startBGMusic() {
-        audioPlayer?.play();
+        audioPlayer?.play()
     }
 
     func stopBGMusic() {
         if (audioPlayer?.isPlaying) != nil {
-            audioPlayer?.stop();
+            audioPlayer?.stop()
         }
     }
 }
