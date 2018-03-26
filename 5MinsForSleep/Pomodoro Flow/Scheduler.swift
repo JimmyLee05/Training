@@ -111,7 +111,7 @@ class Scheduler {
     fileprivate func schedulePomodoro(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
-                             title: "变强了一点！", body: "加油，自律让我们自由!")
+                             title: NSLocalizedString("变强了一点！", comment: ""), body: "加油，自律让我们自由!")
         print("Pomodoro scheduled")
     }
 
