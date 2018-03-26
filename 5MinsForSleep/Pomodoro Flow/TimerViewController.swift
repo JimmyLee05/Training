@@ -159,15 +159,6 @@ extension TimerViewController {
         stopVideo()
     }
 
-    func timerPauseOnApp() {
-        guard running else { return }
-
-        scheduler.timePause(currentTime)
-        running = false
-        timer?.invalidate()
-        animatePaused()
-    }
-
     func timerUnpause() {
         scheduler.timeUnpause()
         running = true

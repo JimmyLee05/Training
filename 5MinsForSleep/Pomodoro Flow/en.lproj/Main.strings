@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "目标番茄数"; ObjectID = "5qP-ua-ihc"; */
+"5qP-ua-ihc.text" = "目标番茄数";
+
+/* Class = "UITabBarItem"; title = "设置"; ObjectID = "7CE-2J-eUX"; */
+"7CE-2J-eUX.title" = "设置";
+
+/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "A71-Pa-qZN"; */
+"A71-Pa-qZN.normalTitle" = "取消";
+
+/* Class = "UILabel"; text = "5 分钟"; ObjectID = "BhF-H5-ZXU"; */
+"BhF-H5-ZXU.text" = "5 分钟";
+
+/* Class = "UILabel"; text = "20 分钟"; ObjectID = "KhF-uX-BYJ"; */
+"KhF-uX-BYJ.text" = "20 分钟";
+
+/* Class = "UIButton"; normalTitle = "开始"; ObjectID = "Kxv-ph-lBJ"; */
+"Kxv-ph-lBJ.normalTitle" = "开始";
+
+/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "PvL-b1-vGX"; */
+"PvL-b1-vGX.headerTitle" = "General";
+
+/* Class = "UILabel"; text = "1.1"; ObjectID = "S22-NG-9fY"; */
+"S22-NG-9fY.text" = "1.1";
+
+/* Class = "UILabel"; text = "小憩一下"; ObjectID = "VpT-zf-yDV"; */
+"VpT-zf-yDV.text" = "小憩一下";
+
+/* Class = "UILabel"; text = "5 个"; ObjectID = "ZWb-wv-O09"; */
+"ZWb-wv-O09.text" = "5 个";
+
+/* Class = "UILabel"; text = "5 分钟"; ObjectID = "aLR-46-p36"; */
+"aLR-46-p36.text" = "5 分钟";
+
+/* Class = "UITabBarItem"; title = "番茄钟"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "番茄钟";
+
+/* Class = "UILabel"; text = "@若风"; ObjectID = "b8V-ux-NC3"; */
+"b8V-ux-NC3.text" = "@若风";
+
+/* Class = "UILabel"; text = "多休息会"; ObjectID = "ebc-2a-G8I"; */
+"ebc-2a-G8I.text" = "多休息会";
+
+/* Class = "UILabel"; text = "一个番茄的时间"; ObjectID = "gKR-kY-26x"; */
+"gKR-kY-26x.text" = "一个番茄的时间";
+
+/* Class = "UIButton"; normalTitle = "暂停"; ObjectID = "mK0-Fu-s2u"; */
+"mK0-Fu-s2u.normalTitle" = "暂停";
+
+/* Class = "UILabel"; text = "我的微博"; ObjectID = "oPB-eI-pgK"; */
+"oPB-eI-pgK.text" = "我的微博";
+
+/* Class = "UINavigationItem"; title = "设置"; ObjectID = "ogL-Ze-34H"; */
+"ogL-Ze-34H.title" = "设置";
+
+/* Class = "UILabel"; text = "我的网站"; ObjectID = "rbd-sv-sRL"; */
+"rbd-sv-sRL.text" = "我的网站";
+
+/* Class = "UILabel"; text = "在 App Sotre中评价"; ObjectID = "sXD-Xw-Eex"; */
+"sXD-Xw-Eex.text" = "在 App Sotre中评价";
+
+/* Class = "UILabel"; text = "版本"; ObjectID = "wmW-Dl-w67"; */
+"wmW-Dl-w67.text" = "版本";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "xXX-KU-3eb"; */
+"xXX-KU-3eb.headerTitle" = "About";

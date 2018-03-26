@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Pomodoro Flow
+
+  Created by 李南君 on 2018/3/26.
+  Copyright © 2018年 Dan K. All rights reserved.
+*/
+
+CFBundleDisplayName = "小运动";

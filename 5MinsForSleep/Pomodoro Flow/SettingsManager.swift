@@ -26,7 +26,7 @@ class SettingsManager {
     }
     // MARK: - General settings
     var pomodoroLength: Int {
-        get { return userDefaults.object(forKey: Settings.pomodoroLength) as? Int ?? 1 * 60 }
+        get { return userDefaults.object(forKey: Settings.pomodoroLength) as? Int ?? 3 * 60 }
         set { userDefaults.set(newValue, forKey: Settings.pomodoroLength) }
     }
 
