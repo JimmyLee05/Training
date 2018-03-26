@@ -23,10 +23,10 @@ class PickerViewController: UITableViewController {
     var delegate: PickerViewControllerDelegate?
 
     fileprivate struct PickerOptions {
-        static let pomodoroLength = [5, 10, 15, 20, 30].map { $0 * 60 }
+        static let pomodoroLength = [1, 2, 3, 4, 5].map { $0 * 60 }
         static let shortBreakLength = [1, 2, 3, 4, 5].map { $0 * 60 }
-        static let longBreakLength = [10, 15, 20, 25, 30].map { $0 * 60 }
-        static let targetPomodoros = [1, 2, 3, 4, 5].map { $0 }
+        static let longBreakLength = [1, 5].map { $0 * 60 }
+        static let targetPomodoros = [2, 4, 6, 7].map { $0 }
     }
 
     override func viewDidLoad() {

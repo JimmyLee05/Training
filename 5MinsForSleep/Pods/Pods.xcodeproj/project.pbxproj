@@ -38,9 +38,9 @@
 		20BDA1DF85211F1C933FAF647F4D7AE0 /* GifImageOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GifImageOperation.swift; path = GuidePageView/Classes/GifImageOperation.swift; sourceTree = "<group>"; };
 		22E2B5BB2AE5182F8C08577DD0B0F1CF /* Pods-Pomodoro Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pomodoro Flow.release.xcconfig"; sourceTree = "<group>"; };
 		2A933A739886122E36D79F321DFAF9A1 /* Pods-Pomodoro FlowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pomodoro FlowTests.release.xcconfig"; sourceTree = "<group>"; };
-		2C5DD2D432E682286FDAAF926750419B /* Pods_Pomodoro_FlowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pomodoro_FlowTests.framework; path = "Pods-Pomodoro FlowTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C5DD2D432E682286FDAAF926750419B /* Pods_Pomodoro_FlowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro_FlowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		334688FB608E59DF3BCFF6E0AF464FA5 /* GuidePageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GuidePageView.swift; path = GuidePageView/Classes/GuidePageView.swift; sourceTree = "<group>"; };
-		3B59EC86CD1AE31B5AE4B97C554643E4 /* Pods-Pomodoro FlowTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pomodoro FlowTests.modulemap"; sourceTree = "<group>"; };
+		3B59EC86CD1AE31B5AE4B97C554643E4 /* Pods-Pomodoro FlowTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Pomodoro FlowTests.modulemap"; sourceTree = "<group>"; };
 		3D9B544986BE0C910DEE0397CD27448B /* Pods-Pomodoro FlowTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pomodoro FlowTests.debug.xcconfig"; sourceTree = "<group>"; };
 		444B370EB559535E7CAA15174781B581 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6008A5832F3DFF43840138F3443439AC /* Pods-Pomodoro Flow-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pomodoro Flow-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -50,21 +50,21 @@
 		872C02CA413B49A3D3787DC9E9A19238 /* GuidePageView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GuidePageView-dummy.m"; sourceTree = "<group>"; };
 		8EA11CC11F7BAE1CA97D6FC3AFE1F8ED /* Pods-Pomodoro Flow-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pomodoro Flow-acknowledgements.plist"; sourceTree = "<group>"; };
 		922445068A84736B3B0A507BC8D61034 /* Pods-Pomodoro FlowTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pomodoro FlowTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		99E0663EDDB9B0F962D4E24F121AEAD9 /* GuidePageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GuidePageView.framework; path = GuidePageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		99E0663EDDB9B0F962D4E24F121AEAD9 /* GuidePageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GuidePageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6325037EB5E9D5D42C5A8DF02F1C4C2 /* Pods-Pomodoro Flow-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pomodoro Flow-dummy.m"; sourceTree = "<group>"; };
 		AF420C8ECF1E188ED3C3528E56D3A426 /* Pods-Pomodoro FlowTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pomodoro FlowTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BF03C16AA429F6364202EE29D7B51FE6 /* Pods-Pomodoro Flow-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pomodoro Flow-frameworks.sh"; sourceTree = "<group>"; };
 		C4EECC3962AF8FA03CFA5BF521CFDA7B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB385AEF7929EF6EF4774548EE9E766D /* GuidePageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = GuidePageView.modulemap; sourceTree = "<group>"; };
+		CB385AEF7929EF6EF4774548EE9E766D /* GuidePageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GuidePageView.modulemap; sourceTree = "<group>"; };
 		D171763816B83E7F5BAC63A9316822B4 /* GuideImage.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GuideImage.bundle; path = GuidePageView/GuideImage.bundle; sourceTree = "<group>"; };
 		D4CF083291560F56ABF2A156B1C5450B /* GuidePageView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GuidePageView-prefix.pch"; sourceTree = "<group>"; };
 		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DB12B08D70E930656AD7B2935C71588C /* Pods-Pomodoro Flow.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pomodoro Flow.modulemap"; sourceTree = "<group>"; };
+		DB12B08D70E930656AD7B2935C71588C /* Pods-Pomodoro Flow.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Pomodoro Flow.modulemap"; sourceTree = "<group>"; };
 		DB3126A7D582112060E81E2A91FBE144 /* Pods-Pomodoro Flow-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pomodoro Flow-umbrella.h"; sourceTree = "<group>"; };
 		E197122C52C6318D280A84080B22EE24 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E673A6240A3BDDE23A2A621756053012 /* Pods_Pomodoro_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pomodoro_Flow.framework; path = "Pods-Pomodoro Flow.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E673A6240A3BDDE23A2A621756053012 /* Pods_Pomodoro_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro_Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D1A6A963A64AAC1F10EB0C5E5A17D6 /* Pods-Pomodoro Flow-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pomodoro Flow-resources.sh"; sourceTree = "<group>"; };
 		F314FB6068DEC762A9C86D93DF9D930A /* Pods-Pomodoro FlowTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pomodoro FlowTests-resources.sh"; sourceTree = "<group>"; };
 		F56E55A198F219E7CD8A1F158BFC38D1 /* GuidePageView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GuidePageView-umbrella.h"; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 				10DE3D0A1BD741023628AFEDD94C8ACF /* Resources */,
 				202E115E8BC8DAB84FB441B81D947903 /* Support Files */,
 			);
-			name = GuidePageView;
 			path = GuidePageView;
 			sourceTree = "<group>";
 		};
@@ -314,7 +313,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0920;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -658,6 +657,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;

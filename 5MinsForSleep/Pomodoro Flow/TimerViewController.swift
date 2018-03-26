@@ -25,7 +25,7 @@ class TimerViewController: UIViewController {
 
     // 在这里引用这三个类的单例
     fileprivate let scheduler: Scheduler
-    fileprivate let pomodoro  = Pomodoro.sharedInstance
+    fileprivate let pomodoro  = Pomodoro.sharedPomodoro
     fileprivate let bgMusic   = BgMusicViewController.sharedBgMusic
 
     // 时间
@@ -159,6 +159,15 @@ extension TimerViewController {
         stopVideo()
     }
 
+    func timerPauseOnApp() {
+        guard running else { return }
+
+        scheduler.timePause(currentTime)
+        running = false
+        timer?.invalidate()
+        animatePaused()
+    }
+
     func timerUnpause() {
         scheduler.timeUnpause()
         running = true
@@ -248,15 +257,15 @@ extension TimerViewController {
             self.buttonContainer.alpha = 0.0
         })
 
-        pauseButton.setTitle("Pause", for: UIControlState())
+        pauseButton.setTitle("暂停", for: UIControlState())
     }
 
     fileprivate func animatePaused() {
-        pauseButton.setTitle("Resume", for: UIControlState())
+        pauseButton.setTitle("继续", for: UIControlState())
     }
 
     fileprivate func animateUnpaused() {
-        pauseButton.setTitle("Pause", for: UIControlState())
+        pauseButton.setTitle("暂停", for: UIControlState())
     }
 }
 

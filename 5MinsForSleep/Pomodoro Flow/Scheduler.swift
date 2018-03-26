@@ -20,10 +20,12 @@ class Scheduler {
 
     weak var delegate: SchedulerDelegate?
 
+    static let sharedScheduler = Scheduler()
+
     fileprivate let userDefaults = UserDefaults.standard
     fileprivate let settings = SettingsManager.sharedManager
-    fileprivate let pomodoro = Pomodoro.sharedInstance
-
+    fileprivate let pomodoro = Pomodoro.sharedPomodoro
+    
     // 暂停时间的设置
     var pausedTime: Double? {
         get {
@@ -109,7 +111,7 @@ class Scheduler {
     fileprivate func schedulePomodoro(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
-                             title: "变强了一点！", body: "加油，休息一会继续健身")
+                             title: "变强了一点！", body: "加油，自律让我们自由!")
         print("Pomodoro scheduled")
     }
 
@@ -123,7 +125,7 @@ class Scheduler {
     fileprivate func scheduleLongBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.longBreakLength)
         scheduleNotification(interval,
-                             title: "再来一组健身吧！", body: "100天后变成新的自己！")
+                             title: "今天的俯卧撑做完啦！", body: "100天后变成新的自己！")
         print("Long break scheduled")
     }
 
@@ -139,6 +141,4 @@ class Scheduler {
 
         print("Pomodoro notification scheduled for \(notification.fireDate!)")
     }
-
 }
-

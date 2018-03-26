@@ -8,10 +8,10 @@
 
 import Foundation
 
-// 这个类用来处理番茄时钟和完成后的一些逻辑，例如完成后加一个番茄。
+// 这个类用来处理番茄时钟和完成后的一些逻辑，例如完成后加一个奖章。
 class Pomodoro {
     
-    static let sharedInstance = Pomodoro()
+    static let sharedPomodoro = Pomodoro()
 
     let userDefaults = UserDefaults.standard
     let settings = SettingsManager.sharedManager
@@ -29,14 +29,17 @@ class Pomodoro {
         }
     }
 
-    // 完成四个番茄后一个长暂停休息
     func completePomodoro() {
         pomodorosCompleted += 1
-        state = (pomodorosCompleted % 4 == 0 ? .longBreak : .shortBreak)
+        state = (pomodorosCompleted % 7 == 0 ? .longBreak : .shortBreak)
     }
 
     func completeBreak() {
         state = .default
+    }
+
+    func pomodoroCancel() {
+        pomodorosCompleted = 0
     }
 
     fileprivate var currentDateKey: String {
@@ -45,4 +48,3 @@ class Pomodoro {
         return dateFormatter.string(from: Date())
     }
 }
-

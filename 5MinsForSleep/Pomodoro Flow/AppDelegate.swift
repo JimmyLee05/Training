@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let pomodoroState       = Pomodoro.sharedPomodoro
+    let scheduler           = Scheduler.sharedScheduler
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -41,11 +44,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-
+        timerViewController.timerPauseOnApp()
+        print("applicationDidEnterBackground")
+        switch pomodoroState.state {
+        case .default:
+        scheduleNotification(2,
+                            title: "回来做俯卧撑啦",
+                            body: "每天25分钟的锻炼，我们可以完成!")
+        case .shortBreak:
+            print("...")
+        case .longBreak:
+            print("...")
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-
+        timerViewController.timerUnpause()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -53,9 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-
         print("applicationWillTerminate")
-        timerViewController.timerPause()
     }
 
     fileprivate var timerViewController: TimerViewController {
@@ -70,11 +82,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     fileprivate func resetBadgeNumber() {
+        print("reset badge number")
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     fileprivate func configureTabBarColor() {
         UITabBar.appearance().tintColor = UIColor(red: 240/255.0, green: 65/255.0, blue: 90/255.0, alpha: 1)
+    }
+
+    fileprivate func scheduleNotification(_ interval: TimeInterval, title: String, body: String) {
+        let notification = UILocalNotification()
+        notification.fireDate = Date(timeIntervalSinceNow: interval)
+        notification.alertTitle = title
+        notification.alertBody = body
+        notification.applicationIconBadgeNumber = 1
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.shared.scheduleLocalNotification(notification)
+
+        print("Pomodoro notification scheduled for \(notification.fireDate!)")
+    }
+
+    public func DispatchAfter(after: Double, handler:@escaping ()->())
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            handler()
+        }
     }
 
 }
