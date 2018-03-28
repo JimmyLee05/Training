@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var runButton: UIButton!
     @IBOutlet weak var PushupButton: UIButton!
 
+    @IBOutlet weak var pushupTime: UILabel!
+    @IBOutlet weak var runningTime: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

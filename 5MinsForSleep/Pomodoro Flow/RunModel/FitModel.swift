@@ -20,13 +20,13 @@ class FitModel: NSObject {
     ///参数：当前配速（单位：米/秒）
     ///返回值：字典  类型：字典
     func dictionaryFromTimePace(pace: Float) -> Dictionary<String, String>{
-        if pace == 0{
+        if pace == 0 {
             return ["min":"-", "sec":"-"]
-        }else{
+        } else {
             let minutes = Int(pace)
             let str = String(format: "%.2f", pace)
             let range = str.range(of: ".")
-            let seconds = str.substring(from: (range?.upperBound)!)
+            let seconds = String(str[(range?.upperBound)!])
             return ["m":"\(minutes)", "s":"\(seconds)"]
         }
     }

@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PushupBackground" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-ug-exh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-ug-exh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnX-Od-Bgp">
@@ -118,7 +118,9 @@
                     <tabBarItem key="tabBarItem" title="番茄钟" image="Timer" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="PushupButton" destination="tD5-Sr-c0v" id="0N0-JD-eC5"/>
+                        <outlet property="pushupTime" destination="j1N-8J-93R" id="vc8-Gl-oVl"/>
                         <outlet property="runButton" destination="AnX-Od-Bgp" id="1G2-Uf-etg"/>
+                        <outlet property="runningTime" destination="DxD-ex-1Sy" id="iDS-Ba-dav"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -143,7 +145,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="一个番茄的时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gKR-kY-26x">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="一组俯卧撑时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gKR-kY-26x">
                                                     <rect key="frame" x="79" y="12" width="121.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -236,8 +238,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="目标番茄数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5qP-ua-ihc">
-                                                    <rect key="frame" x="79" y="12" width="82" height="19.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="准备做几组俯卧撑" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5qP-ua-ihc">
+                                                    <rect key="frame" x="79" y="12" width="131" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -488,7 +490,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ijb-ka-hcK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ijb-ka-hcK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="72" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-vM-eak">
@@ -924,6 +926,19 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDG-rQ-eIh">
+                                <rect key="frame" x="44" y="477" width="50" height="26"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="--">
+                                        <attributes>
+                                            <color key="NSColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="22" name="Cochin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IN-bd-MGv">
                                 <rect key="frame" x="146" y="477.5" width="77" height="25.5"/>
                                 <attributedString key="attributedText">
@@ -959,19 +974,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="energy" translatesAutoresizingMaskIntoConstraints="NO" id="Plh-EU-HVt">
                                 <rect key="frame" x="298" y="434.5" width="30" height="27.5"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDG-rQ-eIh">
-                                <rect key="frame" x="44" y="477" width="50" height="26"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="--">
-                                        <attributes>
-                                            <color key="NSColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="22" name="Cochin"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIR-cc-lUL" userLabel="MovieView">
+                                <rect key="frame" x="37" y="198" width="300" height="185"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -981,6 +987,7 @@
                             <constraint firstItem="eDG-rQ-eIh" firstAttribute="leading" secondItem="aNJ-KC-iWr" secondAttribute="leadingMargin" constant="28" id="32i-ca-Dx7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JNg-8B-rEY" secondAttribute="trailing" constant="157" id="9JI-zV-bPk"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="0IN-bd-MGv" secondAttribute="trailing" id="BLn-2M-C6f"/>
+                            <constraint firstItem="GIR-cc-lUL" firstAttribute="top" secondItem="mEl-dc-7Kk" secondAttribute="bottom" constant="7.5" id="BsA-Vg-9mY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tyg-wD-KGH" secondAttribute="trailing" constant="31" id="BsW-EX-Lty"/>
                             <constraint firstItem="mEl-dc-7Kk" firstAttribute="leading" secondItem="aNJ-KC-iWr" secondAttribute="leadingMargin" constant="20" id="E9y-FL-oDm"/>
                             <constraint firstItem="WGn-Nz-MAp" firstAttribute="leading" secondItem="aNJ-KC-iWr" secondAttribute="leading" id="ESd-FQ-rxt"/>
@@ -996,7 +1003,9 @@
                             <constraint firstItem="j2K-v3-IfW" firstAttribute="centerX" secondItem="aNJ-KC-iWr" secondAttribute="centerX" id="LYG-JQ-giC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Plh-EU-HVt" secondAttribute="trailing" constant="31" id="MNe-wk-TcN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3gP-KW-o7b" secondAttribute="trailing" constant="12" id="NA2-Lw-bgI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GIR-cc-lUL" secondAttribute="trailing" constant="22" id="P4P-QW-rXX"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="NHf-3J-raJ" secondAttribute="trailing" constant="20" id="PkT-I8-SDN"/>
+                            <constraint firstItem="lfm-wh-dB7" firstAttribute="top" secondItem="GIR-cc-lUL" secondAttribute="bottom" constant="51.5" id="QIZ-yz-Iag"/>
                             <constraint firstAttribute="bottomMargin" secondItem="wee-Um-28R" secondAttribute="bottom" constant="120" id="QYq-G4-bNf"/>
                             <constraint firstItem="3gP-KW-o7b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wee-Um-28R" secondAttribute="trailing" constant="8" symbolic="YES" id="R16-Ah-rHu"/>
                             <constraint firstItem="tyg-wD-KGH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aNJ-KC-iWr" secondAttribute="leadingMargin" id="RMH-ZS-G2X"/>
@@ -1024,8 +1033,10 @@
                             <constraint firstItem="wee-Um-28R" firstAttribute="leading" secondItem="NpC-wl-BoI" secondAttribute="trailing" constant="84" id="doP-4m-CZV"/>
                             <constraint firstItem="NHf-3J-raJ" firstAttribute="top" secondItem="j2K-v3-IfW" secondAttribute="bottom" constant="8" id="eW2-8z-Vip"/>
                             <constraint firstItem="Vi3-wT-wdv" firstAttribute="leading" secondItem="aNJ-KC-iWr" secondAttribute="leadingMargin" id="gTV-aR-cxa"/>
+                            <constraint firstItem="GIR-cc-lUL" firstAttribute="leading" secondItem="aNJ-KC-iWr" secondAttribute="leadingMargin" constant="21" id="hC5-6Z-D89"/>
                             <constraint firstItem="wee-Um-28R" firstAttribute="top" secondItem="0IN-bd-MGv" secondAttribute="bottom" constant="20" id="hPN-By-8dD"/>
                             <constraint firstItem="wee-Um-28R" firstAttribute="top" secondItem="JNg-8B-rEY" secondAttribute="bottom" constant="61" id="ijx-CH-Y9Y"/>
+                            <constraint firstItem="GIR-cc-lUL" firstAttribute="centerX" secondItem="aNJ-KC-iWr" secondAttribute="centerX" id="kMT-mi-cyC"/>
                             <constraint firstItem="mTd-8N-D4C" firstAttribute="top" secondItem="j2K-v3-IfW" secondAttribute="bottom" constant="30" id="kyv-7Q-VUo"/>
                             <constraint firstItem="3gP-KW-o7b" firstAttribute="top" secondItem="FQi-th-plV" secondAttribute="bottom" constant="20" id="lJd-dV-BB1"/>
                             <constraint firstAttribute="bottomMargin" secondItem="NpC-wl-BoI" secondAttribute="bottom" constant="120" id="m0n-CQ-rFl"/>
@@ -1067,6 +1078,7 @@
                         <outlet property="closeButton" destination="Vi3-wT-wdv" id="Ll2-rM-Yd7"/>
                         <outlet property="distanceLabel" destination="mEl-dc-7Kk" id="Pyb-hv-ltt"/>
                         <outlet property="heatLabel" destination="FQi-th-plV" id="fka-tj-cwi"/>
+                        <outlet property="movieView" destination="GIR-cc-lUL" id="XOy-a9-Yxj"/>
                         <outlet property="pauseButton" destination="kyH-9C-nAU" id="xji-BI-BpZ"/>
                         <outlet property="speedLabel" destination="eDG-rQ-eIh" id="lWL-lm-j2e"/>
                         <outlet property="startButton" destination="NHf-3J-raJ" id="nfk-oF-OcJ"/>
@@ -1080,7 +1092,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PushupBackground" width="600" height="1066"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Timer" width="30" height="30"/>
         <image name="achievement" width="100" height="100"/>

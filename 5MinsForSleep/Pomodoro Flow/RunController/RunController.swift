@@ -23,7 +23,13 @@ class RunController: UIViewController {
     var second: TimeInterval = 0
     var timeDic: [String: Int]!
 
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+
     fileprivate let animationDuration = 0.3
+
+    @IBOutlet weak var movieView: UIView!
+
 
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
@@ -38,7 +44,25 @@ class RunController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default
+            .addObserver(self,
+                         selector: #selector(willEnterForeground),
+                         name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 
+        playVideo()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        willEnterForeground()
+    }
+
+    @objc func willEnterForeground() {
+        print("willEnterForeground called from controller")
+
+        startVideo()
     }
 
     @IBAction func clickCloseButton(_ sender: Any) {
@@ -98,7 +122,7 @@ extension RunController {
                                 return
                             }
                             //当前配速
-                            let currentPace = Float(truncating: (pedometerData?.currentPace)!)*Float(1000/60)
+                            let currentPace = Float(truncating: (pedometerData?.currentPace)!) * Float(1000/60)
                             let paceDic = self.fitModel.dictionaryFromTimePace(pace: currentPace)
                             self.speedLabel.text = "\(paceDic["m"]!)'\(paceDic["s"]!)''"
 
@@ -125,7 +149,8 @@ extension RunController {
         if timer == nil{
             self.timeInterval()
         }
-        isBegin = true      
+        isBegin = true
+        startVideo()
     }
 
     //暂停运动
@@ -138,6 +163,7 @@ extension RunController {
             timer?.suspend()
         }
         isRunning = false
+        stopVideo()
     }
 
     //继续运动
@@ -149,6 +175,7 @@ extension RunController {
             timer?.resume()
         }
         isRunning = true
+        startVideo()
     }
 
     //停止运动
@@ -162,6 +189,7 @@ extension RunController {
             timer?.cancel()
         }
         close()
+        stopVideo()
     }
 
     //定时器
@@ -206,5 +234,37 @@ extension RunController {
 
     fileprivate func animateUnpaused() {
         pauseButton.setTitle("暂停", for: UIControlState())
+    }
+}
+
+extension RunController {
+
+    func playVideo() {
+
+        let filePath        = Bundle.main.path(forResource: "abc", ofType: ".mp4")
+        let videoURL        = NSURL(fileURLWithPath: filePath!)
+        let player          = AVPlayer(url: videoURL as URL)
+
+        let playerLayer     = AVPlayerLayer(player: player)
+        playerLayer.frame   = movieView.bounds
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        self.movieView.layer.insertSublayer(playerLayer, at: 0)
+
+        self.player = player
+
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               object: player.currentItem,
+                                               queue: .main) { _ in
+                                                self.player?.seek(to: kCMTimeZero)
+                                                self.player?.play()
+        }
+    }
+
+    func startVideo() {
+        self.player!.play()
+    }
+
+    func stopVideo() {
+        self.player!.pause()
     }
 }
