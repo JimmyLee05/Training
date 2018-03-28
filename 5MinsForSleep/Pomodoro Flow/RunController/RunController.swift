@@ -14,10 +14,12 @@ let pedon: CMPedometer = CMPedometer()
 
 class RunController: UIViewController {
 
+    fileprivate let fitModel = FitModel.shared
+
     var isBegin: Bool = false
     var isRunning: Bool = false
 
-    var timer: DispatchSourceTimer?
+    var timer: DispatchSourceTimer!
     var second: TimeInterval = 0
     var timeDic: [String: Int]!
 
@@ -60,12 +62,12 @@ class RunController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        timer = nil
+         // timer = nil
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        //timer?.cancel()
-        //timer = nil
+        // timer?.cancel()
+        // timer = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +82,7 @@ extension RunController {
 
             isRunning = true
 
-            //获取指定开始时间到当前时间的数据参数 开始时间, 一个闭包
+            //获取指定开始时间到当前时间的数据参数: 开始时间, 一个闭包
             pedon.startUpdates(from: Date(), withHandler: { (pedometerData, error) in
                 if error != nil{
                     print("error:\(String(describing: error))")
@@ -97,11 +99,11 @@ extension RunController {
                             }
                             //当前配速
                             let currentPace = Float(truncating: (pedometerData?.currentPace)!)*Float(1000/60)
-                            let paceDic = FitModel.dictionaryFromTimePace(pace: currentPace)
+                            let paceDic = self.fitModel.dictionaryFromTimePace(pace: currentPace)
                             self.speedLabel.text = "\(paceDic["m"]!)'\(paceDic["s"]!)''"
 
                             let distanceInt = Int(truncating: (pedometerData?.distance)!)/100
-                            FitModel.reportDistance(distance: distanceInt, time: self.second)
+                            self.fitModel.reportDistance(distance: distanceInt, time: self.second)
 
                         } else {
                             print("当前系统版本不支持获取配速，正在使用算法估算")
@@ -116,7 +118,7 @@ extension RunController {
 
     //开始运动
     func startRunning(){
-        FitModel.reportStatus(status: "start")
+        fitModel.reportStatus(status: "start")
         print("开始运动")
         self.startUpdates()
         animateStarted()
@@ -128,7 +130,7 @@ extension RunController {
 
     //暂停运动
     func pauseRunning(){
-        FitModel.reportStatus(status: "pause")
+        fitModel.reportStatus(status: "pause")
         print("运动已暂停")
         animatePaused()
         //若计时器没有取消，则暂停计时
@@ -140,7 +142,7 @@ extension RunController {
 
     //继续运动
     func keepRunning(){
-        FitModel.reportStatus(status: "keep")
+        fitModel.reportStatus(status: "keep")
         animateUnpaused()
         //若计时器没有取消，则继续计时
         if timer?.isCancelled == false{
@@ -151,7 +153,7 @@ extension RunController {
 
     //停止运动
     func stopRunning(){
-        FitModel.reportStatus(status: "stop")
+        fitModel.reportStatus(status: "stop")
         animateStopped()
         //停止更新
         pedon.stopUpdates()
@@ -168,8 +170,8 @@ extension RunController {
         timer?.schedule(deadline: .now(), repeating: 1.0)
         timer?.setEventHandler {
             DispatchQueue.main.async(execute: {
-                self.timeDic = FitModel.dictionaryFromTimeInterval(interval: self.second)
-                let timeStr = String(format: "%02d:%02d", self.timeDic["m"]!, self.timeDic["s"]!)
+                self.timeDic = self.fitModel.dictionaryFromTimeInterval(interval: self.second)
+                let timeStr = String(format: "%02d:%02d:%02d", self.timeDic["h"]!, self.timeDic["m"]!, self.timeDic["s"]!)
                 self.timeLabel.text = timeStr
                 self.second += 1
             })

@@ -44,18 +44,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        timerViewController.timerPause()
-        print("applicationDidEnterBackground")
-        switch pomodoroState.state {
-        case .default:
-        scheduleNotification(2,
-                             title: NSLocalizedString("回来做俯卧撑啦", comment: ""),
-                             body: NSLocalizedString("每天28分钟的锻炼，我们可以完成!", comment: ""))
-        case .shortBreak:
-            print("...")
-        case .longBreak:
-            print("...")
-        }
+//        timerViewController.timerPause()
+//        print("applicationDidEnterBackground")
+//        switch pomodoroState.state {
+//        case .default:
+//        scheduleNotification(2,
+//                             title: NSLocalizedString("回来做俯卧撑啦", comment: ""),
+//                             body: NSLocalizedString("每天28分钟的锻炼，我们可以完成!", comment: ""))
+//        case .shortBreak:
+//            print("...")
+//        case .longBreak:
+//            print("...")
+//        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

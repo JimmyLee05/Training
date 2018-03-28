@@ -9,20 +9,27 @@
 import UIKit
 import AVFoundation
 
-class Audio: NSObject, AVAudioPlayerDelegate {
+class Audio: NSObject {
+
+    static let shared = Audio()
     
     // 这个数组中保存音频的名称
-    static var arrayOfTracks:[String] = [""]{
+    var arrayOfTracks: [String] = [""] {
         didSet{
             print(arrayOfTracks)
             start()
         }
     }
     //记录待播放音频的数量
-    static var currentTrackNumber:Int = 0
-    static var audio:AVAudioPlayer!
+    var currentTrackNumber: Int = 0
+    var audio: AVAudioPlayer!
 
-    class func initPlayer(){
+    private override init() {
+        super.init()
+        initPlayer()
+    }
+
+    func initPlayer() {
         let path = Bundle.main.path(forResource: arrayOfTracks[currentTrackNumber], ofType: "mp3")
         print(arrayOfTracks)
         
@@ -32,18 +39,21 @@ class Audio: NSObject, AVAudioPlayerDelegate {
         } catch {
             print(11)
         }
-        audio.delegate = self as? AVAudioPlayerDelegate
+        audio.delegate = self
         audio.play()
     }
     
     //开始播放
-    class func start(){
+    func start() {
         currentTrackNumber = 0
         initPlayer()
     }
-    
-    //audioPlayer代理方法
-    private class func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+}
+
+// MARK: - AVAudioPlayerDelegate
+extension Audio: AVAudioPlayerDelegate {
+
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
             if currentTrackNumber < arrayOfTracks.count - 1 {
                 currentTrackNumber += 1
@@ -53,7 +63,7 @@ class Audio: NSObject, AVAudioPlayerDelegate {
                     audio = nil
                 }
                 initPlayer()
-            }else{
+            } else {
                 print("全部播放完成")
                 currentTrackNumber = 0
                 audio.stop()
@@ -61,6 +71,4 @@ class Audio: NSObject, AVAudioPlayerDelegate {
             }
         }
     }
-
-
 }

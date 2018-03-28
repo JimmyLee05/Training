@@ -24,5 +24,4 @@ struct Animation {
         // 添加动画
         view.layer.add(animation, forKey: "scale-layer")
     }
-
 }

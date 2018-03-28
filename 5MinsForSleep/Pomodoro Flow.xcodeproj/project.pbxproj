@@ -44,11 +44,6 @@
 		88ED7D102069D86500F25510 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D0F2069D86500F25510 /* HomeViewController.swift */; };
 		88ED7D192069D9AF00F25510 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D172069D9AF00F25510 /* Animation.swift */; };
 		88ED7D1A2069D9AF00F25510 /* FitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D182069D9AF00F25510 /* FitModel.swift */; };
-		88ED7D202069D9D500F25510 /* ControllButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D1B2069D9D500F25510 /* ControllButtonView.swift */; };
-		88ED7D212069D9D500F25510 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D1C2069D9D500F25510 /* CircleView.swift */; };
-		88ED7D222069D9D500F25510 /* RunningInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D1D2069D9D500F25510 /* RunningInfoView.swift */; };
-		88ED7D232069D9D500F25510 /* SportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D1E2069D9D500F25510 /* SportView.swift */; };
-		88ED7D242069D9D500F25510 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D1F2069D9D500F25510 /* DistanceView.swift */; };
 		88ED7D2C2069DD9100F25510 /* DINEngschriftStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 88ED7D272069DD8E00F25510 /* DINEngschriftStd.otf */; };
 		88ED7D2D2069DD9100F25510 /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D292069DD9100F25510 /* DispatchQueueExtension.swift */; };
 		88ED7D2E2069DD9100F25510 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7D2A2069DD9100F25510 /* UICountingLabel.m */; };
@@ -350,11 +345,6 @@
 		88ED7D0F2069D86500F25510 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		88ED7D172069D9AF00F25510 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		88ED7D182069D9AF00F25510 /* FitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitModel.swift; sourceTree = "<group>"; };
-		88ED7D1B2069D9D500F25510 /* ControllButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllButtonView.swift; sourceTree = "<group>"; };
-		88ED7D1C2069D9D500F25510 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		88ED7D1D2069D9D500F25510 /* RunningInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningInfoView.swift; sourceTree = "<group>"; };
-		88ED7D1E2069D9D500F25510 /* SportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportView.swift; sourceTree = "<group>"; };
-		88ED7D1F2069D9D500F25510 /* DistanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		88ED7D262069DD8D00F25510 /* Pomodoro Flow-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomodoro Flow-Bridging-Header.h"; sourceTree = "<group>"; };
 		88ED7D272069DD8E00F25510 /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
 		88ED7D282069DD9000F25510 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
@@ -693,7 +683,6 @@
 			isa = PBXGroup;
 			children = (
 				3753473A1B3AFF010089AB7F /* Main.storyboard */,
-				88ED7D142069D94400F25510 /* RunView */,
 				88ED7D0E2069D5BE00F25510 /* PomodoroView */,
 			);
 			name = View;
@@ -806,18 +795,6 @@
 				88ED7F002069F20200F25510 /* RunController.swift */,
 			);
 			path = RunController;
-			sourceTree = "<group>";
-		};
-		88ED7D142069D94400F25510 /* RunView */ = {
-			isa = PBXGroup;
-			children = (
-				88ED7D1C2069D9D500F25510 /* CircleView.swift */,
-				88ED7D1B2069D9D500F25510 /* ControllButtonView.swift */,
-				88ED7D1F2069D9D500F25510 /* DistanceView.swift */,
-				88ED7D1D2069D9D500F25510 /* RunningInfoView.swift */,
-				88ED7D1E2069D9D500F25510 /* SportView.swift */,
-			);
-			path = RunView;
 			sourceTree = "<group>";
 		};
 		88ED7D252069DD4300F25510 /* Tools */ = {
@@ -1549,14 +1526,12 @@
 			files = (
 				3737994F1B4C153B0025260A /* PickerType.swift in Sources */,
 				88ED7D2D2069DD9100F25510 /* DispatchQueueExtension.swift in Sources */,
-				88ED7D202069D9D500F25510 /* ControllButtonView.swift in Sources */,
 				88ED7D2F2069DD9100F25510 /* FactoryMethod.swift in Sources */,
 				882F75062063AAF7005F4D6B /* GuideViewController.swift in Sources */,
 				88ED7D312069DE6700F25510 /* Audio.swift in Sources */,
 				375850281B3B5B4A005628A0 /* RoundedButton.swift in Sources */,
 				88ED7D102069D86500F25510 /* HomeViewController.swift in Sources */,
 				373799491B49DB6E0025260A /* SettingsViewController.swift in Sources */,
-				88ED7D212069D9D500F25510 /* CircleView.swift in Sources */,
 				88D36DA420624C56005F2B5A /* UIImage+Gif.swift in Sources */,
 				88D36D9D20620016005F2B5A /* BgMusicViewController.swift in Sources */,
 				373BD3DB1C9B095A001C9790 /* UIColor+PomodoroFlow.swift in Sources */,
@@ -1566,7 +1541,6 @@
 				88ED7D1A2069D9AF00F25510 /* FitModel.swift in Sources */,
 				37EFAC071C94C40F00D1DC76 /* Pomodoro.swift in Sources */,
 				375347351B3AFF010089AB7F /* AppDelegate.swift in Sources */,
-				88ED7D222069D9D500F25510 /* RunningInfoView.swift in Sources */,
 				3737994B1B4ABA160025260A /* SettingsManager.swift in Sources */,
 				88ED7EFF2069E5DF00F25510 /* AppSetting.swift in Sources */,
 				375347371B3AFF010089AB7F /* TimerViewController.swift in Sources */,
@@ -1574,8 +1548,6 @@
 				88ED7D192069D9AF00F25510 /* Animation.swift in Sources */,
 				375850261B3B50B0005628A0 /* EmptyRoundedButton.swift in Sources */,
 				376795701B52DDDD007E6CBC /* Scheduler.swift in Sources */,
-				88ED7D242069D9D500F25510 /* DistanceView.swift in Sources */,
-				88ED7D232069D9D500F25510 /* SportView.swift in Sources */,
 				378192051B40682D0016375D /* EmptyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
