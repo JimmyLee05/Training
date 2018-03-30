@@ -12,7 +12,7 @@ import AVFoundation
 class BgMusicViewController {
 
     //单例
-    static let sharedBgMusic = BgMusicViewController()
+    static let shared = BgMusicViewController()
 
     var audioPlayer: AVAudioPlayer?
 

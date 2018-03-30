@@ -10,20 +10,21 @@ import UIKit
 import AVFoundation
 
 class AppSetting: NSObject {
+    
     //后台播放
     class func audioSession(){
         //创建会话，后台播放必须
         let audioSession = AVAudioSession.sharedInstance()
         //激活会话
-        do{
+        do {
             try audioSession.setActive(true)
-        }catch{
+        } catch {
 
         }
         //设置后台播放
-        do{
+        do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        }catch{
+        } catch {
 
         }
     }

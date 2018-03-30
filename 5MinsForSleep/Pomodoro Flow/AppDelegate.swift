@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
+@available(iOS 10.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let pomodoroState       = Pomodoro.sharedPomodoro
-    let scheduler           = Scheduler.sharedScheduler
+    let pomodoroState           = Pomodoro.shared
+    let scheduler               = Scheduler.shared
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -38,25 +39,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didReceive notification: UILocalNotification) {
 
         print("didReceiveLocalNotification")
-        timerViewController.presentAlertFromNotification(notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
+
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-//        timerViewController.timerPause()
-//        print("applicationDidEnterBackground")
-//        switch pomodoroState.state {
-//        case .default:
-//        scheduleNotification(2,
-//                             title: NSLocalizedString("回来做俯卧撑啦", comment: ""),
-//                             body: NSLocalizedString("每天28分钟的锻炼，我们可以完成!", comment: ""))
-//        case .shortBreak:
-//            print("...")
-//        case .longBreak:
-//            print("...")
-//        }
+
+        print("applicationDidEnterBackground")
+        switch pomodoroState.state {
+        case .default:
+        scheduleNotification(   2,
+                                title: NSLocalizedString("回来做俯卧撑啦", comment: ""),
+                                body: NSLocalizedString("每天28分钟的锻炼，我们可以完成!", comment: ""))
+        case .shortBreak:
+            print("...")
+        case .longBreak:
+            print("...")
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -70,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("applicationWillTerminate")
     }
 
-    fileprivate var timerViewController: TimerViewController {
+    fileprivate var homeViewController: HomeViewController {
         let tabBarController = window!.rootViewController as! UITabBarController
-        return tabBarController.viewControllers!.first as! TimerViewController
+        return tabBarController.viewControllers!.first as! HomeViewController
     }
 
     fileprivate func registerNotifications() {

@@ -10,6 +10,7 @@ import UIKit
 
 // 计时过程中的四种调度：暂停，继续，开始，停止
 protocol SchedulerDelegate: class {
+    
     func schedulerDidPause()
     func schedulerDidUnpause()
     func schedulerDidStart()
@@ -20,11 +21,11 @@ class Scheduler {
 
     weak var delegate: SchedulerDelegate?
 
-    static let sharedScheduler = Scheduler()
+    static let shared = Scheduler()
 
     fileprivate let userDefaults = UserDefaults.standard
-    fileprivate let settings = SettingsManager.sharedManager
-    fileprivate let pomodoro = Pomodoro.sharedPomodoro
+    fileprivate let settings = SettingsManager.shared
+    fileprivate let pomodoro = Pomodoro.shared
     
     // 暂停时间的设置
     var pausedTime: Double? {

@@ -42,7 +42,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
     let versionImage    = UIImage(named: "version")
 
     fileprivate let userDefaults = UserDefaults.standard
-    fileprivate let settings = SettingsManager.sharedManager
+    fileprivate let settings = SettingsManager.shared
 
     fileprivate struct About {
         static let weiboURL     = "https://weibo.com/2546922913"

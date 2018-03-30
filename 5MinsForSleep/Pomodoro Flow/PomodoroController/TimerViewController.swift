@@ -24,19 +24,18 @@ class TimerViewController: UIViewController {
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
 
-    // 在这里引用这三个类的单例
-    fileprivate let scheduler: Scheduler
-    fileprivate let pomodoro  = Pomodoro.sharedPomodoro
-    fileprivate let bgMusic   = BgMusicViewController.sharedBgMusic
+    // 单例
+    fileprivate var scheduler   = Scheduler.shared
+    fileprivate let pomodoro    = Pomodoro.shared
+    fileprivate let bgMusic     = BgMusicViewController.shared
 
     // 时间
     fileprivate var timer: Timer?
     fileprivate var currentTime: Double!
     fileprivate var running = false
 
-    // Configuration
     fileprivate let animationDuration = 0.3
-    fileprivate let settings = SettingsManager.sharedManager
+    fileprivate let settings = SettingsManager.shared
 
     fileprivate struct CollectionViewIdentifiers {
         static let emptyCell = "EmptyCell"
@@ -147,14 +146,23 @@ extension TimerViewController {
     }
 
     func stopTimer() {
-        scheduler.timeStop()
-        running = false
-        animateStopped()
-        timer?.invalidate()
-        resetCurrentTime()
-        updateTimerLabel()
-        bgMusic.stopBGMusic()
-        stopVideo()
+        let alertController = UIAlertController(title: "",
+                                                message: "确定结束这次运动吗?",
+                                                preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alertController.addAction(UIAlertAction(title: "结束", style: .default) { _ in
+            self.scheduler.timeStop()
+            self.running = false
+            NSLog("saveTime.......")
+            self.animateStopped()
+            self.timer?.invalidate()
+            self.resetCurrentTime()
+            self.updateTimerLabel()
+            self.bgMusic.stopBGMusic()
+            self.stopVideo()
+            self.close()
+        })
+        present(alertController, animated: true)
     }
 
     func timerPause() {
@@ -289,7 +297,7 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
             CollectionViewIdentifiers.filledCell : CollectionViewIdentifiers.emptyCell
 
         return collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
-                                                for: indexPath)
+                                                  for: indexPath)
     }
 
     // MARK: UICollectionViewDelegate
@@ -372,3 +380,4 @@ extension TimerViewController {
         self.player!.pause()
     }
 }
+

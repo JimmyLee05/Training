@@ -11,10 +11,10 @@ import Foundation
 // 这个类用来处理番茄时钟和完成后的一些逻辑，例如完成后加一个奖章。
 class Pomodoro {
     
-    static let sharedPomodoro = Pomodoro()
+    static let shared = Pomodoro()
 
     let userDefaults = UserDefaults.standard
-    let settings = SettingsManager.sharedManager
+    let settings = SettingsManager.shared
 
     var state: State = .default
 
@@ -31,7 +31,7 @@ class Pomodoro {
 
     func completePomodoro() {
         pomodorosCompleted += 1
-        state = (pomodorosCompleted % 7 == 0 ? .longBreak : .shortBreak)
+        state = (pomodorosCompleted % 7 == 0 ? .longBreak : .`default`)
     }
 
     func completeBreak() {

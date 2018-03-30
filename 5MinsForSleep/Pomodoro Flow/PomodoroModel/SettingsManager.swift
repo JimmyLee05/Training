@@ -11,7 +11,8 @@ import Foundation
 // 设置一个对象来检索和保存对App的设置
 class SettingsManager {
 
-    static let sharedManager = SettingsManager()
+    static let shared = SettingsManager()
+
     fileprivate init() {}
 
     fileprivate let userDefaults = UserDefaults.standard

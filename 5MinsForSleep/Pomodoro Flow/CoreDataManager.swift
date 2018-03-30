@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+@available(iOS 10.0, *)
 class CoreDataManager: NSObject {
 
     // 单例
@@ -30,7 +31,7 @@ class CoreDataManager: NSObject {
         }
     }
 
-    // 增加数据
+    // 增加距离数据
     func saveDistance(distance: Double) {
         let run = NSEntityDescription.insertNewObject(forEntityName: "Run", into: context) as! Run
         run.distance = distance

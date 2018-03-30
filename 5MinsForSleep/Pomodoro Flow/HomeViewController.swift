@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
 
     var datas = [Run]() {
         didSet {
-
         }
     }
 
@@ -36,14 +35,15 @@ class HomeViewController: UIViewController {
     }
 
     private func configureView() {
+
         datas = CoreDataManager.shared.getAllRun()
         var sumDistance: Double = 0
+        
         for data in datas {
             NSLog("data----->\(data)")
             sumDistance = sumDistance + data.distance
         }
         runningTime.text = "\(sumDistance)"
-
     }
 
     @IBAction func clickPushupButton(_ sender: Any) {

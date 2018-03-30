@@ -18,6 +18,7 @@ class RunController: UIViewController {
     static let shared = RunController()
 
     let CoreData = CoreDataManager.shared
+    let fitModel = FitModel.shared
 
     @IBOutlet weak var movieView: UIView!
 
@@ -33,15 +34,12 @@ class RunController: UIViewController {
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var closeButton: UIButton!
 
-    fileprivate let fitModel = FitModel.shared
-
     var timer: DispatchSourceTimer!
     var second: TimeInterval = 0
     var timeDic: [String: Int]!
 
     var distanceValue: Double? {
         didSet {
-            self.distanceLabel.text = String(describing: distanceValue)
         }
     }
 
@@ -71,13 +69,17 @@ class RunController: UIViewController {
         willEnterForeground()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        stopVideo()
+    }
+
     @objc func willEnterForeground() {
         print("willEnterForeground called from controller")
-
         startVideo()
     }
 
     @IBAction func clickCloseButton(_ sender: Any) {
+        stopVideo()
         close()
     }
 
@@ -146,6 +148,7 @@ extension RunController {
                             print("当前系统版本不支持获取配速，正在使用算法估算")
                         }
                         let distanceFloat = String(format: "%.2f", Float(truncating: (pedometerData?.distance)!)/1000)
+                        self.distanceLabel.text = distanceFloat
                         let distance = Double(distanceFloat)
                         self.distanceValue = distance
                     })
@@ -160,7 +163,7 @@ extension RunController {
         print("开始运动")
         self.startUpdates()
         animateStarted()
-        if timer == nil{
+        if timer == nil {
             self.timeInterval()
         }
         isBegin = true
@@ -174,7 +177,7 @@ extension RunController {
         
         animatePaused()
         //若计时器没有取消，则暂停计时
-        if timer?.isCancelled == false{
+        if timer?.isCancelled == false {
             timer?.suspend()
         }
         isRunning = false
@@ -186,7 +189,7 @@ extension RunController {
         fitModel.reportStatus(status: "keep")
         animateUnpaused()
         //若计时器没有取消，则继续计时
-        if timer?.isCancelled == false{
+        if timer?.isCancelled == false {
             timer?.resume()
         }
         isRunning = true
