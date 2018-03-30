@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnX-Od-Bgp">
-                                <rect key="frame" x="254" y="534" width="43" height="44.5"/>
+                                <rect key="frame" x="254" y="540.5" width="43" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="跑步">
                                     <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -60,8 +60,9 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxD-ex-1Sy">
-                                <rect key="frame" x="147" y="163.5" width="124" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxD-ex-1Sy">
+                                <rect key="frame" x="147" y="164" width="69" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -89,15 +90,11 @@
                             <constraint firstItem="j1N-8J-93R" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="179" id="6jQ-EZ-xrb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Tg-bB-ceI" secondAttribute="trailingMargin" id="89b-qe-nw0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j1N-8J-93R" secondAttribute="trailing" constant="62" id="93I-jJ-405"/>
-                            <constraint firstItem="DxD-ex-1Sy" firstAttribute="top" secondItem="OTO-Tb-ON2" secondAttribute="bottom" constant="36" id="CGK-v8-5To"/>
-                            <constraint firstItem="AnX-Od-Bgp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tD5-Sr-c0v" secondAttribute="trailing" symbolic="YES" id="CNT-rD-hel"/>
+                            <constraint firstItem="AnX-Od-Bgp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tD5-Sr-c0v" secondAttribute="trailing" constant="8" symbolic="YES" id="CNT-rD-hel"/>
                             <constraint firstItem="4Tg-bB-ceI" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="7" id="Dfv-6c-lzF"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="EXA-hw-Ypg"/>
-                            <constraint firstItem="DxD-ex-1Sy" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="131" id="Ixx-iF-jp9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DxD-ex-1Sy" secondAttribute="trailing" constant="88" id="LT6-70-31C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vHE-W9-veX" secondAttribute="trailing" constant="172.5" id="M3v-61-xdi"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
-                            <constraint firstItem="AnX-Od-Bgp" firstAttribute="top" secondItem="DxD-ex-1Sy" secondAttribute="bottom" constant="336.5" id="PfU-aQ-pjF"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="kVj-tV-aek" secondAttribute="bottom" constant="394.5" id="RII-sp-53W"/>
                             <constraint firstItem="OTO-Tb-ON2" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="220" id="Rit-7p-76u"/>
                             <constraint firstItem="tD5-Sr-c0v" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="64" id="aVB-Xy-S40"/>
@@ -590,8 +587,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="KNr-zr-hrU"/>
                                         <exclude reference="Abj-gp-aM2"/>
+                                        <exclude reference="KNr-zr-hrU"/>
                                         <exclude reference="Lvh-AD-GqN"/>
                                         <exclude reference="VYR-Ba-les"/>
                                     </mask>
@@ -861,8 +858,8 @@
                                     <mask key="constraints">
                                         <exclude reference="1bv-UU-zN9"/>
                                         <exclude reference="3un-xY-jwZ"/>
-                                        <exclude reference="vLS-y7-UvR"/>
                                         <exclude reference="ZYH-BS-xt9"/>
+                                        <exclude reference="vLS-y7-UvR"/>
                                     </mask>
                                 </variation>
                             </view>

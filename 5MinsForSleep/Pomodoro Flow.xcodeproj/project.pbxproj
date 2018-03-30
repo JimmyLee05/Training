@@ -25,6 +25,7 @@
 		37EFAC071C94C40F00D1DC76 /* Pomodoro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFAC061C94C40F00D1DC76 /* Pomodoro.swift */; };
 		37EFAC091C94C83200D1DC76 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFAC081C94C83200D1DC76 /* State.swift */; };
 		500F5CB90521228091E7F7E3 /* Pods_Pomodoro_Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148CAFFC1FB9901978BF0DF2 /* Pods_Pomodoro_Flow.framework */; };
+		880F7683206CDC4F00854DF3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880F7682206CDC4F00854DF3 /* CoreDataManager.swift */; };
 		882151872060BB4400ACF7F2 /* raining.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 882151852060BB4400ACF7F2 /* raining.mp3 */; };
 		882151882060BB4400ACF7F2 /* thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 882151862060BB4400ACF7F2 /* thunder.mp3 */; };
 		8821518B2060EED800ACF7F2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8821518A2060EED800ACF7F2 /* AVFoundation.framework */; };
@@ -281,6 +282,8 @@
 		88ED7EFF2069E5DF00F25510 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7EFE2069E5DF00F25510 /* AppSetting.swift */; };
 		88ED7F012069F20200F25510 /* RunController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7F002069F20200F25510 /* RunController.swift */; };
 		88ED7F08206B78A100F25510 /* abc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 88ED7F07206B789F00F25510 /* abc.mp4 */; };
+		88ED7F0D206B858100F25510 /* Pomodoro Flow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7F0B206B858100F25510 /* Pomodoro Flow.xcdatamodeld */; };
+		88ED7F0F206B85DA00F25510 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED7F0E206B85DA00F25510 /* CoreDataStack.swift */; };
 		E36DB7663D675A5C4A842BC2 /* Pods_Pomodoro_FlowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520AA9F347580730A4C18ED1 /* Pods_Pomodoro_FlowTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +323,7 @@
 		37EFAC081C94C83200D1DC76 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		4C0F6F0D08259DA81A6EDBD7 /* Pods-Pomodoro Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow.release.xcconfig"; sourceTree = "<group>"; };
 		520AA9F347580730A4C18ED1 /* Pods_Pomodoro_FlowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pomodoro_FlowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		880F7682206CDC4F00854DF3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		882151852060BB4400ACF7F2 /* raining.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = raining.mp3; sourceTree = "<group>"; };
 		882151862060BB4400ACF7F2 /* thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunder.mp3; sourceTree = "<group>"; };
 		8821518A2060EED800ACF7F2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -585,6 +589,8 @@
 		88ED7EFE2069E5DF00F25510 /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		88ED7F002069F20200F25510 /* RunController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunController.swift; sourceTree = "<group>"; };
 		88ED7F07206B789F00F25510 /* abc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = abc.mp4; sourceTree = "<group>"; };
+		88ED7F0C206B858100F25510 /* Pomodoroflow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pomodoroflow.xcdatamodel; sourceTree = "<group>"; };
+		88ED7F0E206B85DA00F25510 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CC708A7C9D1FEFA7C57261F9 /* Pods-Pomodoro FlowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro FlowTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro FlowTests/Pods-Pomodoro FlowTests.release.xcconfig"; sourceTree = "<group>"; };
 		E7779BA5A6D7D910715795BF /* Pods-Pomodoro Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pomodoro Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pomodoro Flow/Pods-Pomodoro Flow.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -694,8 +700,9 @@
 			isa = PBXGroup;
 			children = (
 				88ED7D0F2069D86500F25510 /* HomeViewController.swift */,
-				88ED7D132069D93B00F25510 /* RunController */,
+				880F7682206CDC4F00854DF3 /* CoreDataManager.swift */,
 				88ED7D0D2069D5A800F25510 /* PomodoroController */,
+				88ED7D132069D93B00F25510 /* RunController */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -703,6 +710,7 @@
 		37FE4A8D1B5289D200280C97 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88ED7F0A206B853D00F25510 /* CoreData */,
 				88ED7D122069D91800F25510 /* RunModel */,
 				88ED7D0C2069D56500F25510 /* PomodoroModel */,
 			);
@@ -1048,6 +1056,15 @@
 				88ED7DE42069E59400F25510 /* Rwarmup_complete.mp3 */,
 			);
 			path = Voice;
+			sourceTree = "<group>";
+		};
+		88ED7F0A206B853D00F25510 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				88ED7F0B206B858100F25510 /* Pomodoro Flow.xcdatamodeld */,
+				88ED7F0E206B85DA00F25510 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		EE5A4C955CE0C2DB0E904335 /* Pods */ = {
@@ -1531,6 +1548,7 @@
 				3737994F1B4C153B0025260A /* PickerType.swift in Sources */,
 				88ED7D2D2069DD9100F25510 /* DispatchQueueExtension.swift in Sources */,
 				88ED7D2F2069DD9100F25510 /* FactoryMethod.swift in Sources */,
+				88ED7F0F206B85DA00F25510 /* CoreDataStack.swift in Sources */,
 				882F75062063AAF7005F4D6B /* GuideViewController.swift in Sources */,
 				88ED7D312069DE6700F25510 /* Audio.swift in Sources */,
 				375850281B3B5B4A005628A0 /* RoundedButton.swift in Sources */,
@@ -1544,6 +1562,7 @@
 				3737994D1B4B01250025260A /* PickerViewController.swift in Sources */,
 				88ED7D1A2069D9AF00F25510 /* FitModel.swift in Sources */,
 				37EFAC071C94C40F00D1DC76 /* Pomodoro.swift in Sources */,
+				88ED7F0D206B858100F25510 /* Pomodoro Flow.xcdatamodeld in Sources */,
 				375347351B3AFF010089AB7F /* AppDelegate.swift in Sources */,
 				3737994B1B4ABA160025260A /* SettingsManager.swift in Sources */,
 				88ED7EFF2069E5DF00F25510 /* AppSetting.swift in Sources */,
@@ -1552,6 +1571,7 @@
 				88ED7D192069D9AF00F25510 /* Animation.swift in Sources */,
 				375850261B3B50B0005628A0 /* EmptyRoundedButton.swift in Sources */,
 				376795701B52DDDD007E6CBC /* Scheduler.swift in Sources */,
+				880F7683206CDC4F00854DF3 /* CoreDataManager.swift in Sources */,
 				378192051B40682D0016375D /* EmptyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1828,6 +1848,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		88ED7F0B206B858100F25510 /* Pomodoro Flow.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				88ED7F0C206B858100F25510 /* Pomodoroflow.xcdatamodel */,
+			);
+			currentVersion = 88ED7F0C206B858100F25510 /* Pomodoroflow.xcdatamodel */;
+			path = "Pomodoro Flow.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 375347271B3AFF010089AB7F /* Project object */;
 }

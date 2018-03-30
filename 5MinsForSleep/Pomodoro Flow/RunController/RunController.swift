@@ -12,21 +12,12 @@ import AVFoundation
 
 let pedon: CMPedometer = CMPedometer()
 
+@available(iOS 10.0, *)
 class RunController: UIViewController {
 
-    fileprivate let fitModel = FitModel.shared
+    static let shared = RunController()
 
-    var isBegin: Bool = false
-    var isRunning: Bool = false
-
-    var timer: DispatchSourceTimer!
-    var second: TimeInterval = 0
-    var timeDic: [String: Int]!
-
-    var player: AVPlayer?
-    var playerLayer: AVPlayerLayer?
-
-    fileprivate let animationDuration = 0.3
+    let CoreData = CoreDataManager.shared
 
     @IBOutlet weak var movieView: UIView!
 
@@ -41,6 +32,27 @@ class RunController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var closeButton: UIButton!
+
+    fileprivate let fitModel = FitModel.shared
+
+    var timer: DispatchSourceTimer!
+    var second: TimeInterval = 0
+    var timeDic: [String: Int]!
+
+    var distanceValue: Double? {
+        didSet {
+            self.distanceLabel.text = String(describing: distanceValue)
+        }
+    }
+
+    var isBegin: Bool = false
+    var isRunning: Bool = false
+
+
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+
+    fileprivate let animationDuration = 0.3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +98,11 @@ class RunController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-         // timer = nil
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        // timer?.cancel()
-        // timer = nil
+        super.viewWillDisappear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,26 +110,28 @@ class RunController: UIViewController {
     }
 }
 
+@available(iOS 10.0, *)
 extension RunController {
 
     func startUpdates(){
+
         if CMPedometer.isStepCountingAvailable(){
 
             isRunning = true
 
             //获取指定开始时间到当前时间的数据参数: 开始时间, 一个闭包
             pedon.startUpdates(from: Date(), withHandler: { (pedometerData, error) in
-                if error != nil{
+
+                if error != nil {
                     print("error:\(String(describing: error))")
                     DispatchQueue.main.async(execute: {
                         print("发生错误")
                     })
                 }
-                else{
+                else {
                     DispatchQueue.main.async(execute: {
                         if #available(iOS 9.0, *) {
-
-                            guard pedometerData?.currentPace != nil else{
+                            guard pedometerData?.currentPace != nil else {
                                 return
                             }
                             //当前配速
@@ -133,7 +146,8 @@ extension RunController {
                             print("当前系统版本不支持获取配速，正在使用算法估算")
                         }
                         let distanceFloat = String(format: "%.2f", Float(truncating: (pedometerData?.distance)!)/1000)
-                        self.distanceLabel.text = distanceFloat
+                        let distance = Double(distanceFloat)
+                        self.distanceValue = distance
                     })
                 }
             })
@@ -157,6 +171,7 @@ extension RunController {
     func pauseRunning(){
         fitModel.reportStatus(status: "pause")
         print("运动已暂停")
+        
         animatePaused()
         //若计时器没有取消，则暂停计时
         if timer?.isCancelled == false{
@@ -180,16 +195,25 @@ extension RunController {
 
     //停止运动
     func stopRunning(){
-        fitModel.reportStatus(status: "stop")
-        animateStopped()
-        //停止更新
-        pedon.stopUpdates()
-        //若计时器没有取消，则继续计时
-        if timer?.isCancelled == false{
-            timer?.cancel()
-        }
-        close()
-        stopVideo()
+        let alertController = UIAlertController(title: "",
+                                                message: "确定结束这次跑步吗?",
+                                                preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alertController.addAction(UIAlertAction(title: "结束", style: .default) { _ in
+            self.fitModel.reportStatus(status: "stop")
+            self.animateStopped()
+            //停止更新
+            pedon.stopUpdates()
+            //若计时器没有取消，则继续计时
+            if self.timer?.isCancelled == false {
+                self.timer?.cancel()
+            }
+            self.saveRun()
+            self.close()
+            self.stopVideo()
+        })
+
+        present(alertController, animated: true)
     }
 
     //定时器
@@ -205,6 +229,17 @@ extension RunController {
             })
         }
         timer?.resume()
+    }
+
+    private func saveRun() {
+
+        if distanceValue == nil {
+            print("no data")
+        } else {
+            CoreDataManager.shared.saveDistance(distance: distanceValue!)
+        }
+
+        print("查看存储的数据 \(String(describing: distanceValue))")
     }
 
     fileprivate func animateStarted() {
@@ -237,6 +272,7 @@ extension RunController {
     }
 }
 
+@available(iOS 10.0, *)
 extension RunController {
 
     func playVideo() {
