@@ -31,7 +31,7 @@ class Pomodoro {
 
     func completePomodoro() {
         pomodorosCompleted += 1
-        state = (pomodorosCompleted % 7 == 0 ? .longBreak : .`default`)
+        state = (pomodorosCompleted % 7 == 0 ? .longBreak : .shortBreak)
     }
 
     func completeBreak() {

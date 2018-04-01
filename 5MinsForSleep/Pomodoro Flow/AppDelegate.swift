@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var timeViewController: TimerViewController?
+
+    
     let pomodoroState           = Pomodoro.shared
     let scheduler               = Scheduler.shared
 
@@ -39,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didReceive notification: UILocalNotification) {
 
         print("didReceiveLocalNotification")
+        timeViewController!.presentAlertFromNotification(notification)
+        print("Okkkkkkkkkkk")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -69,11 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         print("applicationWillTerminate")
-    }
-
-    fileprivate var homeViewController: HomeViewController {
-        let tabBarController = window!.rootViewController as! UITabBarController
-        return tabBarController.viewControllers!.first as! HomeViewController
     }
 
     fileprivate func registerNotifications() {

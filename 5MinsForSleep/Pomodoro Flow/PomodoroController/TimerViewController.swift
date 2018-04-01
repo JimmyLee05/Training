@@ -21,11 +21,13 @@ class TimerViewController: UIViewController {
 
     @IBOutlet weak var timerLabel: UILabel!
 
+    static let shared = TimerViewController(coder: )
+
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
 
     // 单例
-    fileprivate var scheduler   = Scheduler.shared
+    fileprivate let scheduler: Scheduler
     fileprivate let pomodoro    = Pomodoro.shared
     fileprivate let bgMusic     = BgMusicViewController.shared
 
@@ -43,8 +45,8 @@ class TimerViewController: UIViewController {
     }
 
     // Pomodoros view
-    fileprivate var pomodorosCompleted: Int? = 0
-    fileprivate var targetPomodoros: Int? = 0
+    fileprivate var pomodorosCompleted: Int!
+    fileprivate var targetPomodoros: Int
 
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -77,7 +79,7 @@ class TimerViewController: UIViewController {
     }
 
     // 进入后台前的设置
-    @objc func willEnterForeground() {
+    func willEnterForeground() {
         print("willEnterForeground called from controller")
 
         setCurrentTime()
@@ -107,7 +109,8 @@ class TimerViewController: UIViewController {
             pomodoro.completeBreak()
         }
 
-        stopTimer()
+        stop()
+        startTimer()
         print("State: \(pomodoro.state), done: \(pomodoro.pomodorosCompleted)")
     }
 
@@ -153,16 +156,23 @@ extension TimerViewController {
         alertController.addAction(UIAlertAction(title: "结束", style: .default) { _ in
             self.scheduler.timeStop()
             self.running = false
-            NSLog("saveTime.......")
             self.animateStopped()
             self.timer?.invalidate()
             self.resetCurrentTime()
             self.updateTimerLabel()
             self.bgMusic.stopBGMusic()
             self.stopVideo()
-            self.close()
         })
         present(alertController, animated: true)
+    }
+
+    func stop() {
+        scheduler.timeStop()
+        running = false
+        animateStopped()
+        timer?.invalidate()
+        resetCurrentTime()
+        updateTimerLabel()
     }
 
     func timerPause() {
@@ -194,8 +204,9 @@ extension TimerViewController {
         alertController.addAction(okAction)
 
         present(alertController, animated: true, completion: nil)
+        print("弹出选择框")
     }
-
+    
     // MARK: - Helpers
     fileprivate func reloadData() {
         targetPomodoros = settings.targetPomodoros
@@ -330,15 +341,15 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 
     fileprivate var numberOfRowsInLastSection: Int {
-        if targetPomodoros! % rowsPerSection == 0 {
+        if targetPomodoros % rowsPerSection == 0 {
             return rowsPerSection
         } else {
-            return targetPomodoros! % rowsPerSection
+            return targetPomodoros % rowsPerSection
         }
     }
 
     fileprivate var numberOfSections: Int {
-        return Int(ceil(Double(targetPomodoros!) / Double(rowsPerSection)))
+        return Int(ceil(Double(targetPomodoros) / Double(rowsPerSection)))
     }
 
     fileprivate var lastSectionIndex: Int {
