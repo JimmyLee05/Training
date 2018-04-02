@@ -112,21 +112,22 @@ class Scheduler {
     fileprivate func schedulePomodoro(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
-                             title: NSLocalizedString("变强了一点！", comment: ""), body: "加油，自律让我们自由!")
+                             title: NSLocalizedString("完成锻炼，休息一会", comment: ""), body: "")
         print("做完一组俯卧撑通知")
     }
 
     fileprivate func scheduleShortBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.shortBreakLength)
         scheduleNotification(interval,
-                             title: "是时候再来一组俯卧撑了！", body: "开始吧!")
+                             title: "休息结束，开始新一轮锻炼，", body: "")
         print("调用短休息通知")
     }
 
     fileprivate func scheduleLongBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.longBreakLength)
+        pomodoro.pomodoroCancel()
         scheduleNotification(interval,
-                             title: "今天的俯卧撑做完啦！", body: "100天后变成新的自己！")
+                             title: "完成了今天的俯卧撑训练", body: "")
         print("调用长休息通知")
     }
 

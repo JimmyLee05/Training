@@ -15,7 +15,7 @@ extension UIColor {
   }
 
   static var breakColor: UIColor {
-    return UIColor(red: 240/255, green: 65/255, blue: 90/255, alpha: 1)
+    return UIColor(red: 254/255, green: 254/255, blue: 254/255, alpha: 1)
   }
 
 }

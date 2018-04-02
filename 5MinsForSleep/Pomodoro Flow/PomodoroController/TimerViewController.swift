@@ -114,10 +114,11 @@ class TimerViewController: UIViewController {
             reloadData()
         } else {
             pomodoro.completeBreak()
+            reloadData()
         }
 
         stop()
-        startTimer()
+        //startTimer()
         print("State: \(pomodoro.state), done: \(pomodoro.pomodorosCompleted)")
     }
 
