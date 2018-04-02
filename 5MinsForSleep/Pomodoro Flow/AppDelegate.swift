@@ -14,9 +14,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var timeViewController: TimerViewController?
-
     
     let pomodoroState           = Pomodoro.shared
     let scheduler               = Scheduler.shared
@@ -42,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didReceive notification: UILocalNotification) {
 
         print("didReceiveLocalNotification")
-        timeViewController!.presentAlertFromNotification(notification)
-        print("Okkkkkkkkkkk")
+        NotificationCenter.default.post(name: NSNotification.Name("XMNotification"), object: notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

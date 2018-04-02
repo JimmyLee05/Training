@@ -21,10 +21,10 @@ class TimerViewController: UIViewController {
 
     @IBOutlet weak var timerLabel: UILabel!
 
-    static let shared = TimerViewController(coder: )
-
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
+
+    let notificationName = "XMNotification"
 
     // 单例
     fileprivate let scheduler: Scheduler
@@ -64,10 +64,17 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(willEnterForeground),
-                         name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground),
+                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(presentAlertFromNotification(_:)),
+                                               name: NSNotification.Name(rawValue: notificationName),
+                                               object: nil)
+
+
         playVideo()
         bgMusic.playBgMusic()
     }
@@ -79,7 +86,7 @@ class TimerViewController: UIViewController {
     }
 
     // 进入后台前的设置
-    func willEnterForeground() {
+    @objc func willEnterForeground() {
         print("willEnterForeground called from controller")
 
         setCurrentTime()
@@ -195,7 +202,12 @@ extension TimerViewController {
         startVideo()
     }
 
-    func presentAlertFromNotification(_ notification: UILocalNotification) {
+    @objc func presentAlertFromNotification(_ notification: Notification) {
+
+        guard let notification = notification.object as? UILocalNotification else {
+            return
+        }
+        
         let alertController = UIAlertController(title: notification.alertTitle,
                                                 message: notification.alertBody,
                                                 preferredStyle: .alert)
