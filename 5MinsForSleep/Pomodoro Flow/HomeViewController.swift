@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         configureView()
     }
-
+    
     private func configureView() {
 
         distanceDatas = CoreDataManager.shared.getAllRun()
