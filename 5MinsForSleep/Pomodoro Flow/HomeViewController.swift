@@ -22,6 +22,11 @@ class HomeViewController: UIViewController {
         }
     }
 
+    var timesDatas = [Pushup]() {
+        didSet {
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -40,7 +45,18 @@ class HomeViewController: UIViewController {
             NSLog("data----->\(data)")
             sumDistance = sumDistance + data.distance
         }
-        runningTime.text = "\(sumDistance)"
+        let string = String(format: "%.2f", sumDistance)
+        runningTime.text = "\(string)"
+
+        timesDatas = CoreDataManager.shared.getAllPushup()
+        var sumTimes: Double = 0
+
+        for data in timesDatas {
+            NSLog("data----->\(data)")
+            sumTimes = sumTimes + data.time
+        }
+        let stirng = String(format: "%.0f", sumTimes)
+        pushupTime.text = "\(stirng)"
     }
 
     @IBAction func clickPushupButton(_ sender: Any) {

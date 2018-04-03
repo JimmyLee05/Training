@@ -47,9 +47,19 @@ class CoreDataManager: NSObject {
         saveContext()
     }
 
-    // 获取所有数据
+    // 获取Run数据
     func getAllRun() -> [Run] {
         let fetchRequest: NSFetchRequest = Run.fetchRequest()
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result
+        } catch {
+            fatalError();
+        }
+    }
+    // 获取Pushup数据
+    func getAllPushup() -> [Pushup] {
+        let fetchRequest: NSFetchRequest = Pushup.fetchRequest()
         do {
             let result = try context.fetch(fetchRequest)
             return result

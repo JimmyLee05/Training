@@ -20,9 +20,6 @@ class RunController: UIViewController {
     let CoreData = CoreDataManager.shared
     let fitModel = FitModel.shared
 
-    @IBOutlet weak var movieView: UIView!
-
-
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -196,6 +193,7 @@ extension RunController {
                 self.timer?.cancel()
             }
             self.saveRun()
+            self.distanceLabel.text = String(format: "%.2f", 0.00)
         })
 
         present(alertController, animated: true)

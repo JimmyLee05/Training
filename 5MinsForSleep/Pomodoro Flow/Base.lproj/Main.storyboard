@@ -37,21 +37,14 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxD-ex-1Sy">
-                                <rect key="frame" x="147" y="164" width="69" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxD-ex-1Sy">
+                                <rect key="frame" x="147" y="162" width="59" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="千米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVj-tV-aek">
-                                <rect key="frame" x="213" y="189.5" width="35" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分钟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTO-Tb-ON2">
-                                <rect key="frame" x="236" y="91" width="35" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="组" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTO-Tb-ON2">
+                                <rect key="frame" x="246" y="86" width="17.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -62,28 +55,39 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="千米" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVj-tV-aek">
+                                <rect key="frame" x="228" y="184" width="35" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kVj-tV-aek" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="197" id="55o-kx-LkK"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="OTO-Tb-ON2" secondAttribute="bottom" constant="511" id="0fX-Bb-nqa"/>
+                            <constraint firstItem="kVj-tV-aek" firstAttribute="top" secondItem="OTO-Tb-ON2" secondAttribute="bottom" constant="77" id="7E1-fV-lgc"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Tg-bB-ceI" secondAttribute="trailingMargin" id="89b-qe-nw0"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="kVj-tV-aek" secondAttribute="bottom" constant="408" id="9uw-fq-R9D"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="DxD-ex-1Sy" secondAttribute="bottom" constant="422" id="CA4-Z7-sCu"/>
                             <constraint firstItem="4Tg-bB-ceI" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="7" id="Dfv-6c-lzF"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="EXA-hw-Ypg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j1N-8J-93R" secondAttribute="trailing" constant="104" id="Fc5-so-zwb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vHE-W9-veX" secondAttribute="trailing" constant="172.5" id="M3v-61-xdi"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kVj-tV-aek" secondAttribute="trailing" constant="111" id="Sgf-DJ-mrZ"/>
                             <constraint firstItem="j1N-8J-93R" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="148" id="UDM-Dc-Kcp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OTO-Tb-ON2" secondAttribute="trailing" constant="88" id="ZoR-FE-kxT"/>
+                            <constraint firstItem="OTO-Tb-ON2" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="66" id="VHT-bb-TCy"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="kVj-tV-aek" secondAttribute="bottom" constant="413.5" id="VPL-RM-qlT"/>
+                            <constraint firstItem="OTO-Tb-ON2" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="230" id="WJ4-e8-Avb"/>
                             <constraint firstItem="j1N-8J-93R" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="47" id="ZyQ-Ht-5Xd"/>
                             <constraint firstItem="vHE-W9-veX" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="7" id="cF9-lB-8cQ"/>
                             <constraint firstItem="uFB-ug-exh" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="cSH-VM-VRr"/>
                             <constraint firstItem="vHE-W9-veX" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="38" id="ceu-iQ-jIN"/>
-                            <constraint firstItem="OTO-Tb-ON2" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="220" id="dYa-Fy-rDs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OTO-Tb-ON2" secondAttribute="trailing" constant="95.5" id="fnn-yc-cb2"/>
                             <constraint firstItem="4Tg-bB-ceI" firstAttribute="top" secondItem="vHE-W9-veX" secondAttribute="bottom" constant="76" id="iIk-xx-6St"/>
+                            <constraint firstItem="kVj-tV-aek" firstAttribute="leading" secondItem="DxD-ex-1Sy" secondAttribute="trailing" constant="22" id="jlg-7i-O71"/>
+                            <constraint firstItem="DxD-ex-1Sy" firstAttribute="top" secondItem="j1N-8J-93R" secondAttribute="bottom" constant="61" id="kbP-IO-zpa"/>
+                            <constraint firstItem="DxD-ex-1Sy" firstAttribute="leading" secondItem="4Tg-bB-ceI" secondAttribute="trailing" constant="1.5" id="kbe-ct-6kf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kVj-tV-aek" secondAttribute="trailing" constant="96" id="qeK-gA-iZR"/>
                             <constraint firstAttribute="trailing" secondItem="uFB-ug-exh" secondAttribute="trailing" id="qhQ-ep-hur"/>
-                            <constraint firstItem="OTO-Tb-ON2" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="71" id="wqp-RL-WJU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="锻炼" image="Timer" id="acW-dT-cKf"/>

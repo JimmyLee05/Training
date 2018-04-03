@@ -138,7 +138,8 @@ class Scheduler {
         let interval = interval ?? TimeInterval(settings.longBreakLength)
         pomodoro.pomodoroCancel()
         totalTimes += 1
-        let Times = totalTimes
+        let pushupTimes = totalTimes
+        self.Times = pushupTimes
         saveRun()
         scheduleNotification(interval,
                              title: "完成了今天的俯卧撑训练", body: "")
