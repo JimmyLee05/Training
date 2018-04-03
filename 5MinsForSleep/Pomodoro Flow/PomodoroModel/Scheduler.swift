@@ -17,7 +17,10 @@ protocol SchedulerDelegate: class {
     func schedulerDidStop()
 }
 
+@available(iOS 10.0, *)
 class Scheduler {
+
+    let CoreData = CoreDataManager.shared
 
     weak var delegate: SchedulerDelegate?
 
@@ -26,6 +29,11 @@ class Scheduler {
     fileprivate let userDefaults = UserDefaults.standard
     fileprivate let settings = SettingsManager.shared
     fileprivate let pomodoro = Pomodoro.shared
+
+    var Times: Double? {
+        didSet {
+        }
+    }
     
     // 暂停时间的设置
     var pausedTime: Double? {
@@ -112,23 +120,40 @@ class Scheduler {
     fileprivate func schedulePomodoro(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
-                             title: NSLocalizedString("完成锻炼，休息一会", comment: ""), body: "")
+                             title: NSLocalizedString("休息两分钟继续锻炼", comment: ""), body: "")
         print("做完一组俯卧撑通知")
     }
 
     fileprivate func scheduleShortBreak(_ interval: TimeInterval? = nil) {
         let interval = interval ?? TimeInterval(settings.shortBreakLength)
         scheduleNotification(interval,
-                             title: "休息结束，开始新一轮锻炼，", body: "")
+                             title: "休息结束，开始锻炼，", body: "")
         print("调用短休息通知")
     }
 
     fileprivate func scheduleLongBreak(_ interval: TimeInterval? = nil) {
+
+        var totalTimes: Double = 0
+
         let interval = interval ?? TimeInterval(settings.longBreakLength)
         pomodoro.pomodoroCancel()
+        totalTimes += 1
+        let Times = totalTimes
+        saveRun()
         scheduleNotification(interval,
                              title: "完成了今天的俯卧撑训练", body: "")
         print("调用长休息通知")
+    }
+
+    private func saveRun() {
+
+        if Times == nil {
+            print("no data")
+        } else {
+            CoreDataManager.shared.saveTimes(times: Times!)
+        }
+
+        print("查看存储次数数据 \(String(describing: Times))")
     }
 
     fileprivate func scheduleNotification(_ interval: TimeInterval, title: String, body: String) {

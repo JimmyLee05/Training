@@ -31,11 +31,19 @@ class CoreDataManager: NSObject {
         }
     }
 
-    // 增加距离数据
+    // 添加距离数据
     func saveDistance(distance: Double) {
         let run = NSEntityDescription.insertNewObject(forEntityName: "Run", into: context) as! Run
         run.distance = distance
         NSLog("distance------>\(run.distance)")
+        saveContext()
+    }
+
+    // 增加次数数据
+    func saveTimes(times: Double) {
+        let Pushup = NSEntityDescription.insertNewObject(forEntityName: "Pushup", into: context) as! Pushup
+        Pushup.time = times
+        NSLog("times------>\(Pushup.time)")
         saveContext()
     }
 

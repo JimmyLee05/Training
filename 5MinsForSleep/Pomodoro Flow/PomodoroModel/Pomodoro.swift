@@ -13,8 +13,8 @@ class Pomodoro {
     
     static let shared = Pomodoro()
 
-    let userDefaults = UserDefaults.standard
-    let settings = SettingsManager.shared
+    let userDefaults    = UserDefaults.standard
+    let settings        = SettingsManager.shared
 
     var state: State = .default
 

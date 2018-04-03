@@ -32,7 +32,6 @@ class RunController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
-    @IBOutlet weak var closeButton: UIButton!
 
     var timer: DispatchSourceTimer!
     var second: TimeInterval = 0
@@ -60,7 +59,6 @@ class RunController: UIViewController {
                          selector: #selector(willEnterForeground),
                          name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 
-        playVideo()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,17 +68,10 @@ class RunController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        stopVideo()
     }
 
     @objc func willEnterForeground() {
         print("willEnterForeground called from controller")
-        startVideo()
-    }
-
-    @IBAction func clickCloseButton(_ sender: Any) {
-        stopVideo()
-        close()
     }
 
     @IBAction func clickStartButton(_ sender: Any) {
@@ -93,10 +84,6 @@ class RunController: UIViewController {
 
     @IBAction func togglePaused(_ sender: Any) {
         isRunning ? pauseRunning() : keepRunning()
-    }
-
-    func close() {
-        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -167,7 +154,6 @@ extension RunController {
             self.timeInterval()
         }
         isBegin = true
-        startVideo()
     }
 
     //暂停运动
@@ -181,7 +167,6 @@ extension RunController {
             timer?.suspend()
         }
         isRunning = false
-        stopVideo()
     }
 
     //继续运动
@@ -193,7 +178,6 @@ extension RunController {
             timer?.resume()
         }
         isRunning = true
-        startVideo()
     }
 
     //停止运动
@@ -212,8 +196,6 @@ extension RunController {
                 self.timer?.cancel()
             }
             self.saveRun()
-            self.close()
-            self.stopVideo()
         })
 
         present(alertController, animated: true)
@@ -272,38 +254,5 @@ extension RunController {
 
     fileprivate func animateUnpaused() {
         pauseButton.setTitle("暂停", for: UIControlState())
-    }
-}
-
-@available(iOS 10.0, *)
-extension RunController {
-
-    func playVideo() {
-
-        let filePath        = Bundle.main.path(forResource: "abc", ofType: ".mp4")
-        let videoURL        = NSURL(fileURLWithPath: filePath!)
-        let player          = AVPlayer(url: videoURL as URL)
-
-        let playerLayer     = AVPlayerLayer(player: player)
-        playerLayer.frame   = movieView.bounds
-        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.movieView.layer.insertSublayer(playerLayer, at: 0)
-
-        self.player = player
-
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                               object: player.currentItem,
-                                               queue: .main) { _ in
-                                                self.player?.seek(to: kCMTimeZero)
-                                                self.player?.play()
-        }
-    }
-
-    func startVideo() {
-        self.player!.play()
-    }
-
-    func stopVideo() {
-        self.player!.pause()
     }
 }

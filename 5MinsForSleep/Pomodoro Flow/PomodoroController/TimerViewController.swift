@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+@available(iOS 10.0, *)
 class TimerViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
@@ -145,6 +146,7 @@ class TimerViewController: UIViewController {
 }
 
 // TimerViewController里的一些函数放在拓展里，主控制器可以直接调用
+@available(iOS 10.0, *)
 extension TimerViewController {
 
     func startTimer() {
@@ -301,6 +303,7 @@ extension TimerViewController {
     }
 }
 
+@available(iOS 10.0, *)
 extension TimerViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     // MARK: UICollectionViewDataSource
@@ -373,6 +376,7 @@ extension TimerViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
+@available(iOS 10.0, *)
 extension TimerViewController {
 
     func playVideo() {

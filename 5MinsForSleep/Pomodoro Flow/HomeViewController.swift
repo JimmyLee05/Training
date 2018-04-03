@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pushupTime: UILabel!
     @IBOutlet weak var runningTime: UILabel!
 
-    var datas = [Run]() {
+    var distanceDatas = [Run]() {
         didSet {
         }
     }
@@ -33,10 +33,10 @@ class HomeViewController: UIViewController {
 
     private func configureView() {
 
-        datas = CoreDataManager.shared.getAllRun()
+        distanceDatas = CoreDataManager.shared.getAllRun()
         var sumDistance: Double = 0
         
-        for data in datas {
+        for data in distanceDatas {
             NSLog("data----->\(data)")
             sumDistance = sumDistance + data.distance
         }
