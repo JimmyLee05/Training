@@ -30,6 +30,8 @@ class RunController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var buttonContainer: UIView!
+    @IBOutlet weak var closeButton: UIButton!
+
 
     var timer: DispatchSourceTimer!
     var second: TimeInterval = 0
@@ -84,6 +86,11 @@ class RunController: UIViewController {
     @IBAction func togglePaused(_ sender: Any) {
         isRunning ? pauseRunning() : keepRunning()
     }
+
+    @IBAction func didClickCloseButton(_ sender: Any) {
+        close()
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
 
