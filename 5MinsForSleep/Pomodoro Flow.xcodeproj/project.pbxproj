@@ -334,6 +334,7 @@
 		88A829A92063840E00705DD8 /* jianjie5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie5.jpg; sourceTree = "<group>"; };
 		88A829AC2063840E00705DD8 /* jianjie1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie1.jpg; sourceTree = "<group>"; };
 		88A829AD2063840E00705DD8 /* jianjie2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie2.jpg; sourceTree = "<group>"; };
+		88AADB052074BA09000859D3 /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
 		88D36D9C20620016005F2B5A /* BgMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgMusicViewController.swift; sourceTree = "<group>"; };
 		88D36DA320624C56005F2B5A /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		88D36DBB20626B75005F2B5A /* rain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rain.gif; sourceTree = "<group>"; };
@@ -657,6 +658,7 @@
 				88E155F22064E79900DFB21B /* Resources */,
 				88A829A3206383EE00705DD8 /* Images */,
 				373BD3DA1C9B095A001C9790 /* UIColor+PomodoroFlow.swift */,
+				88AADB052074BA09000859D3 /* DINEngschriftStd.otf */,
 				88D36DBB20626B75005F2B5A /* rain.gif */,
 				882151852060BB4400ACF7F2 /* raining.mp3 */,
 				882151862060BB4400ACF7F2 /* thunder.mp3 */,
