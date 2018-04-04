@@ -28,6 +28,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
+let red = UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
 
 // Pop Up Styles
 public enum SCLAlertViewStyle {
@@ -53,6 +54,41 @@ public enum SCLAlertViewStyle {
             return 0x727375
         }
         
+    }
+
+}
+
+// Pop Up colorStyles
+public enum SCLAlertColorStyle {
+    case success
+    case error
+    case notice
+    case warning
+    case info
+    case edit
+    case wait
+    case question
+
+    public var defaultColorInt: UIColor {
+        switch self {
+        case .success:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .error:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .notice:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .warning:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .info:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .edit:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .wait:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        case .question:
+            return UIColor(red: 230/255, green: 57/255, blue: 63/255, alpha: 1)
+        }
+
     }
 
 }
