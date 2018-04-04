@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SCLAlertView
 
 @available(iOS 10.0, *)
 class TimerViewController: UIViewController {
@@ -119,7 +120,7 @@ class TimerViewController: UIViewController {
         }
 
         stop()
-        //startTimer()
+        startTimer()
         print("State: \(pomodoro.state), done: \(pomodoro.pomodorosCompleted)")
     }
 
@@ -159,11 +160,9 @@ extension TimerViewController {
     }
 
     func stopTimer() {
-        let alertController = UIAlertController(title: "",
-                                                message: "确定结束这次运动吗?",
-                                                preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alertController.addAction(UIAlertAction(title: "结束", style: .default) { _ in
+
+        let alertView = SCLAlertView()
+        alertView.addButton("结束") {
             self.scheduler.timeStop()
             self.running = false
             self.animateStopped()
@@ -172,8 +171,13 @@ extension TimerViewController {
             self.updateTimerLabel()
             self.bgMusic.stopBGMusic()
             self.stopVideo()
-        })
-        present(alertController, animated: true)
+            self.close()
+        }
+        let alertViewIcon = UIImage(named: "doubt.png")
+        alertView.showNotice("确定结束这次运动吗?",
+                              subTitle: "",
+                              closeButtonTitle: "取消",
+                              circleIconImage: alertViewIcon)
     }
 
     func stop() {

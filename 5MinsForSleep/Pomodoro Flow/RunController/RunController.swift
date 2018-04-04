@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import AVFoundation
+import SCLAlertView
 
 let pedon: CMPedometer = CMPedometer()
 
@@ -65,6 +66,7 @@ class RunController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+
     }
 
     @objc func willEnterForeground() {
@@ -179,24 +181,26 @@ extension RunController {
 
     //停止运动
     func stopRunning(){
-        let alertController = UIAlertController(title: "",
-                                                message: "确定结束这次跑步吗?",
-                                                preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alertController.addAction(UIAlertAction(title: "结束", style: .default) { _ in
+
+        let alertView = SCLAlertView()
+        alertView.addButton("结束") {
             self.fitModel.reportStatus(status: "stop")
             self.animateStopped()
             //停止更新
             pedon.stopUpdates()
-            //若计时器没有取消，则继续计时
+
             if self.timer?.isCancelled == false {
                 self.timer?.cancel()
             }
             self.saveRun()
             self.distanceLabel.text = String(format: "%.2f", 0.00)
-        })
-
-        present(alertController, animated: true)
+            self.close()
+        }
+        let alertViewIcon = UIImage(named: "doubt.png")
+        alertView.showNotice("确定结束这次跑步吗?",
+                              subTitle: "",
+                              closeButtonTitle: "取消",
+                              circleIconImage: alertViewIcon)
     }
 
     //定时器
@@ -223,6 +227,10 @@ extension RunController {
         }
 
         print("查看存储的数据 \(String(describing: distanceValue))")
+    }
+
+    func close(){
+        self.dismiss(animated: true, completion: nil)
     }
 
     fileprivate func animateStarted() {

@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         configureView()
     }
-    
+
     private func configureView() {
 
         distanceDatas = CoreDataManager.shared.getAllRun()
@@ -59,13 +59,15 @@ class HomeViewController: UIViewController {
         pushupTime.text = "\(stirng)"
     }
 
+
+
     @IBAction func clickPushupButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "PushupButton", sender: self)
+        self.performSegue(withIdentifier: "pushup", sender: self)
     }
 
 
     @IBAction func clickRunButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "runButton", sender: self)
+        self.performSegue(withIdentifier: "run", sender: self)
     }
 
     override func didReceiveMemoryWarning() {

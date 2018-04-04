@@ -1,6 +1,6 @@
 
-/* Class = "UILabel"; text = "目标番茄数"; ObjectID = "5qP-ua-ihc"; */
-"5qP-ua-ihc.text" = "目标番茄数";
+/* Class = "UILabel"; text = "准备做几组俯卧撑"; ObjectID = "5qP-ua-ihc"; */
+"5qP-ua-ihc.text" = "准备做几组俯卧撑";
 
 /* Class = "UITabBarItem"; title = "设置"; ObjectID = "7CE-2J-eUX"; */
 "7CE-2J-eUX.title" = "设置";
@@ -32,23 +32,23 @@
 /* Class = "UILabel"; text = "5 分钟"; ObjectID = "aLR-46-p36"; */
 "aLR-46-p36.text" = "5 分钟";
 
-/* Class = "UITabBarItem"; title = "番茄钟"; ObjectID = "acW-dT-cKf"; */
-"acW-dT-cKf.title" = "番茄钟";
+/* Class = "UITabBarItem"; title = "锻炼"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "锻炼";
 
-/* Class = "UILabel"; text = "@若风"; ObjectID = "b8V-ux-NC3"; */
-"b8V-ux-NC3.text" = "@若风";
+/* Class = "UILabel"; text = ""; ObjectID = "b8V-ux-NC3"; */
+"b8V-ux-NC3.text" = "";
 
 /* Class = "UILabel"; text = "多休息会"; ObjectID = "ebc-2a-G8I"; */
 "ebc-2a-G8I.text" = "多休息会";
 
-/* Class = "UILabel"; text = "一个番茄的时间"; ObjectID = "gKR-kY-26x"; */
-"gKR-kY-26x.text" = "一个番茄的时间";
+/* Class = "UILabel"; text = "一组俯卧撑时间"; ObjectID = "gKR-kY-26x"; */
+"gKR-kY-26x.text" = "一组俯卧撑时间";
 
 /* Class = "UIButton"; normalTitle = "暂停"; ObjectID = "mK0-Fu-s2u"; */
 "mK0-Fu-s2u.normalTitle" = "暂停";
 
-/* Class = "UILabel"; text = "我的微博"; ObjectID = "oPB-eI-pgK"; */
-"oPB-eI-pgK.text" = "我的微博";
+/* Class = "UILabel"; text = "做100天俯卧撑后的变化"; ObjectID = "oPB-eI-pgK"; */
+"oPB-eI-pgK.text" = "做100天俯卧撑后的变化";
 
 /* Class = "UINavigationItem"; title = "设置"; ObjectID = "ogL-Ze-34H"; */
 "ogL-Ze-34H.title" = "设置";

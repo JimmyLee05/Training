@@ -3,8 +3,8 @@ use_frameworks!
 target 'Pomodoro Flow' do
 
  	pod 'GuidePageView'
- 	pod 'SnapKit'
  	pod 'SVProgressHUD'
+ 	pod 'SCLAlertView'
 
   target 'Pomodoro FlowTests' do
     inherit! :search_paths

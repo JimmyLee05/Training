@@ -45,7 +45,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
     fileprivate let settings = SettingsManager.shared
 
     fileprivate struct About {
-        static let weiboURL     = "https://weibo.com/2546922913"
+        static let weiboURL     = "https://www.bilibili.com/video/av13331099?from=search&seid=12552099960711528245"
         static let homepageURL  = "https://jimmylee05.github.io"
         static let appStoreURL  = "https://itunes.apple.com/us/app/pomodoro-flow/id1095742214?ls=1&mt=8"
     }
@@ -82,7 +82,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
         pomodoroLengthLabel.text = "\(settings.pomodoroLength / 60) 分钟"
         shortBreakLengthLabel.text = "\(settings.shortBreakLength / 60) 分钟"
         longBreakLengthLabel.text = "\(settings.longBreakLength / 60) 分钟"
-        targetPomodorosLabel.text = "\(settings.targetPomodoros) 番茄"
+        targetPomodorosLabel.text = "\(settings.targetPomodoros) 个"
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,7 +98,7 @@ class SettingsViewController: UITableViewController, PickerViewControllerDelegat
                 picker.selectedValue = settings.longBreakLength
                 picker.type = PickerType.longBreakLength
             case "TargetPomodorosPicker":
-                picker.specifier = "个番茄"
+                picker.specifier = "个"
                 picker.selectedValue = settings.targetPomodoros
                 picker.type = PickerType.targetPomodoros
             default:

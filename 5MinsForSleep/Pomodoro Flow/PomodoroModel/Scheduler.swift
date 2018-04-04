@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 // 计时过程中的四种调度：暂停，继续，开始，停止
 protocol SchedulerDelegate: class {
@@ -121,6 +122,7 @@ class Scheduler {
         let interval = interval ?? TimeInterval(settings.pomodoroLength)
         scheduleNotification(interval,
                              title: NSLocalizedString("休息两分钟继续锻炼", comment: ""), body: "")
+
         print("做完一组俯卧撑通知")
     }
 
@@ -142,7 +144,7 @@ class Scheduler {
         self.Times = pushupTimes
         saveRun()
         scheduleNotification(interval,
-                             title: "完成了今天的俯卧撑训练", body: "")
+                             title: "完成了一组俯卧撑，好样的 👍", body: "")
         print("调用长休息通知")
     }
 

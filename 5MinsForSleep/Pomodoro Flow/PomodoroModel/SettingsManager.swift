@@ -37,7 +37,7 @@ class SettingsManager {
     }
 
     var longBreakLength: Int {
-        get { return userDefaults.object(forKey: Settings.longBreakLength) as? Int ?? 5 * 60 }
+        get { return userDefaults.object(forKey: Settings.longBreakLength) as? Int ?? 1 * 60 }
         set { userDefaults.set(newValue, forKey: Settings.longBreakLength) }
     }
 
