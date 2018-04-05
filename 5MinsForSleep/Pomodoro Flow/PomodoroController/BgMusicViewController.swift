@@ -16,6 +16,9 @@ class BgMusicViewController {
 
     var audioPlayer: AVAudioPlayer?
 
+    let musicArray  = ["raining0", "raining1", "raining2"]
+    let randomMusic = Int(arc4random_uniform(UInt32(musicArray.count - 1)))
+
     func playBgMusic() {
         let url = Bundle.main.url(forResource: "raining", withExtension: "mp3")
         var err: NSError?

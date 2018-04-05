@@ -16,7 +16,6 @@ class Pomodoro {
     let userDefaults    = UserDefaults.standard
     let settings        = SettingsManager.shared
     
-
     var state: State = .default
 
     fileprivate init() {}
