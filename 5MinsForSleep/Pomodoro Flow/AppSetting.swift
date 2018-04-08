@@ -13,15 +13,15 @@ class AppSetting: NSObject {
     
     //后台播放
     class func audioSession(){
-        //创建会话，后台播放必须
+
         let audioSession = AVAudioSession.sharedInstance()
-        //激活会话
+
         do {
             try audioSession.setActive(true)
         } catch {
 
         }
-        //设置后台播放
+        
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
         } catch {

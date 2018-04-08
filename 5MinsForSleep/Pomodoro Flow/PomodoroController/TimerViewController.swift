@@ -32,6 +32,7 @@ class TimerViewController: UIViewController {
     fileprivate let scheduler: Scheduler
     fileprivate let pomodoro    = Pomodoro.shared
     fileprivate let bgMusic     = BgMusicViewController.shared
+    fileprivate let fitModel    = FitModel.shared
 
     // 时间
     fileprivate var timer: Timer?
@@ -151,6 +152,7 @@ class TimerViewController: UIViewController {
 extension TimerViewController {
 
     func startTimer() {
+        fitModel.reportStatus(status: "start")
         scheduler.timeStart()
         running = true
         animateStarted()
@@ -163,6 +165,7 @@ extension TimerViewController {
 
         let alertView = SCLAlertView()
         alertView.addButton("结束") {
+            self.fitModel.reportStatus(status: "stop")
             self.scheduler.timeStop()
             self.running = false
             self.animateStopped()
@@ -190,6 +193,7 @@ extension TimerViewController {
     }
 
     func timerPause() {
+        fitModel.reportStatus(status: "pause")
         guard running else { return }
 
         scheduler.timePause(currentTime)
@@ -201,6 +205,7 @@ extension TimerViewController {
     }
 
     func timerUnpause() {
+        fitModel.reportStatus(status: "keep")
         scheduler.timeUnpause()
         running = true
         fireTimer()
