@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerNotifications()
         configureTabBarColor()
 
+        Bugly.start(withAppId: "09362396de")
+        
         return true
     }
 

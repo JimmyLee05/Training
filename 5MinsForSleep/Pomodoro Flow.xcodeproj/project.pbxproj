@@ -335,6 +335,7 @@
 		88A829AC2063840E00705DD8 /* jianjie1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie1.jpg; sourceTree = "<group>"; };
 		88A829AD2063840E00705DD8 /* jianjie2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jianjie2.jpg; sourceTree = "<group>"; };
 		88AADB052074BA09000859D3 /* DINEngschriftStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINEngschriftStd.otf; sourceTree = "<group>"; };
+		88AADB0B207A1542000859D3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		88D36D9C20620016005F2B5A /* BgMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgMusicViewController.swift; sourceTree = "<group>"; };
 		88D36DA320624C56005F2B5A /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		88D36DBB20626B75005F2B5A /* rain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rain.gif; sourceTree = "<group>"; };
@@ -640,6 +641,7 @@
 		375347311B3AFF010089AB7F /* Pomodoro Flow */ = {
 			isa = PBXGroup;
 			children = (
+				88AADB0B207A1542000859D3 /* Header.h */,
 				375347341B3AFF010089AB7F /* AppDelegate.swift */,
 				88ED7EFE2069E5DF00F25510 /* AppSetting.swift */,
 				37FE4A8D1B5289D200280C97 /* Model */,
@@ -1755,7 +1757,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jimmy.lee.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Pomodoro Flow/Tools/Pomodoro Flow-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pomodoro Flow/Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1776,7 +1778,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jimmy.lee.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Pomodoro Flow/Tools/Pomodoro Flow-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Pomodoro Flow/Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};

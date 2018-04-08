@@ -1,18 +1,21 @@
 PODS:
+  - Bugly (2.5.0)
   - GuidePageView (1.0.0)
   - SCLAlertView (0.8)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Bugly
   - GuidePageView
   - SCLAlertView
   - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   GuidePageView: 3a0f3b8de3a4c7047ef2871bead164a1c9f385ee
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d221cd8284a4b2a85105ed4c0e3721964b3a8392
+PODFILE CHECKSUM: f6db5a6178fa2d28399134a8ae8b32e52e1161c0
 
 COCOAPODS: 1.3.1

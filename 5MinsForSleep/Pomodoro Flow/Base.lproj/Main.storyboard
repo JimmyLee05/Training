@@ -88,6 +88,15 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uC-bp-mIY">
+                                <rect key="frame" x="167" y="580" width="41" height="30"/>
+                                <state key="normal" title="Crash">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="CrashButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="uhF-9u-FmR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -99,9 +108,11 @@
                             <constraint firstItem="VAN-XI-n5M" firstAttribute="leading" secondItem="lsA-55-d1N" secondAttribute="trailing" constant="147" id="F9L-va-0ni"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="DxD-ex-1Sy" secondAttribute="bottom" constant="405" id="FzK-Zx-SCX"/>
                             <constraint firstItem="j1N-8J-93R" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="174" id="HLX-zH-dNZ"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="7uC-bp-mIY" secondAttribute="bottom" constant="8" id="IoB-OS-IaS"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="uFB-ug-exh" secondAttribute="bottom" id="On8-Mv-64u"/>
                             <constraint firstItem="lsA-55-d1N" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="46" id="Oz7-3C-2cu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kVj-tV-aek" secondAttribute="trailing" constant="64" id="Q1R-Oo-M6b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7uC-bp-mIY" secondAttribute="trailing" constant="151" id="QVW-rE-h4O"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="VAN-XI-n5M" secondAttribute="bottom" constant="61" id="Qe0-7j-hRK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j1N-8J-93R" secondAttribute="trailing" constant="78" id="ZYI-xU-rzO"/>
                             <constraint firstItem="kVj-tV-aek" firstAttribute="leading" secondItem="DxD-ex-1Sy" secondAttribute="trailing" constant="24" id="ZsL-01-usi"/>
@@ -116,6 +127,7 @@
                             <constraint firstItem="OTO-Tb-ON2" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="65" id="edh-KW-Bjr"/>
                             <constraint firstItem="DxD-ex-1Sy" firstAttribute="top" secondItem="vHE-W9-veX" secondAttribute="bottom" constant="82.5" id="eyI-Da-GBM"/>
                             <constraint firstItem="VAN-XI-n5M" firstAttribute="top" secondItem="kVj-tV-aek" secondAttribute="bottom" constant="307" id="gEc-gh-mb4"/>
+                            <constraint firstItem="7uC-bp-mIY" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="151" id="js2-dm-52O"/>
                             <constraint firstItem="lsA-55-d1N" firstAttribute="top" secondItem="4Tg-bB-ceI" secondAttribute="bottom" constant="331.5" id="mKr-rd-xGe"/>
                             <constraint firstAttribute="trailing" secondItem="uFB-ug-exh" secondAttribute="trailing" id="qhQ-ep-hur"/>
                             <constraint firstItem="OTO-Tb-ON2" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="249" id="rm3-d0-5d6"/>

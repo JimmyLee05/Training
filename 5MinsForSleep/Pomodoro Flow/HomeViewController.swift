@@ -70,6 +70,13 @@ class HomeViewController: UIViewController {
         self.performSegue(withIdentifier: "run", sender: self)
     }
 
+    @IBAction func CrashButton(_ sender: Any) {
+        NSLog("Test crash");
+        let array = [1, 2]
+        print(array[3])
+    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
