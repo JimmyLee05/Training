@@ -1,0 +1,501 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03DD545AAF8E7EBA86972815 /* Pods_HanCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D700A076C4C644A94BDA5F /* Pods_HanCam.framework */; };
+		883D0112215A3E550095F8E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D0111215A3E550095F8E8 /* AppDelegate.swift */; };
+		883D0114215A3E550095F8E8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D0113215A3E550095F8E8 /* TabBarViewController.swift */; };
+		883D0117215A3E550095F8E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883D0115215A3E550095F8E8 /* Main.storyboard */; };
+		883D0119215A3E560095F8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883D0118215A3E560095F8E8 /* Assets.xcassets */; };
+		883D011C215A3E560095F8E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883D011A215A3E560095F8E8 /* LaunchScreen.storyboard */; };
+		883D012B215B123C0095F8E8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D012A215B123C0095F8E8 /* Config.swift */; };
+		883D012E215B14EE0095F8E8 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D012D215B14EE0095F8E8 /* UIDevice.swift */; };
+		883D0131215B16150095F8E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 883D0133215B16150095F8E8 /* Localizable.strings */; };
+		883D0139215B16D90095F8E8 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D0138215B16D90095F8E8 /* BaseNavigationController.swift */; };
+		883D013D215B18280095F8E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D013B215B18280095F8E8 /* CameraViewController.swift */; };
+		883D013E215B18280095F8E8 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883D013C215B18280095F8E8 /* CameraViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		42D700A076C4C644A94BDA5F /* Pods_HanCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HanCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EBA47E4ABE2F786D5AD1744 /* Pods-HanCam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HanCam.release.xcconfig"; path = "Pods/Target Support Files/Pods-HanCam/Pods-HanCam.release.xcconfig"; sourceTree = "<group>"; };
+		883D010E215A3E550095F8E8 /* HanCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HanCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		883D0111215A3E550095F8E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		883D0113215A3E550095F8E8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		883D0116215A3E550095F8E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		883D0118215A3E560095F8E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		883D011B215A3E560095F8E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		883D011D215A3E560095F8E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883D0123215A3E6B0095F8E8 /* HanCam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HanCam-Bridging-Header.h"; sourceTree = "<group>"; };
+		883D012A215B123C0095F8E8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		883D012D215B14EE0095F8E8 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		883D0132215B16150095F8E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		883D0134215B16430095F8E8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		883D0135215B16430095F8E8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		883D0136215B16430095F8E8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		883D0138215B16D90095F8E8 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		883D013B215B18280095F8E8 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		883D013C215B18280095F8E8 /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		CA56ABE1DBE9C771F6DE8CE3 /* Pods-HanCam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HanCam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HanCam/Pods-HanCam.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		883D010B215A3E550095F8E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03DD545AAF8E7EBA86972815 /* Pods_HanCam.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		025B537154774104FF746A75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA56ABE1DBE9C771F6DE8CE3 /* Pods-HanCam.debug.xcconfig */,
+				5EBA47E4ABE2F786D5AD1744 /* Pods-HanCam.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		883D0105215A3E550095F8E8 = {
+			isa = PBXGroup;
+			children = (
+				883D0110215A3E550095F8E8 /* HanCam */,
+				883D010F215A3E550095F8E8 /* Products */,
+				025B537154774104FF746A75 /* Pods */,
+				DC355A35D2E7881B85DE54BB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		883D010F215A3E550095F8E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				883D010E215A3E550095F8E8 /* HanCam.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		883D0110215A3E550095F8E8 /* HanCam */ = {
+			isa = PBXGroup;
+			children = (
+				883D0111215A3E550095F8E8 /* AppDelegate.swift */,
+				883D0124215A3F390095F8E8 /* Module */,
+				883D0125215A3F780095F8E8 /* Resource */,
+				883D0126215A3FA30095F8E8 /* Library */,
+				883D0127215A3FB50095F8E8 /* Config */,
+				883D0123215A3E6B0095F8E8 /* HanCam-Bridging-Header.h */,
+				883D0133215B16150095F8E8 /* Localizable.strings */,
+				883D011D215A3E560095F8E8 /* Info.plist */,
+			);
+			path = HanCam;
+			sourceTree = "<group>";
+		};
+		883D0124215A3F390095F8E8 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				883D0113215A3E550095F8E8 /* TabBarViewController.swift */,
+				883D0137215B16C30095F8E8 /* Base */,
+				883D013A215B17C90095F8E8 /* Camera */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		883D0125215A3F780095F8E8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				883D011A215A3E560095F8E8 /* LaunchScreen.storyboard */,
+				883D0115215A3E550095F8E8 /* Main.storyboard */,
+				883D0118215A3E560095F8E8 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		883D0126215A3FA30095F8E8 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				883D012D215B14EE0095F8E8 /* UIDevice.swift */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		883D0127215A3FB50095F8E8 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				883D012A215B123C0095F8E8 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		883D0137215B16C30095F8E8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				883D0138215B16D90095F8E8 /* BaseNavigationController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		883D013A215B17C90095F8E8 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				883D013B215B18280095F8E8 /* CameraViewController.swift */,
+				883D013C215B18280095F8E8 /* CameraViewController.xib */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		DC355A35D2E7881B85DE54BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				42D700A076C4C644A94BDA5F /* Pods_HanCam.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		883D010D215A3E550095F8E8 /* HanCam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 883D0120215A3E560095F8E8 /* Build configuration list for PBXNativeTarget "HanCam" */;
+			buildPhases = (
+				E0ED259CC9B50B035F6F8FDF /* [CP] Check Pods Manifest.lock */,
+				883D010A215A3E550095F8E8 /* Sources */,
+				883D010B215A3E550095F8E8 /* Frameworks */,
+				883D010C215A3E550095F8E8 /* Resources */,
+				FCB7BE349D9C04A40FC766FF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HanCam;
+			productName = HanCam;
+			productReference = 883D010E215A3E550095F8E8 /* HanCam.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		883D0106215A3E550095F8E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "NanJun Li";
+				TargetAttributes = {
+					883D010D215A3E550095F8E8 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 883D0109215A3E550095F8E8 /* Build configuration list for PBXProject "HanCam" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 883D0105215A3E550095F8E8;
+			productRefGroup = 883D010F215A3E550095F8E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				883D010D215A3E550095F8E8 /* HanCam */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		883D010C215A3E550095F8E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883D011C215A3E560095F8E8 /* LaunchScreen.storyboard in Resources */,
+				883D0131215B16150095F8E8 /* Localizable.strings in Resources */,
+				883D0119215A3E560095F8E8 /* Assets.xcassets in Resources */,
+				883D0117215A3E550095F8E8 /* Main.storyboard in Resources */,
+				883D013E215B18280095F8E8 /* CameraViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E0ED259CC9B50B035F6F8FDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HanCam-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCB7BE349D9C04A40FC766FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HanCam/Pods-HanCam-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MMDrawerController/MMDrawerController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMDrawerController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HanCam/Pods-HanCam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		883D010A215A3E550095F8E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883D012B215B123C0095F8E8 /* Config.swift in Sources */,
+				883D0114215A3E550095F8E8 /* TabBarViewController.swift in Sources */,
+				883D0112215A3E550095F8E8 /* AppDelegate.swift in Sources */,
+				883D0139215B16D90095F8E8 /* BaseNavigationController.swift in Sources */,
+				883D012E215B14EE0095F8E8 /* UIDevice.swift in Sources */,
+				883D013D215B18280095F8E8 /* CameraViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		883D0115215A3E550095F8E8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883D0116215A3E550095F8E8 /* Base */,
+				883D0135215B16430095F8E8 /* zh-Hans */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		883D011A215A3E560095F8E8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883D011B215A3E560095F8E8 /* Base */,
+				883D0134215B16430095F8E8 /* zh-Hans */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		883D0133215B16150095F8E8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883D0132215B16150095F8E8 /* en */,
+				883D0136215B16430095F8E8 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		883D011E215A3E560095F8E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		883D011F215A3E560095F8E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		883D0121215A3E560095F8E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA56ABE1DBE9C771F6DE8CE3 /* Pods-HanCam.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7J5DQC57MS;
+				INFOPLIST_FILE = HanCam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NanJun-Li.HanCam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HanCam/HanCam-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		883D0122215A3E560095F8E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EBA47E4ABE2F786D5AD1744 /* Pods-HanCam.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7J5DQC57MS;
+				INFOPLIST_FILE = HanCam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "NanJun-Li.HanCam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HanCam/HanCam-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		883D0109215A3E550095F8E8 /* Build configuration list for PBXProject "HanCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883D011E215A3E560095F8E8 /* Debug */,
+				883D011F215A3E560095F8E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		883D0120215A3E560095F8E8 /* Build configuration list for PBXNativeTarget "HanCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883D0121215A3E560095F8E8 /* Debug */,
+				883D0122215A3E560095F8E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 883D0106215A3E550095F8E8 /* Project object */;
+}

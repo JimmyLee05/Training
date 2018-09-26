@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  HanCam
+
+  Created by 李南君 on 2018/9/26.
+  Copyright © 2018 NanJun Li. All rights reserved.
+*/
+
+BTN_BAR_PHOTO = "PHOTO";
+
+BTN_BAR_CAMERA = "CAMERA";
+
+BTN_BAR_SETTING = "SETTING";
